@@ -1,5 +1,6 @@
 import { fontFamily } from "tailwindcss/defaultTheme";
 /** @type {import('tailwindcss').Config} */
+
 function withOpacity(variableName) {
   return ({ opacityValue }) => {
     if (opacityValue !== undefined) {
@@ -23,6 +24,7 @@ export default {
           300: withOpacity("--color-primary-300"),
           200: withOpacity("--color-primary-200"),
           100: withOpacity("--color-primary-100"),
+          light: withOpacity("--color-primary-light"),
         },
         secondary: {
           900: withOpacity("--color-secondary-900"),
@@ -41,6 +43,7 @@ export default {
         warning: withOpacity("--color-warning"),
         error: withOpacity("--color-error"),
       },
+
       container: {
         center: true,
         padding: "1rem",
@@ -50,4 +53,5 @@ export default {
       },
     },
   },
+  plugins: [],
 };

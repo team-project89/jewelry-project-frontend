@@ -17,19 +17,19 @@ function Navbar({ title }) {
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuTrigger>{title}</NavigationMenuTrigger>
-            <div>
-              <NavigationMenuContent>
-                <div className='w-[200px] py-10 flex flex-col gap-6 '>
-                  <button onClick={() => handleNavigate("/pathone")}>
-                    link1
-                  </button>
-                  <button className="text-secondary" nClick={() => handleNavigate("/pathtwo")}>
-                    link2
-                  </button>
-                </div>
-              </NavigationMenuContent>
-            </div>
+            <NavigationMenuTrigger className='font-semibold text-[15px]'>
+              {title}
+            </NavigationMenuTrigger>
+            <NavigationMenuContent >
+              <div className='w-[200px] py-10 flex flex-col gap-6 '>
+                <button onClick={() => handleNavigate("/pathone")}>
+                  link1
+                </button>
+                <button className='' onClick={() => handleNavigate("/pathtwo")}>
+                  link2
+                </button>
+              </div>
+            </NavigationMenuContent>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
