@@ -56,6 +56,12 @@
   .input-style {
     @apply rounded-3xl placeholder:font-thin w-[240px] pl-10 py-[9px] bg-secondary-100 font-light border-[3px]  border-transparent  hover:border-red-100 hover:shadow-sm hover:bg-secondary-0 transition-all;
   }
+  .btn {
+    @apply px-3 py-1 font-bold rounded-3xl transition-all duration-300;
+  }
+  .btn--primary {
+    @apply px-5 py-4 bg-[#0d0c22] text-white hover:bg-[#565564] shadow-sm;
+  }
 }
 
 body {
