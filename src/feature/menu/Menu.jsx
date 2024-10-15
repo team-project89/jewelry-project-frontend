@@ -1,8 +1,7 @@
 import SignUp from "@/feature/authentication/SignUp";
+import { DropdownMenuDemo } from "@/style/DropDownMenu";
 import brand from "../../../public/logo.jpg";
 import MenuList from "./MenuList";
-import TextField from "../../style/TextField";
-import { DropdownMenuDemo } from "@/style/DropDownMenu";
 import Search from "./Search";
 
 function Menu() {
@@ -11,7 +10,7 @@ function Menu() {
       <div className='flex xl:gap-56 gap-3 justify-center items-center'>
         <MenuList />
         <DropdownMenuDemo />
-        <picture className='order-1 w-32  h-2 lg:w-44 lg:h-12  flex  lg:justify-center lg:items-center justify-center items-center' >
+        <picture className='order-1 w-32  h-2 lg:w-44 lg:h-12  flex  lg:justify-center lg:items-center justify-center items-center'>
           <img src={brand} className='w-full h-auto object-cover' alt='brand' />
         </picture>
       </div>
