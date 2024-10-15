@@ -1,8 +1,5 @@
 import OwnerProfile from "@/feature/showproduct/OwnerProfile";
-import brand from "../../public/logo.jpg";
-import Menu from "../style/Menu";
-import React from "react";
-import { Link } from "react-router-dom";
+import Menu from "../feature/menu/Menu";
 
 function Home() {
   return (
