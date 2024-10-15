@@ -6,6 +6,7 @@ function SendOTPForm() {
   return (
       <div dir='rtl'>
         <form >
+          <label >ثبت نام | ورود</label>
           <TextField 
             // type= "number"
             label="لطفا شماره تلفن خود را وارد کنید"

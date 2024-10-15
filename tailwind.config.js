@@ -1,5 +1,5 @@
-import { fontFamily } from "tailwindcss/defaultTheme";
 /** @type {import('tailwindcss').Config} */
+import { fontFamily } from "tailwindcss/defaultTheme";
 
 function withOpacity(variableName) {
   return ({ opacityValue }) => {
@@ -53,5 +53,4 @@ export default {
       },
     },
   },
-  plugins: [],
 };
