@@ -4,7 +4,7 @@ import Menu from "../feature/menu/Menu";
 function Home() {
   return (
     <div>
-      <Menu />
+         <Menu />
       <OwnerProfile />
     </div>
   );

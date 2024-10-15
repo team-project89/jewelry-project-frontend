@@ -11,7 +11,7 @@ function Menu() {
       <div className='flex xl:gap-56 gap-3 justify-center items-center'>
         <MenuList />
         <DropdownMenuDemo />
-        <picture className='order-1 w-24 h-2 lg:w-44 lg:h-12  lg:flex lg:justify-center lg:items-center block'>
+        <picture className='order-1 w-32  h-2 lg:w-44 lg:h-12  flex  lg:justify-center lg:items-center justify-center items-center' >
           <img src={brand} className='w-full h-auto object-cover' alt='brand' />
         </picture>
       </div>
