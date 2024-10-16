@@ -62,6 +62,9 @@
   .btn--primary {
     @apply px-5 py-4 bg-[#0d0c22] text-white hover:bg-[#565564] shadow-sm;
   }
+  .logo-style{
+    @apply w-16 h-16  object-contain rounded-full shadow-lg border-2 border-gray-200 transform transition-transform duration-300 hover:scale-105
+  }
 }
 
 body {

@@ -15,8 +15,8 @@ function Auth() {
         ></video>
       </div>
       <div className='container md:mb-72 mt-32 h-[400px] max-w-lg sm:max-w-xl'>
-        <ShopProfile padding="16" />
-        <div className='w-2/3 mx-auto md:border p-4 rounded-lg h-[400px] md:shadow-xl '>
+        <ShopProfile margin="16" />
+        <div className='w-2/3 mx-auto md:border py-4  rounded-lg h-[400px] md:shadow-xl '>
           <AuthContainer />
         </div>
       </div>

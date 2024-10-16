@@ -1,11 +1,11 @@
 import logo from "../../public/brand.jpg";
 import { useState } from "react";
 
-function ShopProfile({padding}) {
+function ShopProfile({margin}) {
   const [status, setStatus] = useState("online");
 
   return (
-    <div className={` w-full border-secondary-400 relative flex justify-center items-center pb-8 px-4 md:px-16 lg:px-24 xl:px-${padding}`}>
+    <div className={` w-full border-secondary-400 relative flex justify-center items-center pb-8 px-4 md:px-16 lg:px-24 xl:px-${margin}`}>
       <div className='relative flex items-center w-full'>
         <div className='flex-grow border-t border-gray-300'></div>
         <div className='mx-4 flex items-center relative'>

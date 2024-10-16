@@ -1,7 +1,7 @@
 import React from "react";
 import { BsSearch } from "react-icons/bs";
 
-function TextField() {
+function TextFieldSearch() {
   return (
     <div className='hidden xl:block'>
       <input
@@ -14,4 +14,4 @@ function TextField() {
   );
 }
 
-export default TextField;
+export default TextFieldSearch;
