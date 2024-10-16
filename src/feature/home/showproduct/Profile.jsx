@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../../public/brand.jpg";
+import logo from "../../../../public/brand.jpg";
 
 function Profile() {
   return (

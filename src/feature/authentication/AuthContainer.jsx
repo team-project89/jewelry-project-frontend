@@ -1,12 +1,10 @@
-import React from 'react'
-import SendOTPForm from './SendOTPForm'
+import React, { useState } from "react";
+import SendOTPForm from "./SendOTPForm";
+import CheckOtp from "./CheckOtp";
 
 function AuthContainer() {
-  return (
-    <div>
-        <SendOTPForm/>
-    </div>
-  )
+  const [step, setStep] = useState(1);
+  return <div>{step === 1 ? <SendOTPForm /> : <CheckOtp />}</div>;
 }
 
-export default AuthContainer
+export default AuthContainer;

@@ -1,4 +1,5 @@
 import AuthContainer from "@/feature/authentication/AuthContainer";
+import ShopProfile from "@/style/ShopProfile";
 import React from "react";
 
 function Auth() {
@@ -13,8 +14,9 @@ function Auth() {
           loop
         ></video>
       </div>
-      <div className='container max-w-sm sm:max-w-xl mt-14 lg:mt-0'>
-        <div className='w-full mx-auto'>
+      <div className='container md:mb-72 mt-32 h-[400px] max-w-lg sm:max-w-xl'>
+        <ShopProfile padding="16" />
+        <div className='w-2/3 mx-auto md:border p-4 rounded-lg h-[400px] md:shadow-xl '>
           <AuthContainer />
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { SheetDemo } from "../../style/SheetDemo";
+import { SheetDemo } from "../../../style/SheetDemo";
 import Profile from "./Profile";
 import VideoAutoplay from "./VideoAutoplay";
 

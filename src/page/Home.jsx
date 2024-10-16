@@ -1,5 +1,5 @@
-import OwnerProfile from "@/feature/showproduct/OwnerProfile";
-import Menu from "../feature/menu/Menu";
+import OwnerProfile from "@/feature/home/showproduct/OwnerProfile";
+import Menu from "../feature/home/menu/Menu";
 import ShopProfile from "@/style/ShopProfile";
 
 function Home() {
@@ -7,7 +7,9 @@ function Home() {
     <div>
       <Menu />
       <OwnerProfile />
-      <ShopProfile />
+      <div className="mt-32">
+        <ShopProfile padding="52" />
+      </div>
     </div>
   );
 }

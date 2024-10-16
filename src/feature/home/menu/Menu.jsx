@@ -1,6 +1,6 @@
 import SignUp from "@/feature/authentication/SignUp";
 import { DropdownMenuDemo } from "@/style/DropDownMenu";
-import brand from "../../../public/logo.jpg";
+import brand from "../../../../public/logo.jpg";
 import MenuList from "./MenuList";
 import Search from "./Search";
 
