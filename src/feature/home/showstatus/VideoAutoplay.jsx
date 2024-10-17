@@ -3,7 +3,7 @@ import React from "react";
 function VideoAutoplay() {
   return (
     <div className='flex  gap-8 flex-col  transition-all'>
-      <video className='xl:rounded-lg w-full' autoPlay muted>
+      <video className='xl:rounded-xl w-full' autoPlay muted>
         <source src='/video.mp4' type='video/mp4' />
       </video>
       <div className=' w-full items-center justify-center flex  gap-x-2 '>

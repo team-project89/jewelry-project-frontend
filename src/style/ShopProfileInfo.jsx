@@ -1,11 +1,15 @@
+import { Link } from "react-router-dom";
 import logo from "../../public/brand.jpg";
 import { useState } from "react";
+import { FaAddressCard } from "react-icons/fa6";
 
-function ShopProfile({margin}) {
+function ShopProfileInfo({ margin }) {
   const [status, setStatus] = useState("online");
 
   return (
-    <div className={` w-full border-secondary-400 relative flex justify-center items-center pb-8 px-4 md:px-16 lg:px-24 xl:px-${margin}`}>
+    <div
+      className={` w-full border-secondary-400 relative flex flex-col gap-8 justify-center items-center pb-8 px-4 md:px-16 lg:px-24 xl:px-${margin}`}
+    >
       <div className='relative flex items-center w-full'>
         <div className='flex-grow border-t border-gray-300'></div>
         <div className='mx-4 flex items-center relative'>
@@ -19,8 +23,6 @@ function ShopProfile({margin}) {
               transform: "translateY(-50%)",
             }}
           ></span>
-
-          {/* Logo */}
           <picture>
             <img
               src={logo}
@@ -29,11 +31,20 @@ function ShopProfile({margin}) {
             />
           </picture>
         </div>
-
         <div className='flex-grow border-t border-gray-300'></div>
+      </div>
+      <div className="flex flex-col items-center gap-3">
+        <h1 className="text-secondary-500">جواهرسازی لیمون</h1>
+        <span className='flex items-center gap-2'>
+          <p className='whitespace-nowrap text-secondary-500'>شماره تماس : 09358435026 </p>
+          <FaAddressCard />
+        </span>{" "}
+        <Link to={"/about-shop"}>
+          <button className='btn--secondary btn--primary px-6 py-2'>درباره ی ما</button>
+        </Link>
       </div>
     </div>
   );
 }
 
-export default ShopProfile;
+export default ShopProfileInfo;

@@ -1,7 +1,7 @@
 import OwnerProfile from "@/feature/home/showstatus/OwnerProfileStaus";
-import Menu from "../feature/home/menu/Menu";
-import ShopProfile from "@/style/ShopProfile";
 import Profile from "@/feature/home/showstatus/Profile";
+import ShopProfileInfo from "@/style/ShopProfileInfo";
+import Menu from "../feature/home/menu/Menu";
 
 function Home() {
   return (
@@ -10,7 +10,7 @@ function Home() {
       <Profile />
       <OwnerProfile />
       <div className='mt-32'>
-        <ShopProfile margin='52' />
+        <ShopProfileInfo margin='52' />
       </div>
     </div>
   );
