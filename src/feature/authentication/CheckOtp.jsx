@@ -11,7 +11,7 @@ function CheckOtp() {
       </h1>
       <form className="mt-4 flex flex-col gap-8 md:gap-12 w-full md:w-3/5">
         <label className="font-bold text-sm md:text-lg text-center">
-          کد تایید برای شماره  را وارد کنید
+          کد تایید را وارد کنید
         </label>
         <div className="flex justify-center">
           <OTPInput

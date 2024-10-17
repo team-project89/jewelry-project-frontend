@@ -23,7 +23,7 @@ export function DropdownMenuDemo() {
         </DropdownMenuTrigger>
 
         {open && (
-          <DropdownMenuContent className='w-screen mt-4'>
+          <DropdownMenuContent className='w-screen mt-4 '>
             <DropdownMenuSeparator />
             <div>Find Designer</div>
             <DropdownMenuGroup className='border-l-2 p-4 m-3'>

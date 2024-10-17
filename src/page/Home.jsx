@@ -1,7 +1,7 @@
-import OwnerProfile from "@/feature/home/showproduct/OwnerProfile";
+import OwnerProfile from "@/feature/home/showstatus/OwnerProfileStaus";
 import Menu from "../feature/home/menu/Menu";
 import ShopProfile from "@/style/ShopProfile";
-import Profile from "@/feature/home/showproduct/Profile";
+import Profile from "@/feature/home/showstatus/Profile";
 
 function Home() {
   return (

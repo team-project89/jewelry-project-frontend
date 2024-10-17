@@ -14,18 +14,6 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: {
-          900: withOpacity("--color-primary-900"),
-          800: withOpacity("--color-primary-800"),
-          700: withOpacity("--color-primary-700"),
-          600: withOpacity("--color-primary-600"),
-          500: withOpacity("--color-primary-500"),
-          400: withOpacity("--color-primary-400"),
-          300: withOpacity("--color-primary-300"),
-          200: withOpacity("--color-primary-200"),
-          100: withOpacity("--color-primary-100"),
-          light: withOpacity("--color-primary-light"),
-        },
         secondary: {
           900: withOpacity("--color-secondary-900"),
           800: withOpacity("--color-secondary-800"),
@@ -52,4 +40,5 @@ export default {
       },
     },
   },
+  plugins: [require("tailwindcss-animate")],
 };
