@@ -1,4 +1,4 @@
-import brand from "../../public/logo.jpg";
+import brand from "../../public/BrandShop.webp";
 function LabelShop({ style }) {
   return (
     <picture className={`${style}`}>

@@ -1,5 +1,5 @@
 import { useSticky } from "@/hooks/useScrollSticky";
-import logo from "../../../../public/brand.jpg";
+import logo from "../../../../public/LogoShop.webp";
 
 function Profile() {
   const sticky = useSticky();
