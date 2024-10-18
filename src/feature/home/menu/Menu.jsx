@@ -2,7 +2,7 @@ import SignUp from "@/feature/authentication/SignUp";
 import { DropdownMenuDemo } from "@/feature/comment/DropDownMenu";
 import LabelShop from "@/style/LabelShop";
 import MenuList from "./MenuList";
-import Search from "./Search";
+import Search from "../../../style/SearchIcon";
 
 function Menu() {
   return (

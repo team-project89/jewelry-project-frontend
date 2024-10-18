@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { useNavigate } from "react-router-dom";
 
-function Navbar({ title }) {
+function HoverMenu({ title }) {
   const navigation = useNavigate();
   const handleNavigate = (linkPath) => {
     navigation(linkPath);
@@ -20,7 +20,7 @@ function Navbar({ title }) {
             <NavigationMenuTrigger className='font-semibold text-[15px]'>
               {title}
             </NavigationMenuTrigger>
-            <NavigationMenuContent >
+            <NavigationMenuContent>
               <div className='w-[200px] py-10 flex flex-col gap-6 '>
                 <button onClick={() => handleNavigate("/pathone")}>
                   link1
@@ -37,4 +37,4 @@ function Navbar({ title }) {
   );
 }
 
-export default Navbar;
+export default HoverMenu;
