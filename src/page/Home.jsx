@@ -6,15 +6,27 @@ import ShopInfo from "@/style/ShopInfo";
 
 function Home() {
   return (
-    <div>
-      <Menu />
-      <Profile />
-      <OwnerProfile />
-      <div className='mt-32'>
+    <main>
+      <header aria-label='Main menu'>
+        <Menu />
+      </header>
+
+      <section aria-labelledby='user-profile' className='user-profiles'>
+        <h2 id='user-profile' className='sr-only'>
+          User Profile Information
+        </h2>
+        <Profile />
+        <OwnerProfile />
+      </section>
+
+      <section className='mt-32 shop-info' aria-labelledby='shop-info-section'>
+        <h2 id='shop-info-section' className='sr-only'>
+          Shop Information
+        </h2>
         <ShopProfileInfo margin='52' />
         <ShopInfo />
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
 
