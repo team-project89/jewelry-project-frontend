@@ -12,22 +12,21 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { IoChatbubbleOutline } from "react-icons/io5";
-
 export function SheetDemo() {
   return (
     <div>
       <Sheet>
         <SheetTrigger
           asChild
-          className='rounded-full absolute right-0 h-14 w-14 shadow-lg top-80'
+          className='rounded-full absolute right-0 h-14 w-14 shadow-lg md:top-80 top-[500px]'
         >
           <Button variant='outline'>
             <IoChatbubbleOutline />
           </Button>
         </SheetTrigger>
-        <SheetContent className='overflow-scroll '>
+        <SheetContent className='overflow-scroll transition-custom'>
           <SheetHeader>
-            <div className="flex flex-col gap-4">
+            <div className='flex flex-col gap-4'>
               comments
               <SheetTitle>name</SheetTitle>
               <SheetDescription>

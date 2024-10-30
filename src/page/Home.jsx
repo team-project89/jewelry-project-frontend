@@ -1,18 +1,32 @@
-import OwnerProfile from "@/feature/home/showproduct/OwnerProfile";
+import OwnerProfile from "@/feature/home/showstatus/OwnerProfileStaus";
+import Profile from "@/feature/home/showstatus/Profile";
+import ShopProfileInfo from "@/style/ShopProfileInfo";
 import Menu from "../feature/home/menu/Menu";
-import ShopProfile from "@/style/ShopProfile";
-import Profile from "@/feature/home/showproduct/Profile";
+import ShopInfo from "@/style/ShopInfo";
 
 function Home() {
   return (
-    <div>
-      <Menu />
-      <Profile />
-      <OwnerProfile />
-      <div className='mt-32'>
-        <ShopProfile margin='52' />
-      </div>
-    </div>
+    <main>
+      <header aria-label='Main menu'>
+        <Menu />
+      </header>
+
+      <section aria-labelledby='user-profile' className='user-profiles'>
+        <h2 id='user-profile' className='sr-only'>
+          User Profile Information
+        </h2>
+        <Profile />
+        <OwnerProfile />
+      </section>
+
+      <section className='mt-32 shop-info' aria-labelledby='shop-info-section'>
+        <h2 id='shop-info-section' className='sr-only'>
+          Shop Information
+        </h2>
+        <ShopProfileInfo margin='52' />
+        <ShopInfo />
+      </section>
+    </main>
   );
 }
 

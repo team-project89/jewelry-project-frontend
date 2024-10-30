@@ -1,12 +1,15 @@
-import React from 'react'
-
-function TextField({ label, type="text" }) {
+function TextField({ label, type, onChange, value }) {
   return (
-    <div>
-        <label className='block mb-3 text-size'>{label}</label>
-        <input type={type} className='input-style w-full p-4 mb-8'/>
+    <div className="flex flex-col gap-2">
+      <label className="block mb-3 text-size">{label}</label>
+      <input
+        type={type}
+        onChange={onChange}
+        value={value}
+        className="input-style w-full p-4 mb-8"
+      />
     </div>
-  )
+  );
 }
 
-export default TextField
+export default TextField;

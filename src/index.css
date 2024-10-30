@@ -6,16 +6,6 @@
   &,
   &.light-mode {
     --background-app-rgb: 255, 255, 255;
-    --color-primary-900: 74, 109, 255;
-    --color-primary-800: 92, 124, 255;
-    --color-primary-700: 110, 138, 255;
-    --color-primary-600: 128, 153, 255;
-    --color-primary-500: 146, 167, 255;
-    --color-primary-400: 164, 182, 255;
-    --color-primary-300: 183, 197, 255;
-    --color-primary-200: 201, 211, 255;
-    --color-primary-100: 219, 226, 255;
-    --color-primary-50: 228, 233, 255;
     --color-secondary-900: 17, 24, 39;
     --color-secondary-800: 31, 41, 55;
     --color-secondary-700: 55, 65, 81;
@@ -62,15 +52,52 @@
   .btn--primary {
     @apply px-5 py-4 bg-[#0d0c22] text-white hover:bg-[#565564] shadow-sm;
   }
-  .logo-style{
-    @apply w-16 h-16  object-contain rounded-full shadow-lg border-2 border-gray-200 transform transition-transform duration-300 hover:scale-105
+  .btn--secondary {
+    @apply px-3 shadow-lg py-1 font-bold rounded-3xl transition-all duration-300;
+  }
+  .logo-style {
+    @apply w-16 h-16   object-contain rounded-xl shadow-lg border-2 border-gray-200 transform transition-transform duration-300 hover:scale-105;
+  }
+  .brand-style {
+    @apply lg:order-1 xl:hidden hidden md:flex 2xl:order-1 w-32 h-2 lg:w-36 lg:h-10 justify-center  items-center;
+  }
+  .transition-element {
+    @apply transition-all duration-200;
+  }
+  .transition-custom {
+    @apply transition ease-in-out duration-300;
   }
 }
 
+@layer utilities {
+  /* HTML: <div class="loader"></div> */
+  .loader {
+    width: 60px;
+    aspect-ratio: 2;
+    --_g: no-repeat radial-gradient(circle closest-side, #000 90%, #0000);
+    background: var(--_g) 0% 50%, var(--_g) 50% 50%, var(--_g) 100% 50%;
+    background-size: calc(100% / 3) 50%;
+    animation: l3 1s infinite linear;
+  }
+  @keyframes l3 {
+    20% {
+      background-position: 0% 0%, 50% 50%, 100% 50%;
+    }
+    40% {
+      background-position: 0% 100%, 50% 0%, 100% 50%;
+    }
+    60% {
+      background-position: 0% 50%, 50% 100%, 100% 0%;
+    }
+    80% {
+      background-position: 0% 50%, 50% 50%, 100% 100%;
+    }
+  }
+}
 body {
   padding: 0;
   margin: 0;
-  font-family: "Vazir" !important; 
+  font-family: "Vazir" !important;
   min-height: 100vh;
   user-select: none;
 }
@@ -87,6 +114,10 @@ button {
   cursor: pointer;
   outline: none;
 }
+input {
+  border: 1px red solid;
+  border-radius: 17px;
+}
 button:disabled {
   cursor: default;
   background-color: rgb(var(--color-secondary-100), 0.5);
@@ -98,38 +129,4 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
-
-/* TABLE */
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
-}
-
-table .title-row {
-  background-color: rgb(var(--color-secondary-100));
-}
-
-table td,
-table th {
-  border-bottom: 1px solid rgb(var(--color-secondary-200));
-  text-align: right;
-  white-space: nowrap;
-}
-
-table th {
-  padding: 0.6rem 1rem;
-  color: rgb(var(--color-secondary-600));
-  font-size: 0.9rem;
-}
-
-table td {
-  font-size: 0.85rem;
-  padding: 1rem 1rem;
-  color: rgb(var(--color-secondary-600));
-}
-label {
-  display: block;
 }
