@@ -10,6 +10,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useOpen } from "@/context/NavbarOpen";
+
+
+
 export function DropdownMenuDemo() {
   const { open, handleClick } = useOpen();
 

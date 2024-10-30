@@ -25,8 +25,8 @@ function Menu() {
 
       <div className='flex justify-center items-center gap-x-2'>
         <LabelShop style='brand-style' alt='Brand Label' />
-        <MenuList aria-label='Menu-list' />
-        <DropdownMenuDemo aria-label='User options responsive menu' />
+        <MenuList  />
+        <DropdownMenuDemo/>
       </div>
     </header>
   );

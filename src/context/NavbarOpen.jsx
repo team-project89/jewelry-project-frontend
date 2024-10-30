@@ -1,26 +1,31 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-const NavbarContext = createContext();
+const OpenNavbarContext = createContext();
 
-export function NavbarProvider({ children }) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleNavbar = () => setIsOpen((prev) => !prev);
-
+function NavbarProvider({ children }) {
+  const [open, setOpen] = useState(false);
+  const handleClick = () => {
+    setOpen((prev) => !prev);
+  };
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth > 700) setIsOpen(false);
+      if (window.innerWidth > 700) {
+        setOpen(false);
+      }
     };
-
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
-
   return (
-    <NavbarContext.Provider value={{ isOpen, toggleNavbar }}>
+    <OpenNavbarContext.Provider value={{ open, handleClick }}>
       {children}
-    </NavbarContext.Provider>
+    </OpenNavbarContext.Provider>
   );
 }
 
-export const useOpen = () => useContext(NavbarContext);
+export default NavbarProvider;
+export function useOpen() {
+  return useContext(OpenNavbarContext);
+}

@@ -40,6 +40,9 @@
   }
 }
 @layer components {
+  .signup-style {
+    @apply  cursor-pointer bg-secondary-900 px-6 rounded-full h-[48px] flex justify-center items-center hover:opacity-60 transition-all
+  }
   .text-size {
     @apply text-[15px] font-semibold;
   }

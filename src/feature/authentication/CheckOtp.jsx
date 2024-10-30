@@ -2,10 +2,12 @@ import Loading from "@/style/Loading";
 import { useState } from "react";
 import OTPInput from "react-otp-input";
 import useCheckOtp from "./useCheckOtp";
+import { useNavigate } from "react-router-dom";
 
 function CheckOtp({ phone_number }) {
   const [otp, setOtp] = useState("");
   const { checkOtp, isChecking } = useCheckOtp();
+  const navigate = useNavigate();
 
   const handleCheck = (e) => {
     e.preventDefault();
@@ -15,6 +17,12 @@ function CheckOtp({ phone_number }) {
         onSuccess: (data) => {
           console.log(data);
           setOtp("");
+          if (!data.user.is_staff) {
+            navigate("/shop");
+          } else {
+            
+            navigate("/admin");
+          }
         },
       }
     );
@@ -26,7 +34,7 @@ function CheckOtp({ phone_number }) {
         ثبت نام | ورود
       </h1>
       <form
-        className='mt-4 flex flex-col gap-8 md:gap-12 w-full md:w-3/5  justify-center items-center'
+        className='mt-4 flex flex-col gap-8 md:gap-12 w-full md:w-3/5 justify-center items-center'
         onSubmit={handleCheck}
       >
         <label className='font-bold text-sm md:text-lg text-center'>
