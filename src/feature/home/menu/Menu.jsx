@@ -6,7 +6,7 @@ import Search from "../../../style/SearchIcon";
 
 function Menu() {
   return (
-    <header className='flex w-full gap-4 lg:gap-0 justify-between px-4 md:px-8 py-6 items-center'>
+    <header className='flex w-full gap-4 lg:gap-0 justify-between px-4 md:px-8 py-6 items-center container mx-auto '>
       <nav
         className='flex xl:gap-56 gap-3 justify-center items-center'
         aria-label='Main Navigation'

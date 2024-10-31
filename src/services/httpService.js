@@ -12,13 +12,14 @@ const app = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
+  withCredentials: true,
 });
 
 // const refreshToken = async () => {
 //   try {
 //     const response = await app.post("/auth/token/refresh");
-//     Cookies.set("access-token", response.data.accessToken);
-//     return response.data.accessToken;
+//     Cookies.set("access_token", response.data.access);
+//     return response.data.access;
 //   } catch (error) {
 //     // window.location.href = "/auth";
 //   console.log("error")
