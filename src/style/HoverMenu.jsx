@@ -5,13 +5,11 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function HoverMenu({ title }) {
-  const navigation = useNavigate();
-  const handleNavigate = (linkPath) => {
-    navigation(linkPath);
-  };
+function HoverMenu({ title, user }) {
+  const { is_completed } = user;
+
   return (
     <div>
       <NavigationMenu>
@@ -21,13 +19,10 @@ function HoverMenu({ title }) {
               {title}
             </NavigationMenuTrigger>
             <NavigationMenuContent>
-              <div className='w-[200px] py-10 flex flex-col gap-6 '>
-                <button onClick={() => handleNavigate("/pathone")}>
-                  link1
-                </button>
-                <button className='' onClick={() => handleNavigate("/pathtwo")}>
-                  link2
-                </button>
+              <div className='w-[200px] py-10 flex flex-col gap-6 justify-center items-center '>
+                <Link to={"pathone"}>پنل مالی</Link>
+                <Link to={"pathtwo"}>سفارشات</Link>
+                {!is_completed && <Link to={"paththree"}>تکمیل اطلاعات</Link>}
               </div>
             </NavigationMenuContent>
           </NavigationMenuItem>

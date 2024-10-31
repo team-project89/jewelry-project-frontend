@@ -1,15 +1,16 @@
+import MainHome from "@/feature/home/showstatus/MainHome";
+import usePathname from "@/hooks/usepathname";
 import { Outlet } from "react-router-dom";
-import Menu from "../feature/home/menu/Menu";
-import useUser from "@/hooks/useUser";
 
 function HomeLayout() {
+  const { desirePath } = usePathname();
 
   return (
     <main>
       <header>
-        <Menu />
+        <Outlet />
       </header>
-      <Outlet />
+      {desirePath === "shop" && <MainHome />}
     </main>
   );
 }

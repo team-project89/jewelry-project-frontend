@@ -6,8 +6,6 @@ import ShopInfo from "@/style/ShopInfo";
 import useUser from "@/hooks/useUser";
 
 function MainHome() {
-  const { user } = useUser();
-  console.log(user);
   return (
     <div>
       <section className='user-profiles'>

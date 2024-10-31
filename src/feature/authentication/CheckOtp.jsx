@@ -15,12 +15,10 @@ function CheckOtp({ phone_number }) {
       { phone_number, otp },
       {
         onSuccess: (data) => {
-          console.log(data);
           setOtp("");
           if (!data.user.is_staff) {
-            navigate("/shop");
+            navigate("/user");
           } else {
-            
             navigate("/admin");
           }
         },

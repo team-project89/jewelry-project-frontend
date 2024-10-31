@@ -8,6 +8,6 @@ export default function useUser() {
     retry: false,
   });
 
-  const user = data || {};
+  const user = data?.data|| {};
   return { user, isLoading, isError, error };
 }

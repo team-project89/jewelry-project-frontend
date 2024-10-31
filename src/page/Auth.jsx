@@ -1,6 +1,6 @@
 import AuthContainer from "@/feature/authentication/AuthContainer";
 import ShopProfile from "@/style/ShopProfileInfo";
-import  authVideo  from "../../public/authvideo.mp4";
+import authVideo from "../../public/authvideo.mp4";
 import React from "react";
 
 function Auth() {
