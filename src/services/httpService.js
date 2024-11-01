@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const getTokenFromCookies = () => {
+ export const getTokenFromCookies = () => {
   return Cookies.get("access_token");
 };
 

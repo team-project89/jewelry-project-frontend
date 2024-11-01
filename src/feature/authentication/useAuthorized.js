@@ -20,7 +20,5 @@ export default function useAuthorized() {
     }
   }
 
-  // Now you can use isAuthorized to determine access to the route
-
   return { isAuthorized, user, isAuthenticated, isLoading };
 }

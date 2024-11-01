@@ -19,7 +19,14 @@ function App() {
           <Routes>
             {/* {unauthorized menu} */}
             <Route path='/auth' element={<Auth />} />
-            <Route path='/' element={<HomeLayout />}>
+            <Route
+              path='/'
+              element={
+                <ProtectedRoute>
+                  <HomeLayout />
+                </ProtectedRoute>
+              }
+            >
               <Route index element={<Navigate replace to='shop' />} />
               <Route path='shop' element={<Menu />} />
 
