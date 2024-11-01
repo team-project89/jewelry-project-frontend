@@ -1,12 +1,14 @@
-function TextField({ label, type, onChange, value }) {
+function TextField({ label, type, name, register }) {
   return (
-    <div className="flex flex-col gap-2">
-      <label className="block mb-3 text-size">{label}</label>
-      <input
+    <div className='flex flex-col gap-2'>
+      <label dir='rtl' className='block mb-3 text-size'>
+        {label}
+      </label>
+      <input 
+        name={name}
         type={type}
-        onChange={onChange}
-        value={value}
-        className="input-style w-full p-4 mb-8"
+        {...register(name)}
+        className='input-style w-full p-4 mb-8'
       />
     </div>
   );

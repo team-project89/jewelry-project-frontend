@@ -1,21 +1,36 @@
 import React, { useState } from "react";
 import SendOTPForm from "./SendOTPForm";
 import CheckOtp from "./CheckOtp";
+import { useForm } from "react-hook-form";
+import useSendOtp from "./useSendOtp";
+import toast from "react-hot-toast";
 
 function AuthContainer() {
-  const [phone_number, setPhone_number] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const { isSending, sendOtp } = useSendOtp();
+  const { register, handleSubmit, getValues } = useForm();
   const [step, setStep] = useState(1);
-
+  const sendOtpHandler = async (data) => {
+    try {
+      const response = await sendOtp(data);
+      setStep(2);
+    } catch (error) {
+      toast.error("مشکلی پیش آمده لطفا دوباره امتحان کنید");
+    }
+  };
   return (
     <section aria-labelledby='auth-heading'>
       {step === 1 ? (
         <SendOTPForm
-          phone_number={phone_number}
-          setPhone_number={setPhone_number}
+          handleSubmit={handleSubmit(sendOtpHandler)}
+          register={register}
+          isSending={isSending}
+          phone_number={phoneNumber}
+          setPhone_number={setPhoneNumber}
           setStep={setStep}
         />
       ) : (
-        <CheckOtp phone_number={phone_number} />
+        <CheckOtp phone_number={getValues("phone_number")} />
       )}
     </section>
   );

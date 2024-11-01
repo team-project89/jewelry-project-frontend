@@ -7,3 +7,6 @@ export function sendOtpApi(data) {
 export function checkOtpApi(data) {
   return http.post("/auth/check/", data).then((response) => response.data);
 }
+export function completeProfileApi(data) {
+  return http.post("/update-profile/", data).then((response) => response.data);
+}

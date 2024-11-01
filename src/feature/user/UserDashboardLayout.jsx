@@ -10,14 +10,13 @@ import useUser from "@/hooks/useUser";
 
 function UserDashboardLayout() {
   const { user } = useUser();
-  console.log(user);
 
   return (
     <header className=' flex flex-col  '>
       <div className=' container mx-auto w-full items-center flex justify-between px-2  py-6 lg:gap-0 gap-4'>
         <nav className='flex items-center justify-center xl:gap-56 gap-3'>
           <div className='flex items-center justify-center gap-4 md:gap-6 relative order-3 xl:order-1'>
-            <HoverMenu title='نام کاربر' user={user} />
+            <HoverMenu user={user} />
             <SearchIcon />
           </div>
         </nav>
@@ -31,7 +30,7 @@ function UserDashboardLayout() {
         </div>
       </div>
 
-      <Outlet />
+      
     </header>
   );
 }

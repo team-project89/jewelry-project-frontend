@@ -7,8 +7,8 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Link } from "react-router-dom";
 
-function HoverMenu({ title, user }) {
-  const { is_completed } = user;
+function HoverMenu({ user }) {
+  const { is_completed, first_name, last_name } = user;
 
   return (
     <div>
@@ -16,13 +16,17 @@ function HoverMenu({ title, user }) {
         <NavigationMenuList>
           <NavigationMenuItem>
             <NavigationMenuTrigger className='font-semibold text-[15px]'>
-              {title}
+              {first_name || last_name
+                ? `${first_name} ${last_name}`
+                : "کاربر عادی"}
             </NavigationMenuTrigger>
             <NavigationMenuContent>
               <div className='w-[200px] py-10 flex flex-col gap-6 justify-center items-center '>
                 <Link to={"pathone"}>پنل مالی</Link>
                 <Link to={"pathtwo"}>سفارشات</Link>
-                {!is_completed && <Link to={"paththree"}>تکمیل اطلاعات</Link>}
+                {!is_completed && (
+                  <Link to={"/complete-profile"}>تکمیل اطلاعات</Link>
+                )}
               </div>
             </NavigationMenuContent>
           </NavigationMenuItem>

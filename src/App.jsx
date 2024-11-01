@@ -5,10 +5,15 @@ import AdminDashboardMenu from "./feature/admin/AdminUserDashboardMenu";
 import ProtectedRoute from "./feature/authentication/ProtectedRoute";
 import Menu from "./feature/home/menu/Menu";
 import MainHome from "./feature/home/showstatus/MainHome";
-import UserDashboardLayout from "./feature/user/UserDashboardMenu";
+import UserDashboardLayout from "./feature/user/UserDashboardLayout";
 import Auth from "./page/Auth";
 import HomeLayout from "./page/Home";
 import NotAccess from "./style/NotAccess";
+import UserWithList from "./feature/user/UserWishList";
+import ShoppingBasket from "./feature/user/ShoppingBasket";
+import SingleProduct from "./feature/user/SingleProduct";
+import UserLayout from "./feature/user/UserLayout";
+import ComlepeProfile from "./feature/authentication/ComlepeProfile";
 
 const queryClient = new QueryClient();
 function App() {
@@ -19,6 +24,7 @@ function App() {
           <Routes>
             {/* {unauthorized menu} */}
             <Route path='/auth' element={<Auth />} />
+            <Route path='complete-profile' element={<ComlepeProfile/>} />
             <Route
               path='/'
               element={
@@ -35,12 +41,18 @@ function App() {
                 path='user'
                 element={
                   <ProtectedRoute>
-                    <UserDashboardLayout />
+                    <UserLayout />
                   </ProtectedRoute>
                 }
               >
-                <Route index element={<Navigate replace to='user-panel' />} />
-                <Route path='user-panel' element={<MainHome />} />
+                <Route
+                  index
+                  element={<Navigate replace to='user-shopping' />}
+                />
+                <Route path='user-shopping' element={<MainHome />} />
+                <Route path='user-wishlist' element={<UserWithList />} />
+                <Route path='shoppingbasket' element={<ShoppingBasket />} />
+                <Route path='single-product' element={<SingleProduct />} />
               </Route>
 
               {/* admin Routes */}
@@ -53,6 +65,7 @@ function App() {
                 }
               />
             </Route>
+
             <Route path='*' element={<NotAccess />} />
           </Routes>
         </NavbarProvider>
