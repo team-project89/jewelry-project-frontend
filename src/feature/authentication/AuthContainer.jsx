@@ -12,8 +12,9 @@ function AuthContainer() {
   const [step, setStep] = useState(1);
   const sendOtpHandler = async (data) => {
     try {
-      const response = await sendOtp(data);
+      await sendOtp(data);
       setStep(2);
+      toast.success("کد اعتبار سنجی ارسال شد");
     } catch (error) {
       toast.error("مشکلی پیش آمده لطفا دوباره امتحان کنید");
     }

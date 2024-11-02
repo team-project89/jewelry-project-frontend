@@ -2,9 +2,7 @@ import TextField from "@/components/ui/TextField";
 import Loading from "@/style/Loading";
 
 function SendOTPForm({
-  phone_number,
   register,
-  setPhone_number,
   handleSubmit,
   isSending,
 }) {
@@ -23,7 +21,6 @@ function SendOTPForm({
           type='number'
           label='لطفا شماره تلفن خود را وارد کنید'
           className='w-full'
-       
         />
         {isSending ? (
           <Loading />
