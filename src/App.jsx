@@ -14,6 +14,10 @@ import ShoppingBasket from "./feature/user/ShoppingBasket";
 import SingleProduct from "./feature/user/SingleProduct";
 import UserLayout from "./feature/user/UserLayout";
 import ComlepeProfile from "./feature/authentication/ComlepeProfile";
+import AdminLayout from "./feature/admin/AdminLayout";
+import AdminDashboard from "./page/AdminDashboard";
+import Products from "./feature/admin/product/Products";
+import Categories from "./page/Categories";
 
 const queryClient = new QueryClient();
 function App() {
@@ -56,14 +60,12 @@ function App() {
               </Route>
 
               {/* admin Routes */}
-              <Route
-                path='admin'
-                element={
-                  <ProtectedRoute>
-                    <AdminDashboardMenu />
-                  </ProtectedRoute>
-                }
-              />
+              <Route path="/admin" element={<AdminLayout/>}> 
+                <Route index element={<Navigate to="dashboard" replace/>}/>
+                <Route path="dashboard" element={<AdminDashboard/>} />
+                <Route path="products" element={<Products/>}/>
+                <Route path="categories" element={<Categories/>}/>
+              </Route>
             </Route>
 
             <Route path='*' element={<NotAccess />} />
