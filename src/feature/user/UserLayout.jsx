@@ -2,6 +2,7 @@ import Layout from "./Layout";
 import UserDashboardLayout from "./UserDashboardLayout";
 
 function UserLayout() {
+  
   return (
     <div>
       <UserDashboardLayout />

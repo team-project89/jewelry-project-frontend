@@ -3,7 +3,7 @@ import Profile from "./Profile";
 import OwnerProfileStatus from "./OwnerProfileStaus";
 import ShopProfileInfo from "@/style/ShopProfileInfo";
 import ShopInfo from "@/style/ShopInfo";
-import useUser from "@/hooks/useUser";
+import ListOfProducts from "../products/ListOfProducts";
 
 function MainHome() {
   return (
@@ -15,6 +15,7 @@ function MainHome() {
       <section className='mt-32 shop-info'>
         <ShopProfileInfo margin='52' />
         <ShopInfo />
+        <ListOfProducts />
       </section>
     </div>
   );

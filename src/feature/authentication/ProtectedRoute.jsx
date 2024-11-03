@@ -15,25 +15,37 @@ const ProtectedRoute = ({ children }) => {
   const rolePath = user.is_staff ? "admin" : "user";
 
   useEffect(() => {
-    if (!token) return navigate("/shop");
-
-    if (!isLoading) {
-      if (!isAuthenticated) return navigate("/auth");
-      if (!isAuthorized) return navigate(`/${rolePath}`);
+    if (!token) {
+      navigate("/shop");
+      return;
     }
-
+  
+    if (!isLoading) {
+      if (!isAuthenticated) {
+        navigate("/auth");
+        return;
+      }
+  
+      if (!isAuthorized) {
+        navigate(`/${rolePath}`);
+        return;
+      }
+    }
+  
     if (token && (desirePath === "" || desirePath === "/shop")) {
       navigate(`/${rolePath}`);
     }
   }, [
+    token,
+    isLoading,
     isAuthenticated,
     isAuthorized,
-    isLoading,
-    navigate,
-    token,
-    desirePath,
     rolePath,
+    desirePath,
+    navigate,
   ]);
+  
+
   if (isLoading)
     return (
       <div className='flex h-screen justify-center items-center'>

@@ -1,11 +1,10 @@
-
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Navigate, Route, Routes } from "react-router-dom";
 import NavbarProvider from "./context/NavbarOpen";
 import AdminDashboardMenu from "./feature/admin/AdminUserDashboardMenu";
 import ProtectedRoute from "./feature/authentication/ProtectedRoute";
 import Menu from "./feature/home/menu/Menu";
-import MainHome from "./feature/home/showstatus/MainHome";
+import MainHome from "./feature/home/listofmenuitems/MainHome";
 import UserDashboardLayout from "./feature/user/UserDashboardLayout";
 import Auth from "./page/Auth";
 import HomeLayout from "./page/Home";
@@ -29,7 +28,7 @@ function App() {
           <Routes>
             {/* {unauthorized menu} */}
             <Route path='/auth' element={<Auth />} />
-            <Route path='complete-profile' element={<ComlepeProfile/>} />
+            <Route path='complete-profile' element={<ComlepeProfile />} />
             <Route
               path='/'
               element={
@@ -61,11 +60,11 @@ function App() {
               </Route>
 
               {/* admin Routes */}
-              <Route path="/admin" element={<AdminLayout/>}> 
-                <Route index element={<Navigate to="dashboard" replace/>}/>
-                <Route path="dashboard" element={<AdminDashboard/>} />
-                <Route path="products" element={<Products/>}/>
-                <Route path="categories" element={<Categories/>}/>
+              <Route path='/admin' element={<AdminLayout />}>
+                <Route index element={<Navigate to='dashboard' replace />} />
+                <Route path='dashboard' element={<AdminDashboard />} />
+                <Route path='products' element={<Products />} />
+                <Route path='categories' element={<Categories />} />
               </Route>
             </Route>
 

@@ -4,7 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 export default function useProducts(){
     const {isLoading, data} = useQuery({
         queryFn: getAllProductsApi,
-        queryKey:["products"]
+        queryKey:["products"],
+        retry:false
     })
 
     const products = data || []
