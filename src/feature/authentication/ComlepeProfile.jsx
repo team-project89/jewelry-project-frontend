@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 function CompleteProfile() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: {errors} } = useForm();
   const { isCompleting, isSending } = useCompleteProfile();
   const navigate = useNavigate();
 
@@ -30,10 +30,46 @@ function CompleteProfile() {
       <div className='w-full flex justify-center items-center'>
         <h1 className='text-xl'>تکمیل اطلاعات</h1>
       </div>
-      <TextField name='first_name' label='نام' register={register} />
-      <TextField name='last_name' label='نام خانوادگی' register={register} />
-      <TextField name='email' label='ایمیل' register={register} />
-      <TextField name='address' label='آدرس محل سکونت' register={register} />
+      <TextField 
+        name='first_name' 
+        label='نام' 
+        register={register}
+        validationSchema={{
+          required: "نام ضروری است"
+        }}
+        errors={errors}
+      />
+      <TextField 
+        name='last_name' 
+        label='نام خانوادگی' 
+        register={register} 
+        validationSchema={{
+          required: "نام خانوادگی ضروری است"
+        }}
+        errors={errors}
+      />
+      <TextField 
+        name='email' 
+        label='ایمیل' 
+        register={register} 
+        validationSchema={{
+          required: " ایمیل ضروری است",
+          pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: "ایمیل نامعتبر",
+          },
+        }}
+        errors={errors}
+      />
+      <TextField 
+        name='address' 
+        label='آدرس محل سکونت' 
+        register={register} 
+        validationSchema={{
+          required: "آدرس ضروری است"
+        }}
+        errors={errors}
+      />
 
       <div className='w-full flex justify-center items-center'>
         <button type='submit' className='btn btn--primary w-2/3'>
