@@ -5,7 +5,7 @@ import React from 'react'
 import ProductRow from './ProductRow'
 
 function ProductsTable() {
-    const {isLoading, products} = useProducts()
+    const {isLoading, products} = useProducts()  
 
     if (isLoading) return <Loading/>
   
@@ -13,7 +13,7 @@ function ProductsTable() {
       return <h1>No products available</h1>
   }
   
-    console.log(products)
+    // console.log(products)
 
   return (
     <Table>

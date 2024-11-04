@@ -18,12 +18,14 @@ import AdminLayout from "./feature/admin/AdminLayout";
 import AdminDashboard from "./page/AdminDashboard";
 import Products from "./feature/admin/product/Products";
 import Categories from "./page/Categories";
+import { Toaster } from "react-hot-toast";
 
 const queryClient = new QueryClient();
 function App() {
   return (
     <div>
       <QueryClientProvider client={queryClient}>
+        <Toaster/>
         <NavbarProvider>
           <Routes>
             {/* {unauthorized menu} */}

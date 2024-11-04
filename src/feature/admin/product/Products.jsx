@@ -1,11 +1,12 @@
 import React from 'react'
 import ProductsTable from './ProductsTable'
+import ProductsHeader from './ProductsHeader'
 
 function Products() {
 
   return (
     <div>
-      <div className='mb-10'>functions about products here...</div>
+      <ProductsHeader/>
       <ProductsTable/>
     </div>
   )
