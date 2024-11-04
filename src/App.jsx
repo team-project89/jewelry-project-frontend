@@ -1,13 +1,10 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import NavbarProvider from "./context/NavbarOpen";
-import AdminDashboardMenu from "./feature/admin/AdminUserDashboardMenu";
 import ProtectedRoute from "./feature/authentication/ProtectedRoute";
 import Menu from "./feature/home/menu/Menu";
 import MainHome from "./feature/home/listofmenuitems/MainHome";
-import UserDashboardLayout from "./feature/user/UserDashboardLayout";
 import Auth from "./page/Auth";
-import HomeLayout from "./page/Home";
 import NotAccess from "./style/NotAccess";
 import UserWithList from "./feature/user/UserWishList";
 import ShoppingBasket from "./feature/user/ShoppingBasket";
@@ -19,17 +16,20 @@ import Products from "./feature/admin/product/Products";
 import Categories from "./page/Categories";
 import SingleProduct from "./feature/user/SingleProduct";
 import { Toaster } from "react-hot-toast";
+import path from "path";
 
 const queryClient = new QueryClient();
 function App() {
+  const location = useLocation();
+  const hideNavbarRoutes = ["/auth", "complete-profile"];
   return (
     <div>
       <QueryClientProvider client={queryClient}>
-        <Toaster/>
+        <Toaster />
         <NavbarProvider>
+          {!hideNavbarRoutes.includes(location.pathname) && <Menu />}
           <Routes>
-            {/* {unauthorized menu} */}
-            <Route path='/auth' element={<Auth />} />
+            {/* <Route path='/auth' element={<Auth />} />
             <Route path='complete-profile' element={<ComlepeProfile />} />
             <Route
               path='/'
@@ -42,7 +42,7 @@ function App() {
               <Route index element={<Navigate replace to='shop' />} />
               <Route path='shop' element={<Menu />} />
 
-              {/* user Routes */}
+              
               <Route
                 path='user'
                 element={
@@ -61,13 +61,47 @@ function App() {
                 <Route path=':id' element={<SingleProduct />} />
               </Route>
 
-              {/* admin Routes */}
+              
               <Route path='/admin' element={<AdminLayout />}>
                 <Route index element={<Navigate to='dashboard' replace />} />
                 <Route path='dashboard' element={<AdminDashboard />} />
                 <Route path='products' element={<Products />} />
                 <Route path='categories' element={<Categories />} />
               </Route>
+            </Route> */}
+
+
+
+
+            
+            <Route path='/' element={<MainHome />} />
+            <Route path='/auth' element={<Auth />} />
+
+            <Route
+              path='user'
+              element={
+                <ProtectedRoute>
+                  <UserLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route path='userwishlist' element={<UserWithList />} />
+              <Route path='shoppingbasket' element={<ShoppingBasket />} />
+              <Route path=':id' element={<SingleProduct />} />
+            </Route>
+
+            <Route
+              path='/admin'
+              element={
+                <ProtectedRoute>
+                  <AdminLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<Navigate to='dashboard' replace />} />
+              <Route path='dashboard' element={<AdminDashboard />} />
+              <Route path='products' element={<Products />} />
+              <Route path='categories' element={<Categories />} />
             </Route>
 
             <Route path='*' element={<NotAccess />} />

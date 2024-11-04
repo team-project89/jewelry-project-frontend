@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 function AdminLayout() {
   return (
     <div className='container mx-auto'>
-        <AdminDashboardMenu/>
+        {/* <AdminDashboardMenu/> */}
         <Layout>
           <ul className='text-black flex flex-col p-4 gap-y-4'>
             <li>

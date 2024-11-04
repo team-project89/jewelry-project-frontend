@@ -12,7 +12,7 @@ const ProtectedRoute = ({ children }) => {
   const { user } = useUser();
   const { isAuthenticated, isAuthorized, isLoading } = useAuthorized();
   const navigate = useNavigate();
-  const rolePath = user.is_staff ? "admin" : "user";
+  const rolePath = user.is_staff ? "admin" : "";
 
   useEffect(() => {
     if (!token) {

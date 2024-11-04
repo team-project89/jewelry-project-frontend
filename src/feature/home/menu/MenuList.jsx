@@ -4,14 +4,14 @@ function MenuList() {
   return (
     <nav className='hidden lg:flex gap-x-[24px] justify-center items-center order-1 xl:order-2'>
       <Link
-        to='shoppingbasket'
+        to='user/shoppingbasket'
         className='text-size'
         title='View your shopping cart'
       >
         سبد خرید
       </Link>
       <Link
-        to='user-wishlist'
+        to='user/userwishlist'
         className='text-size'
         title='View your favorite items'
       >

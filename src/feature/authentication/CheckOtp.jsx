@@ -18,7 +18,7 @@ function CheckOtp({ phone_number }) {
         onSuccess: (data) => {
           setOtp("");
           if (!data.user.is_staff) {
-            navigate("/user");
+            navigate("/");
           } else {
             navigate("/admin");
           }

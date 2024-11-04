@@ -1,4 +1,3 @@
-
 import { getSingleProductsApi } from "@/services/productService";
 import { useMutation } from "@tanstack/react-query";
 
@@ -8,7 +7,7 @@ export function useSingleProduct() {
     isPending: isLoading,
     data,
   } = useMutation({
-    mutationFn: getSingleProductsApi
+    mutationFn: getSingleProductsApi,
   });
   const singleProduct = data || {};
   return { getProduct, isLoading, singleProduct };

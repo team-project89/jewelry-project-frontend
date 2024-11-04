@@ -1,14 +1,9 @@
-import Layout from "./Layout";
-import UserDashboardLayout from "./UserDashboardLayout";
+import { Outlet } from "react-router-dom";
 
 function UserLayout() {
-  
   return (
     <div>
-      <UserDashboardLayout />
-      <Layout>
-      
-      </Layout>
+      <Outlet />
     </div>
   );
 }
