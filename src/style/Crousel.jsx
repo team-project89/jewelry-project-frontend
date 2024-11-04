@@ -8,9 +8,9 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-export function CarouselDemo({ images }) {
+export function CarouselDemo({ images = [], sizeProduct}) {
   return (
-    <Carousel className='w-full max-w-xs mx-auto'>
+    <Carousel className={`w-full max-w-${sizeProduct} mx-auto`}>
       <CarouselContent>
         {images.map((imageUrl, index) => (
           <CarouselItem key={index}>

@@ -5,7 +5,7 @@ import useCheckOtp from "./useCheckOtp";
 import { useNavigate } from "react-router-dom";
 
 function CheckOtp({ phone_number }) {
-  console.log(phone_number);
+
   const [otp, setOtp] = useState("");
   const { checkOtp, isChecking } = useCheckOtp();
   const navigate = useNavigate();

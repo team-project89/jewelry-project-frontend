@@ -11,13 +11,13 @@ import HomeLayout from "./page/Home";
 import NotAccess from "./style/NotAccess";
 import UserWithList from "./feature/user/UserWishList";
 import ShoppingBasket from "./feature/user/ShoppingBasket";
-import SingleProduct from "./feature/user/SingleProduct";
 import UserLayout from "./feature/user/UserLayout";
 import ComlepeProfile from "./feature/authentication/ComlepeProfile";
 import AdminLayout from "./feature/admin/AdminLayout";
 import AdminDashboard from "./page/AdminDashboard";
 import Products from "./feature/admin/product/Products";
 import Categories from "./page/Categories";
+import SingleProduct from "./feature/user/SingleProduct";
 import { Toaster } from "react-hot-toast";
 
 const queryClient = new QueryClient();
@@ -58,7 +58,7 @@ function App() {
                 <Route path='user-shopping' element={<MainHome />} />
                 <Route path='user-wishlist' element={<UserWithList />} />
                 <Route path='shoppingbasket' element={<ShoppingBasket />} />
-                <Route path='single-product' element={<SingleProduct />} />
+                <Route path=':id' element={<SingleProduct />} />
               </Route>
 
               {/* admin Routes */}
