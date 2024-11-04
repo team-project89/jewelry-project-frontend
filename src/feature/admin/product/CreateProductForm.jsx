@@ -92,7 +92,7 @@ function CreateProductForm({onClose}) {
                 required
                 register={register}
                 validationSchema={{
-                    required: "توضیحات پروژه ضروری است",
+                    required: "توضیحات محصول ضروری است",
                     minLength: {
                         value: 10,
                         message: "حداقل 10 کاراکتر را وارد کنید"
