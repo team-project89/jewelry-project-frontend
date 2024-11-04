@@ -29,51 +29,6 @@ function App() {
         <NavbarProvider>
           {!hideNavbarRoutes.includes(location.pathname) && <Menu />}
           <Routes>
-            {/* <Route path='/auth' element={<Auth />} />
-            <Route path='complete-profile' element={<ComlepeProfile />} />
-            <Route
-              path='/'
-              element={
-                <ProtectedRoute>
-                  <HomeLayout />
-                </ProtectedRoute>
-              }
-            >
-              <Route index element={<Navigate replace to='shop' />} />
-              <Route path='shop' element={<Menu />} />
-
-              
-              <Route
-                path='user'
-                element={
-                  <ProtectedRoute>
-                    <UserLayout />
-                  </ProtectedRoute>
-                }
-              >
-                <Route
-                  index
-                  element={<Navigate replace to='user-shopping' />}
-                />
-                <Route path='user-shopping' element={<MainHome />} />
-                <Route path='user-wishlist' element={<UserWithList />} />
-                <Route path='shoppingbasket' element={<ShoppingBasket />} />
-                <Route path=':id' element={<SingleProduct />} />
-              </Route>
-
-              
-              <Route path='/admin' element={<AdminLayout />}>
-                <Route index element={<Navigate to='dashboard' replace />} />
-                <Route path='dashboard' element={<AdminDashboard />} />
-                <Route path='products' element={<Products />} />
-                <Route path='categories' element={<Categories />} />
-              </Route>
-            </Route> */}
-
-
-
-
-            
             <Route path='/' element={<MainHome />} />
             <Route path='/auth' element={<Auth />} />
 
