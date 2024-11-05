@@ -46,9 +46,9 @@ function CreateProductForm({onClose}) {
         })
 
         createProduct(formData)
-        toast.success("محصول با موفقیت ثبت شد.")
         reset()
         setImages([]) 
+        toast.success("محصول با موفقیت ثبت شد.")
         onClose()
         
     }

@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Table from '@/style/Table'
 import { toPersianNumbers, toPersianNumbersWithComma } from '@/utils/toPersianNumbers'
 import { RiDeleteBin5Line } from "react-icons/ri"
 import { FaRegEdit } from "react-icons/fa"
 import { Tooltip } from '@mui/material'
+import Modal from '@/style/Modal'
+import ConfirmDelete from '@/style/ConfirmDelete'
+import useDeleteProduct from './useDeleteProduct'
 
 function ProductRow({ product, index }) {
+    const [openDelete, setOpenDelete] = useState(false)
+    const { deleteProduct } = useDeleteProduct()
+
   return (
     <Table.Row>
         <td>{ toPersianNumbers(index + 1) }</td>
@@ -23,11 +29,29 @@ function ProductRow({ product, index }) {
         <td>{ toPersianNumbers(product.stock)}</td>
         <td> 
             <div className="flex items-center gap-x-5">
-                <Tooltip title="حذف" arrow>
-                    <button>
-                        <RiDeleteBin5Line className='w-5 h-5 text-error'/>
-                    </button>
-                </Tooltip>
+
+                <>
+                    <Tooltip title="حذف" arrow>
+                        <button onClick={()=> setOpenDelete(true)}>
+                            <RiDeleteBin5Line className='w-5 h-5 text-error'/>
+                        </button>
+                    </Tooltip>
+                    <Modal
+                       open={openDelete}
+                       onClose={()=> setOpenDelete(false)} 
+                       title={`حذف محصول ${product.name}`}
+                    >
+                        <ConfirmDelete
+                            resourceName={product.name}
+                            onClose={()=> setOpenDelete(false)}
+                            onConfirm={()=> deleteProduct(product.id, {
+                                onSuccess: ()=> setOpenDelete(false)
+                            })}
+                            disabled={false}
+                        />
+                    </Modal>
+                </>
+
                 <Tooltip title="ویرایش" arrow>
                     <button>
                         <FaRegEdit className='w-5 h-5 text-success'/>
