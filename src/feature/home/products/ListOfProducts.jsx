@@ -11,7 +11,7 @@ function ListOfProducts() {
   }
 
   return (
-    <div className='lg:flex w-4/5 mx-auto mt-24 overflow-x-scroll grid grid-cols-1 gap-4 sm:grid-cols-2 cursor-pointer '>
+    <div className='lg:flex w-4/5 mx-auto mt-24 overflow-x-scroll overflow-y-hidden grid grid-cols-1 gap-4 sm:grid-cols-2 cursor-pointer '>
       {products.map((item) => (
         <UserProducRow key={item.id} products={item} />
       ))}

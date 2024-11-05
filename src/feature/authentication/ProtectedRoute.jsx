@@ -15,23 +15,20 @@ const ProtectedRoute = ({ children }) => {
   const rolePath = user.is_staff ? "admin" : "";
 
   useEffect(() => {
-    if (!token) {
-      navigate("/shop");
-      return;
-    }
   
+
     if (!isLoading) {
       if (!isAuthenticated) {
         navigate("/auth");
         return;
       }
-  
+
       if (!isAuthorized) {
         navigate(`/${rolePath}`);
         return;
       }
     }
-  
+
     if (token && (desirePath === "" || desirePath === "/shop")) {
       navigate(`/${rolePath}`);
     }
@@ -44,7 +41,6 @@ const ProtectedRoute = ({ children }) => {
     desirePath,
     navigate,
   ]);
-  
 
   if (isLoading)
     return (

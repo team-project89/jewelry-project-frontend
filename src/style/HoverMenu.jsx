@@ -5,10 +5,24 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import usePathname from "@/hooks/usepathname";
 import { Link } from "react-router-dom";
 
 function HoverMenu({ user }) {
+  const { desirePath } = usePathname();
   const { is_completed, first_name, last_name } = user;
+  const path = [
+    { path: "pathone", label: "پنل مالی" },
+    { path: "pathtwo", label: "سفارشات" },
+    !is_completed && {
+      path: "/complete-profile",
+      label: "تکمیل اطلاعات",
+    },
+    user.is_staff && {
+      path: desirePath === "admin" ? "/" : "admin",
+      label: desirePath === "admin" ? "پنل خرید" : "پنل مدیریت",
+    },
+  ];
 
   return (
     <div>
@@ -21,12 +35,12 @@ function HoverMenu({ user }) {
                 : "کاربر عادی"}
             </NavigationMenuTrigger>
             <NavigationMenuContent>
-              <div className='w-[200px] py-10 flex flex-col gap-6 justify-center items-center '>
-                <Link to={"pathone"}>پنل مالی</Link>
-                <Link to={"pathtwo"}>سفارشات</Link>
-                {!is_completed && (
-                  <Link to={"/complete-profile"}>تکمیل اطلاعات</Link>
-                )}
+              <div className='w-[200px] py-10 flex flex-col gap-6 justify-center items-center'>
+                {path.filter(Boolean).map((link, index) => (
+                  <Link key={index} to={link.path}>
+                    {link.label}
+                  </Link>
+                ))}
               </div>
             </NavigationMenuContent>
           </NavigationMenuItem>

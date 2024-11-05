@@ -9,7 +9,6 @@ export default function useUser() {
     queryKey: ["get-user"],
     queryFn: getUserApi,
     enabled: !!token,
-    retry: false,
   });
 
   const user = data?.data || {};

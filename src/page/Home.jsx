@@ -1,4 +1,4 @@
-import MainHome from "@/feature/home/listofmenuitems/MainHome";
+import MainHome from "@/feature/home/listofhomeitems/MainHome";
 import usePathname from "@/hooks/usepathname";
 import { Outlet } from "react-router-dom";
 

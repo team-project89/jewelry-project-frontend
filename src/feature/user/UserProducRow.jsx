@@ -1,3 +1,4 @@
+import { getTokenFromCookies } from "@/services/httpService";
 import { CarouselDemo } from "@/style/Crousel";
 import { toPersianNumbersWithComma } from "@/utils/toPersianNumbers";
 import truncateText from "@/utils/truncateText";
@@ -5,6 +6,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function UserProducRow({ products }) {
+  const token = getTokenFromCookies();
   const { images_list, id, price, stock, name, description } = products;
 
   return (
@@ -12,7 +14,7 @@ function UserProducRow({ products }) {
       <div>
         <CarouselDemo images={images_list} sizeProduct='xs' />
       </div>
-      <Link to={`/user/${id}`} className='flex justify-between mx-4'>
+      <Link to={token ? `/user/${id}` : `/${id}`} className='flex justify-between mx-4'>
         <div className='flex flex-col gap-1'>
           <p className='text-left'>
             <span>تومان {toPersianNumbersWithComma(price)}</span>
