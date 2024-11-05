@@ -45,14 +45,7 @@ function App() {
               <Route path=':id' element={<SingleProduct />} />
             </Route>
 
-            <Route
-              path='/admin'
-              element={
-                <ProtectedRoute requiredRole='admin'>
-                  <AdminLayout />
-                </ProtectedRoute>
-              }
-            >
+            <Route path='/admin' element={<AdminLayout />}>
               <Route index element={<Navigate to='dashboard' replace />} />
               <Route path='dashboard' element={<AdminDashboard />} />
               <Route path='products' element={<Products />} />
