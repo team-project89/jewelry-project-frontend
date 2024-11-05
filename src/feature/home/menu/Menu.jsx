@@ -5,8 +5,10 @@ import MenuList from "./MenuList";
 import SearchIcon from "@/style/SearchIcon";
 import useUser from "@/hooks/useUser";
 import HoverMenu from "@/style/HoverMenu";
+import usePathname from "@/hooks/usepathname";
 
 function Menu() {
+  const { desirePath } = usePathname();
   const { user } = useUser();
   const isUserLoggedIn = user && Object.keys(user).length > 0;
 
@@ -23,9 +25,9 @@ function Menu() {
         <LabelShop />
       </div>
 
-      <div className='flex items-center gap-8 justify-center'>
+      <div className='flex items-center gap-8 justify-center '>
         <LabelShop style='brand-style' />
-        <MenuList />
+        {desirePath !== "admin" && <MenuList />}
         <DropdownMenuDemo />
       </div>
     </header>

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import useAuthorized from "./useAuthorized";
 import Loading from "@/style/Loading";
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = ({ children, requiredRole }) => {
   const token = getTokenFromCookies();
   const { desirePath } = usePathname();
   const { user } = useUser();
@@ -15,22 +15,23 @@ const ProtectedRoute = ({ children }) => {
   const rolePath = user.is_staff ? "admin" : "";
 
   useEffect(() => {
-  
-
     if (!isLoading) {
+      // If the user is not authenticated, redirect to login
       if (!isAuthenticated) {
         navigate("/auth");
         return;
       }
 
-      if (!isAuthorized) {
+      // If the user is authenticated but does not have the required role, redirect
+      if (requiredRole && user.role !== requiredRole) {
         navigate(`/${rolePath}`);
         return;
       }
-    }
 
-    if (token && (desirePath === "" || desirePath === "/shop")) {
-      navigate(`/${rolePath}`);
+      // Redirect based on the user's path preference and role
+      if (token && (desirePath === "" || desirePath === "/shop")) {
+        navigate(`/${rolePath}`);
+      }
     }
   }, [
     token,
@@ -40,6 +41,8 @@ const ProtectedRoute = ({ children }) => {
     rolePath,
     desirePath,
     navigate,
+    requiredRole,
+    user.role
   ]);
 
   if (isLoading)

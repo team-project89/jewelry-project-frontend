@@ -31,7 +31,7 @@ function App() {
             <Route path='/' element={<MainHome />} />
             <Route path='/auth' element={<Auth />} />
             <Route path='complete-profile' element={<ComlepeProfile />} />
-            <Route path='/:id' element={<SingleProduct />} />
+
             <Route
               path='user'
               element={
@@ -48,7 +48,7 @@ function App() {
             <Route
               path='/admin'
               element={
-                <ProtectedRoute>
+                <ProtectedRoute requiredRole='admin'>
                   <AdminLayout />
                 </ProtectedRoute>
               }

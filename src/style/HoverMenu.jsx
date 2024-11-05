@@ -35,9 +35,13 @@ function HoverMenu({ user }) {
                 : "کاربر عادی"}
             </NavigationMenuTrigger>
             <NavigationMenuContent>
-              <div className='w-[200px] py-10 flex flex-col gap-6 justify-center items-center'>
+              <div className='w-[200px] py-10 flex flex-col gap-6 justify-center items-center '>
                 {path.filter(Boolean).map((link, index) => (
-                  <Link key={index} to={link.path}>
+                  <Link
+                    key={index}
+                    to={link.path}
+                    className='border-2 w-4/5  mx-auto text-center rounded-md shadow-md py-4 border-black hover:bg-secondary-200 transition-all duration-300 '
+                  >
                     {link.label}
                   </Link>
                 ))}
