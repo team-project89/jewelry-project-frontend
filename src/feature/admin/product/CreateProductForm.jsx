@@ -47,10 +47,8 @@ function CreateProductForm({onClose}) {
 
         createProduct(formData)
         reset()
-        setImages([]) 
-        toast.success("محصول با موفقیت ثبت شد.")
-        onClose()
-        
+        setImages([])
+        onClose()       
     }
 
     return (
@@ -172,10 +170,10 @@ function CreateProductForm({onClose}) {
             />
 
             {isCreating ? <Loading/> : 
-            <button type="submit" className="btn btn--primary">
-                ثبت محصول
-            </button>
-        }
+                <button type="submit" className="btn btn--primary">
+                    ثبت محصول
+                </button>
+            }
         </form>
     )
 }

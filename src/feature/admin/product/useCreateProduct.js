@@ -6,8 +6,8 @@ export default function useCreateProduct(){
     const queryClient = useQueryClient()
     const {isPending: isCreating, mutate: createProduct} = useMutation({
         mutationFn: createProductApi,
-        onSuccess: (data)=> {
-            toast.success(data.message)
+        onSuccess: ()=> {
+            toast.success("محصول با موفقیت ثبت شد.")
 
             queryClient.invalidateQueries({
                 queryKey: ["products"]
