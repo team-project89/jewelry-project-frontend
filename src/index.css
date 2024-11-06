@@ -41,8 +41,30 @@
 }
 @layer components {
   .signup-style {
-    @apply  cursor-pointer bg-secondary-900 px-6 rounded-full h-[48px] flex justify-center items-center hover:opacity-60 transition-all
+    @apply cursor-pointer bg-secondary-900 px-6 rounded-full h-[48px] flex justify-center items-center hover:opacity-60 transition-all;
   }
+
+  .range-input {
+    @apply w-56 h-2  bg-secondary-0 rounded-md;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+  }
+
+  .range-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    @apply w-4 h-6 bg-secondary-900 rounded-full cursor-pointer;
+  }
+
+  .range-input::-moz-range-thumb {
+    @apply w-4 h-6 rounded-full cursor-pointer;
+  }
+
+  .range-input::-ms-thumb {
+    @apply w-4 h-6 rounded-full cursor-pointer;
+  }
+
   .text-size {
     @apply text-[15px] font-semibold;
   }
@@ -165,8 +187,6 @@ table td {
   padding: 1.5rem 1.5rem;
   color: rgb(var(--color-secondary-700));
 }
-
-
 
 /* Custom Scrollbar Styles */
 /* .custom-scrollbar::-webkit-scrollbar {

@@ -31,18 +31,11 @@ function App() {
             <Route path='/' element={<MainHome />} />
             <Route path='/auth' element={<Auth />} />
             <Route path='complete-profile' element={<ComlepeProfile />} />
+            <Route path='singleproduct/:id' element={<SingleProduct />} />
 
-            <Route
-              path='user'
-              element={
-                <ProtectedRoute>
-                  <UserLayout />
-                </ProtectedRoute>
-              }
-            >
+            <Route path='user' element={<UserLayout />}>
               <Route path='wishlist' element={<UserWithList />} />
               <Route path='basket' element={<ShoppingBasket />} />
-              <Route path=':id' element={<SingleProduct />} />
             </Route>
 
             <Route path='/admin' element={<AdminLayout />}>

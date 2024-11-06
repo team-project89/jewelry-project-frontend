@@ -1,13 +1,17 @@
-import { getAllProductsApi } from "@/services/productService";
+import { getFilterProductsApi } from "@/services/productService";
 import { useQuery } from "@tanstack/react-query";
+import { useLocation } from "react-router-dom";
 
 export default function useProducts() {
-  const { isLoading, data } = useQuery({
-    queryFn: getAllProductsApi,
-    queryKey: ["products"],
+  const { search } = useLocation();
+  const objectQuery = Object.fromEntries(new URLSearchParams(search));
+
+  const { isLoading, data, error } = useQuery({
+    queryKey: ["products", objectQuery],
+    queryFn: () => getFilterProductsApi(search),
   });
 
   const products = data || [];
 
-  return { isLoading, products };
+  return { isLoading, products, error };
 }

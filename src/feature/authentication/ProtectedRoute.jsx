@@ -15,32 +15,35 @@ const ProtectedRoute = ({ children, requiredRole }) => {
   const rolePath = user.is_staff ? "admin" : "";
 
   useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      navigate("/auth");
-    }
-  }, [isLoading, isAuthenticated, navigate]);
+    if (!isLoading) {
+      // If the user is not authenticated, redirect to login
+      if (!isAuthenticated) {
+        navigate("/auth");
+        return;
+      }
 
-  useEffect(() => {
-    if (
-      !isLoading &&
-      isAuthenticated &&
-      requiredRole &&
-      user.role !== requiredRole
-    ) {
-      navigate(`/${rolePath}`);
-    }
-  }, [isLoading, isAuthenticated, requiredRole, user.role, rolePath, navigate]);
+      // If the user is authenticated but does not have the required role, redirect
+      if (requiredRole && user.role !== requiredRole) {
+        navigate(`/${rolePath}`);
+        return;
+      }
 
-  useEffect(() => {
-    if (
-      !isLoading &&
-      token &&
-      isAuthenticated &&
-      (desirePath === "" || desirePath === "/shop")
-    ) {
-      navigate(`/${rolePath}`);
+      // Redirect based on the user's path preference and role
+      if (token && (desirePath === "" || desirePath === "/shop")) {
+        navigate(`/${rolePath}`);
+      }
     }
-  }, [isLoading, token, isAuthenticated, desirePath, rolePath, navigate]);
+  }, [
+    token,
+    isLoading,
+    isAuthenticated,
+    isAuthorized,
+    rolePath,
+    desirePath,
+    navigate,
+    requiredRole,
+    user.role,
+  ]);
 
   if (isLoading)
     return (
