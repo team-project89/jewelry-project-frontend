@@ -13,7 +13,7 @@ export default function useCreateProduct(){
                 queryKey: ["products"]
             })
         },
-        onError: (err) => toast.error(err?.response?.data?.message)
+        onError: () => toast.error("متاسفانه مشکلی در ثبت محصول به وجود آمد. دوباره تلاش کنید.")
     })
     return { isCreating, createProduct }
 

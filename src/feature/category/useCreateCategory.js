@@ -7,13 +7,13 @@ export default function useCreateCategory(){
     const {isPending: isCreating, mutate: createCategory} = useMutation({
         mutationFn: createCategoryApi,
         onSuccess: ()=> {
-            toast.success("دسته‌بندی با موفقیت ثبت شد")
+            toast.success(".دسته‌بندی با موفقیت ثبت شد")
 
             queryClient.invalidateQueries({
                 queryKey: ["categories"]
             })
         },
-        onError: (err) => toast.error(err?.response?.data?.message)
+        onError: () => toast.error("مشکلی در ثبت دسته‌بندی به وجود آمد.")
     })
     return { isCreating, createCategory }
 

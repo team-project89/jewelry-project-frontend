@@ -1,23 +1,51 @@
-import React from 'react'
-import TextField from "@/components/ui/TextField"
-import { useForm } from 'react-hook-form'
-import useCreateCategory from './useCreateCategory'
-import Loading from '@/style/Loading'
+import React from 'react';
+import TextField from "@/components/ui/TextField";
+import { useForm } from 'react-hook-form';
+import useCreateCategory from './useCreateCategory';
+import Loading from '@/style/Loading';
+import useEditCategory from './useEditCategory';
 
-function CreateCategoryForm({onClose}) {
-
-    const {isCreating, createCategory} = useCreateCategory()
-
-    const { register, handleSubmit, formState: { errors }, reset } = useForm();
-
-    const onSubmit = (data)=> {
-        createCategory(data)
-        reset()
-        onClose()
-    }
+function CreateCategoryForm({ onClose, categoryToEdit = {} }) {
+    const { id: editId, label, slug } = categoryToEdit;
+    const isEditSession = editId
     
-  return (
-    <form className='flex flex-col gap-y-3' onSubmit={handleSubmit(onSubmit)}>
+
+    let editValues = {}
+
+    if(isEditSession){
+        editValues = {
+            name: label,
+            slugname: slug
+        }
+    }
+
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({defaultValues: editValues})
+
+    const { isCreating, createCategory } = useCreateCategory();
+    const { isEditing, editCategory } = useEditCategory();
+
+    const onSubmit = (data) => {
+        const newCategory = { ...data };
+
+        if (isEditSession) {
+            editCategory({ id: editId, newCategory }, {
+                onSuccess: () => {
+                    reset()
+                    onClose()
+                }
+            })
+        } else {
+            createCategory(newCategory, {
+                onSuccess: () => {
+                    reset()
+                    onClose()
+                }
+            })
+        }
+    };
+
+    return (
+        <form className='flex flex-col gap-y-3' onSubmit={handleSubmit(onSubmit)}>
             <TextField
                 label="نام فارسی دسته‌بندی"
                 name="name"
@@ -52,13 +80,14 @@ function CreateCategoryForm({onClose}) {
                 }}
                 errors={errors}
             />
-            {isCreating ? <Loading/> : 
+
+            {isCreating || isEditing ? <Loading /> :
                 <button type="submit" className="btn btn--primary">
-                    ثبت محصول
+                    {isEditSession ? "ویرایش دسته‌بندی" : "ثبت دسته‌بندی"}
                 </button>
             }
         </form>
-  )
+    );
 }
 
-export default CreateCategoryForm
+export default CreateCategoryForm;

@@ -6,16 +6,18 @@ import React, { useState } from 'react'
 import { FaRegEdit } from 'react-icons/fa'
 import { RiDeleteBin5Line } from 'react-icons/ri'
 import useDeleteCategory from './useDeleteCategory'
+import CreateCategoryForm from './CreateCategoryForm'
 
 function CategoryRow({category, index}) {
   const [openDelete, setOpenDelete] = useState(false)
+  const [openEdit, setEditOpen] = useState(false)
   const {deleteCategory} = useDeleteCategory()
   
   return (
     <Table.Row>
         <td>{index + 1}</td>
         <td> {category.label} </td>
-        <td>{ category.value}</td>
+        <td>{ category.slug}</td>
         <td>
           <div className="flex items-center gap-x-5">
             <>
@@ -31,6 +33,7 @@ function CategoryRow({category, index}) {
                 >
                     <ConfirmDelete
                         resourceName={category.label}
+                        warning='با حذف این دسته بندی تمامی محصولات مربوط به آن نیز حذف خواهند شد.'
                         onClose={()=> setOpenDelete(false)}
                         onConfirm={()=> deleteCategory(category.id, {
                             onSuccess: ()=> setOpenDelete(false)
@@ -40,11 +43,24 @@ function CategoryRow({category, index}) {
                 </Modal>
             </>
 
-            <Tooltip title="ویرایش" arrow>
-                <button>
-                    <FaRegEdit className='w-5 h-5 text-success'/>
-                </button>
-            </Tooltip>
+            <>
+              <Tooltip title="ویرایش" arrow>
+                  <button onClick={()=> setEditOpen(true)}>
+                      <FaRegEdit className='w-5 h-5 text-success'/>
+                  </button>
+                  
+              </Tooltip>
+              <Modal
+                open={openEdit}
+                onClose={()=> setEditOpen(false)}
+                title={`ویرایش دسته‌بندی ${category.label}`}
+                >
+                  <CreateCategoryForm
+                    onClose={()=> setEditOpen(false)}
+                    categoryToEdit={category}
+                  />
+              </Modal>
+            </>
           </div>
         </td>
     </Table.Row>

@@ -11,3 +11,7 @@ export function createCategoryApi(data){
 export function deleteCategoryApi(id){
     return http.delete(`/categories/${id}/`).then((response)=> response.data.results)
 }
+
+export function editCategoryApi({id, newCategory}){
+    return http.patch(`/categories/${id}/`, newCategory).then((response)=> response.data.results)
+}

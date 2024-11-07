@@ -18,15 +18,16 @@ function ProductsTable() {
   return (
     <Table>
         <Table.Header>
+            <th>تامنیل</th>
             <th>نام محصول</th>
+            <th>نام انگلیسی محصول</th>
             <th>دسته‌بندی</th>
             <th>توضیحات</th>
-            <th>تصاویر</th>
             <th>قیمت</th>
             <th>درصد تخفیف</th>
             <th>قیمت پس از تخفیف</th>
             <th>برند</th>
-            <th>پیش‌سفارش</th>
+            <th>امکان پیش‌سفارش</th>
             <th>قیمت پیش‌سفارش</th>
             <th>تعداد فروش</th>
             <th>موجودی</th>

@@ -10,8 +10,8 @@ export default function useCategories(){
     const categories = rawCategories.map((item) => ({
         id: item.id,
         label: item.name,
-        value: item.slugname,
+        slug: item.slugname,
     }));
 
-    return { isLoading, categories };
+    return { isLoading, categories }
 }

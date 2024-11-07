@@ -8,7 +8,7 @@ function RHFSelect({label, name, register, options, required}) {
         </label>
         <select {...register(name)} id={name} className='input-style w-full mb-2'>
             {options.map((option) => (
-                <option key={option.value} value={option.value}>
+                <option key={option.id} value={option.id}>
                     {option.label}
                 </option>
             ))}
