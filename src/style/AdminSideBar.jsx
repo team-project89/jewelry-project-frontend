@@ -9,7 +9,7 @@ import { IoPricetagsOutline } from "react-icons/io5"
 function AdminSideBar() {
    
   return (
-    <div className='hidden lg:block row-span-2 row-start-1'>
+    <div className='row-span-2 row-start-1'>
         <ul className='text-black flex flex-col p-4 gap-y-4'>
             <AdminNavLink to=""dashboard>
                 <LuLayoutDashboard/>
