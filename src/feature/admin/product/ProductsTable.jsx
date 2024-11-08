@@ -31,7 +31,7 @@ function ProductsTable() {
             <th>قیمت پیش‌سفارش</th>
             <th>تعداد فروش</th>
             <th>موجودی</th>
-            <th>عملیات</th>
+            <th>عملیات</th> 
         </Table.Header>
         <Table.Body>
             {

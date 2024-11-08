@@ -9,6 +9,7 @@ import ConfirmDelete from '@/style/ConfirmDelete'
 import useDeleteProduct from './useDeleteProduct'
 import useCategories from '@/feature/category/useCategories'
 import CreateProductForm from './CreateProductForm'
+import truncateText from '@/utils/truncateText'
 
 function ProductRow({ product, index }) {
     const {name, 
@@ -37,24 +38,32 @@ function ProductRow({ product, index }) {
 
   return (
     <Table.Row>
-        <td>{ toPersianNumbers(index + 1) }</td>
         <td>
-            <div className='w-12 h-12'>
+            <div className='w-8 h-8 rounded-full bg-secondary-300 flex items-center justify-center'>
+                { toPersianNumbers(index + 1) }
+            </div>
+        </td>
+        <td>
+            <div className='w-16 h-16'>
                 <img 
                     src={thumbnail}
-                    className='w-full h-full object-cover'
+                    className='w-full h-full object-cover rounded-full'
                 />
             </div>
         </td>
-        <td>{ name }</td>
-        <td>{ slugname }</td>
+        <td>{ truncateText(name, 20) }</td>
+        <td>{ truncateText(slugname, 20) }</td>
         <td>{ categoryName }</td>
-        <td>{ description || "--" }</td>
+        <td>{ truncateText(description, 30) || "--" }</td>
         <td>{ toPersianNumbersWithComma(price) }</td>
         <td>{ toPersianNumbers(discount_percentage) }</td>
         <td>{ toPersianNumbersWithComma(price_after_discount) }</td>
         <td>{ brand || "ندارد"}</td>
-        <td>{ pre_order_available ? "بله" : "خیر"}</td>
+        <td>
+            <div className={`border-2 ${pre_order_available ? "border-success" : "border-warning"} rounded-3xl flex items-center justify-center p-1`}>
+                { pre_order_available ? "بله" : "خیر"}
+            </div>
+        </td>
         <td>{ toPersianNumbersWithComma(pre_order_price) }</td>
         <td>{ toPersianNumbers(sales_count) }</td>
         <td>{ toPersianNumbers(stock)}</td>
@@ -83,21 +92,21 @@ function ProductRow({ product, index }) {
                     </Modal>
                 </>
                 <>
-                <Tooltip title="ویرایش" arrow>
-                    <button onClick={()=> setOpenEdit(true)}>
-                        <FaRegEdit className='w-5 h-5 text-success'/>
-                    </button>
-                </Tooltip>
-                <Modal
-                    open={openEdit}
-                    onClose={()=> setOpenEdit(false)}
-                    title={`ویرایش محصول ${product.name}`}
-                >
-                    <CreateProductForm
+                    <Tooltip title="ویرایش" arrow>
+                        <button onClick={()=> setOpenEdit(true)}>
+                            <FaRegEdit className='w-5 h-5 text-success'/>
+                        </button>
+                    </Tooltip>
+                    <Modal
+                        open={openEdit}
                         onClose={()=> setOpenEdit(false)}
-                        productToEdit={product}
-                    />
-                </Modal>
+                        title={`ویرایش محصول ${product.name}`}
+                    >
+                        <CreateProductForm
+                            onClose={()=> setOpenEdit(false)}
+                            productToEdit={product}
+                        />
+                    </Modal>
                 </>
 
             </div>

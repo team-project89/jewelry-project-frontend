@@ -7,6 +7,7 @@ import { FaRegEdit } from 'react-icons/fa'
 import { RiDeleteBin5Line } from 'react-icons/ri'
 import useDeleteCategory from './useDeleteCategory'
 import CreateCategoryForm from './CreateCategoryForm'
+import { toPersianNumbers } from '@/utils/toPersianNumbers'
 
 function CategoryRow({category, index}) {
   const [openDelete, setOpenDelete] = useState(false)
@@ -15,7 +16,11 @@ function CategoryRow({category, index}) {
   
   return (
     <Table.Row>
-        <td>{index + 1}</td>
+        <td>
+            <div className='w-8 h-8 rounded-full bg-secondary-300 flex items-center justify-center'>
+                { toPersianNumbers(index + 1) }
+            </div>
+        </td>
         <td> {category.label} </td>
         <td>{ category.slug}</td>
         <td>

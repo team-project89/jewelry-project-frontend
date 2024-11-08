@@ -1,8 +1,9 @@
+import DashboardContainer from '@/feature/admin/dashboard/DashboardContainer'
 import React from 'react'
 
 function AdminDashboard() {
   return (
-    <div>AdminDashboard</div>
+    <DashboardContainer/>
   )
 }
 

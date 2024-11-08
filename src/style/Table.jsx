@@ -12,7 +12,7 @@ function TableHeader({ children }) {
     return(
         <thead>
             <tr className="title-row ">
-                <td><RiSortNumberAsc className="w-6 h-6"/></td>
+                <td><RiSortNumberAsc className="w-6 h-6 text-secondary-0"/></td>
                 {children}
             </tr>
         </thead>
@@ -27,7 +27,7 @@ function TableBody({ children }) {
 
 function TableRow({ children }) {
     return(
-        <tr className="hover:bg-secondary-300 transition-all duration-500">{ children }</tr>
+        <tr className="hover:bg-secondary-100 transition-all duration-500">{ children }</tr>
     )
 }
 

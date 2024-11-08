@@ -25,6 +25,14 @@ export function deleteProductApi(id) {
     .then((response) => response.data.results)
 }
 
-export function editProductApi({id, newProduct}){
-  return http.patch(`/products/${id}/`, newProduct).then((response)=> response.data.results)
+export function editProductApi({id, newProduct}) {
+  return http
+    .patch(`/products/${id}/`, newProduct, {
+      headers: { "Content-Type": "multipart/form-data" },  // Ensure multipart/form-data for file upload
+    })
+    .then((response) => response.data.results)
+    .catch(error => {
+      console.error(error);
+      throw new Error("Error while updating the product");
+    });
 }
