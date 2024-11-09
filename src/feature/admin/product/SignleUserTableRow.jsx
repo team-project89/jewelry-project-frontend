@@ -2,7 +2,6 @@ import UserTable from "@/style/UserTable";
 import { toPersianNumbersWithComma } from "@/utils/toPersianNumbers";
 
 function SignleUserTableRow({ singleProduct }) {
-  console.log(singleProduct);
   const {
     description = "بدون توضیحات",
     stock,

@@ -8,13 +8,17 @@ import { Link } from "react-router-dom";
 function UserProducRow({ products }) {
   const token = getTokenFromCookies();
   const { images_list, id, price, stock, name, description } = products;
+ 
 
   return (
     <div className='mx-auto '>
       <div>
         <CarouselDemo images={images_list} sizeProduct='xs' />
       </div>
-      <Link to={token ? `singleproduct/${id}` : `/${id}`} className='flex justify-between mx-4'>
+      <Link
+        to={token ? `singleproduct/${id}` : `/${id}`}
+        className='flex justify-between mx-4'
+      >
         <div className='flex flex-col gap-1'>
           <p className='text-left'>
             <span>تومان {toPersianNumbersWithComma(price)}</span>
