@@ -8,7 +8,7 @@ function PriceFilter({ value, onChange }) {
   const prices = products.map((items) => items.price);
   const maxPrice = prices.length ? Math.max(...prices).toString() : "0";
   const minPrice = prices.length
-    ? Math.max(0, Math.min(...prices) - 10000).toString()
+    ? Math.max(0, Math.min(...prices) - 25000).toString()
     : "0";
 
   return (

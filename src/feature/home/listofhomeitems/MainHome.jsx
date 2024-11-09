@@ -4,7 +4,7 @@ import ShopProfileInfo from "@/style/ShopProfileInfo";
 import ShopInfo from "@/style/ShopInfo";
 import ListOfProducts from "../products/ListOfProducts";
 import OwnerProfileStatus from "./OwnerProfileStaus";
-import FilterDropDown from "@/style/FilterDropDown";
+import FilterDropDown from "@/style/Filter";
 import { useAllProducts } from "../products/useAllProducts";
 
 function MainHome() {

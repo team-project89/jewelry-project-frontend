@@ -1,10 +1,10 @@
 import http from "./httpService";
 
 export function getFilterProductsApi(qs) {
-  return http.get(`/products/${qs}`).then((response) => response.data.results)
+  return http.get(`/products/${qs}`).then((response) => response.data.results);
 }
 export function getAllProductsApi() {
-  return http.get(`/products/`).then((response) => response.data.results)
+  return http.get(`/products/`).then((response) => response.data.results);
 }
 
 export function createProductApi(data) {
@@ -12,7 +12,7 @@ export function createProductApi(data) {
     .post("/products/", data, {
       headers: { "Content-Type": "multipart/form-data" },
     })
-    .then((response) => response.data)
+    .then((response) => response.data);
 }
 
 export function getSingleProductsApi(id) {
@@ -22,16 +22,16 @@ export function getSingleProductsApi(id) {
 export function deleteProductApi(id) {
   return http
     .delete(`/products/${id}/`)
-    .then((response) => response.data.results)
+    .then((response) => response.data.results);
 }
 
-export function editProductApi({id, newProduct}) {
+export function editProductApi({ id, newProduct }) {
   return http
     .patch(`/products/${id}/`, newProduct, {
-      headers: { "Content-Type": "multipart/form-data" },  // Ensure multipart/form-data for file upload
+      headers: { "Content-Type": "multipart/form-data" }, // Ensure multipart/form-data for file upload
     })
     .then((response) => response.data.results)
-    .catch(error => {
+    .catch((error) => {
       console.error(error);
       throw new Error("Error while updating the product");
     });
