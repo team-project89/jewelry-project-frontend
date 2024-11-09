@@ -1,14 +1,13 @@
 import React from 'react'
-import { RiArrowLeftWideLine } from 'react-icons/ri'
 
-function Stat({ title, number = 0}) {
+function Stat({ title, icon, bg, number = 0}) {
   return (
-    <div className='bg-secondary-200 w-full lg:w-2/6 h-36 rounded-xl p-5 flex justify-between items-center font-bold shadow-xl'>
-        <span className='flex items-center gap-x-2'>
+    <div className='bg-secondary-0 w-full lg:w-2/6 h-60 rounded-3xl p-5 flex flex-col gap-y-3 items-center justify-between shadow-xl hover:scale-105 transition-all duration-500'>
+       <span className={` bg-${bg} w-16 h-16 rounded-full flex items-center justify-center text-secondary-600`}> {icon} </span>
+        <span className='text-[3.3rem] font-bold'>{ number }</span>
+        <span className='flex items-center gap-x-2 text-secondary-600'>
             { title } 
-            <RiArrowLeftWideLine className='w-5 h-5'/>
         </span>
-        <span className='w-20 h-20 rounded-full bg-secondary-400 flex items-center justify-center'>{ number }</span>
     </div>
   )
 }

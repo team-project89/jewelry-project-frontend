@@ -13,7 +13,7 @@ function ProductsTable() {
       return <h1>No products available</h1>
   }
   
-
+  console.log(products)
 
   return (
     <Table>
