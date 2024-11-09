@@ -26,6 +26,7 @@ function CreateProductForm({ onClose, productToEdit = {} }) {
 
     const isEditSession = Boolean(editId)
 
+    
     const { categories } = useCategories()
     const { createProduct, isCreating } = useCreateProduct()
     const { editProduct } = useEditProduct()
@@ -50,6 +51,7 @@ function CreateProductForm({ onClose, productToEdit = {} }) {
 
     useEffect(() => {
         if (isEditSession) {
+            
             reset({
                 name,
                 slugname,
@@ -83,12 +85,14 @@ function CreateProductForm({ onClose, productToEdit = {} }) {
     }
 
     const onSubmit = (data) => {
-        if (images.length === 0 && images_list.length === 0) {
+       
+        if (images.length === 0) {
             toast.error("باید حداقل یک تصویر انتخاب کنید.")
             return;
         }
-
-        if (!thumbnail && !thumbnailEdit) {
+    
+        
+        if (!thumbnail) {
             toast.error("باید یک تصویر برای تامنیل انتخاب کنید.")
             return;
         }
@@ -96,16 +100,16 @@ function CreateProductForm({ onClose, productToEdit = {} }) {
         const formData = new FormData()
         formData.append("name", data.name)
         formData.append("description", data.description)
-        formData.append("brand", data.brand);
-        formData.append("slugname", data.slugname.replace(/\s+/g, '-').toLowerCase());
+        formData.append("brand", data.brand)
+        formData.append("slugname", data.slugname.replace(/\s+/g, '-').toLowerCase())
         formData.append("price", Math.min(data.price, 4294967295))
         formData.append("discount_percentage", data.discountPercentage || 0)
         formData.append("stock", data.stock || 0)
         formData.append("category", data.category || 0)
         formData.append("pre_order_available", preOrder ? 'true' : 'false')
-
-        formData.append("thumbnail", thumbnail || thumbnailEdit);
-
+        formData.append("thumbnail", thumbnail)
+    
+        
         if (images.length > 0) {
             images.forEach((image) => {
                 formData.append("images", image);
@@ -115,16 +119,17 @@ function CreateProductForm({ onClose, productToEdit = {} }) {
                 formData.append("images", image);
             });
         }
-
+    
+        
         for (let pair of formData.entries()) {
-            console.log(pair[0] + ": " + pair[1])
+            console.log(pair[0] + ": " + pair[1]);
         }
     
         if (isEditSession) {
             const updatedProductData = { id: editId, newProduct: formData }
-            editProduct(updatedProductData);
+            editProduct(updatedProductData)
         } else {
-            createProduct(formData);
+            createProduct(formData)
         }
     
         reset()

@@ -28,7 +28,7 @@ function AdminSideBar() {
 
             <AdminNavLink to="orders">
                 <IoPricetagsOutline/>
-                <span>سفارشات</span>
+                <span>سفارش‌ها</span>
             </AdminNavLink>
             
           </ul>
