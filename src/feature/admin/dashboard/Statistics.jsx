@@ -17,10 +17,10 @@ function Statistics() {
     
   return (
     <div className='bg-secondary-100 flex flex-wrap gap-5 justify-center rounded-3xl p-4'>
-        <Stat title="سفارش " icon={<GrCart className='w-6 h-6'/>} bg="green-300"/>
-        <Stat title=" محصول" number={products.length} icon={<HiOutlineCircleStack className='w-6 h-6'/>} bg="purple-300"/>
-        <Stat title=" دسته‌بندی" number={categories.length} icon={<AiTwotoneAppstore className='w-6 h-6'/>} bg="pink-300" />
-        <Stat title=" کاربر" number={users?.length} icon={<LuUsers className='w-6 h-6'/>} bg="teal-300"/>
+        <Stat title="سفارش " icon={<GrCart className='w-6 h-6'/>} bg="bg-green-300"/>
+        <Stat title=" محصول" number={products.length} icon={<HiOutlineCircleStack className='w-6 h-6'/>} bg="bg-purple-300"/>
+        <Stat title=" دسته‌بندی" number={categories.length} icon={<AiTwotoneAppstore className='w-6 h-6'/>} bg="bg-pink-300" />
+        <Stat title=" کاربر" number={users?.length} icon={<LuUsers className='w-6 h-6'/>} bg="bg-teal-300"/>
         
     </div>
   )

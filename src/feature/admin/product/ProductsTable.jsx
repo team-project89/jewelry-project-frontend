@@ -3,6 +3,7 @@ import Loading from '@/style/Loading'
 import Table from '@/style/Table'
 import React from 'react'
 import ProductRow from './ProductRow'
+import Empty from '@/style/Empty'
 
 function ProductsTable() {
     const {isLoading, products} = useProducts()  
@@ -10,7 +11,7 @@ function ProductsTable() {
     if (isLoading) return <Loading/>
   
     if (!products || products.length === 0) {
-      return <h1>No products available</h1>
+      return <Empty resourceName="محصول"/>
   }
   
   console.log(products)

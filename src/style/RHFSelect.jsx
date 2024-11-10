@@ -2,8 +2,8 @@ import React from 'react'
 
 function RHFSelect({label, name, register, options, required}) {
   return (
-    <div>
-        <label htmlFor={name} className='mb-2 block text-secondary-700'>
+    <div className='mb-6'>
+        <label htmlFor={name} className='mb-2 block font-bold'>
             {label} {required && <span className='text-red-500'>*</span>}
         </label>
         <select {...register(name)} id={name} className='input-style w-full mb-2'>

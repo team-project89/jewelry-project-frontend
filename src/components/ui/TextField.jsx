@@ -1,6 +1,6 @@
 function TextField({ label, type, name, register, required, errors, validationSchema }) {
   return (
-    <div className='flex flex-col gap-2'>
+    <div className='flex flex-col gap-2 mb-6'>
       <label dir='rtl' className='block mb-3 text-size'>
         {label} {required && <span className='text-red-500'>*</span>}
       </label>
@@ -8,10 +8,10 @@ function TextField({ label, type, name, register, required, errors, validationSc
         name={name}
         type={type}
         {...register(name, validationSchema)}
-        className='input-style w-full p-4 mb-8'
+        className='input-style w-full p-4 mb-1'
       />
       { errors && errors[name] && (
-        <span className='text-error block text-sm mt-2'>
+        <span className='text-error block text-sm'>
           {errors[name]?.message}
         </span>
       )}

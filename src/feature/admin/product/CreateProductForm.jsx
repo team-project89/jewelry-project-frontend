@@ -157,7 +157,7 @@ function CreateProductForm({ onClose, productToEdit = {} }) {
                 errors={errors}
             />
             <TextField
-                label="نام انگلیسی"
+                label=" نام انگلیسی (فقط از حروف استفاده شود) "
                 name="slugname"
                 type="text"
                 required
@@ -187,8 +187,8 @@ function CreateProductForm({ onClose, productToEdit = {} }) {
                 errors={errors}
             />
 
-            <div>
-                <label className="block mb-2">
+            <div className='mb-6'>
+                <label className="block mb-2 font-bold">
                     اضافه کردن تصاویر (حداکثر 4 تصویر) 
                     <span className='text-red-500'>*</span>
                 </label>
@@ -221,8 +221,8 @@ function CreateProductForm({ onClose, productToEdit = {} }) {
                 )}
             </div>
 
-            <div>
-                <label className="block mb-2">
+            <div className='mb-6'>
+                <label className="block mb-2 font-bold">
                     اضافه کردن تامنیل (فقط یک تصویر) 
                     <span className='text-red-500'>*</span>
                 </label>

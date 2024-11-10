@@ -3,12 +3,13 @@ import React from 'react'
 import useCategories from './useCategories'
 import Loading from '@/style/Loading'
 import CategoryRow from './CategoryRow'
+import Empty from '@/style/Empty'
 
 function CategoriesTable() {
     const {isLoading, categories} = useCategories()
 
     if(isLoading) return <Loading/>
-    if(!categories || categories.length === 0) return <h4>No categories...</h4>   
+    if(!categories || categories.length === 0) return <Empty resourceName="دسته‌بندی"/>  
   
    return (
     <Table>
