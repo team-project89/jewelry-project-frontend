@@ -25,8 +25,6 @@ function CreateProductForm({ onClose, productToEdit = {} }) {
         } = productToEdit
 
     const isEditSession = Boolean(editId)
-
-    
     const { categories } = useCategories()
     const { createProduct, isCreating } = useCreateProduct()
     const { editProduct } = useEditProduct()
@@ -45,13 +43,12 @@ function CreateProductForm({ onClose, productToEdit = {} }) {
         } : {}
     })
 
-    const [images, setImages] = useState(images_list || [])
-    const [thumbnail, setThumbnail] = useState(thumbnailEdit || null)
+    const [images, setImages] = useState([])
+    const [thumbnail, setThumbnail] = useState(null)
     const [preOrder, setPreOrder] = useState(pre_order_available || false)
 
     useEffect(() => {
         if (isEditSession) {
-            
             reset({
                 name,
                 slugname,
@@ -85,18 +82,16 @@ function CreateProductForm({ onClose, productToEdit = {} }) {
     }
 
     const onSubmit = (data) => {
-       
         if (images.length === 0) {
             toast.error("باید حداقل یک تصویر انتخاب کنید.")
             return;
         }
-    
-        
+
         if (!thumbnail) {
             toast.error("باید یک تصویر برای تامنیل انتخاب کنید.")
             return;
         }
-    
+
         const formData = new FormData()
         formData.append("name", data.name)
         formData.append("description", data.description)
@@ -108,30 +103,18 @@ function CreateProductForm({ onClose, productToEdit = {} }) {
         formData.append("category", data.category || 0)
         formData.append("pre_order_available", preOrder ? 'true' : 'false')
         formData.append("thumbnail", thumbnail)
-    
-        
-        if (images.length > 0) {
-            images.forEach((image) => {
-                formData.append("images", image);
-            });
-        } else if (images_list && isEditSession) {
-            images_list.forEach((image) => {
-                formData.append("images", image);
-            });
-        }
-    
-        
-        for (let pair of formData.entries()) {
-            console.log(pair[0] + ": " + pair[1]);
-        }
-    
+
+        images.forEach((image) => {
+            formData.append("images", image);
+        });
+
         if (isEditSession) {
             const updatedProductData = { id: editId, newProduct: formData }
             editProduct(updatedProductData)
         } else {
             createProduct(formData)
         }
-    
+
         reset()
         setImages([])
         setThumbnail(null)
@@ -204,17 +187,7 @@ function CreateProductForm({ onClose, productToEdit = {} }) {
                         <h4>تصاویر انتخاب شده:</h4>
                         <ul>
                             {images.map((img, index) => (
-                                <li key={index}>{img.name}</li>
-                            ))}
-                        </ul>
-                    </div>
-                )}
-                {isEditSession && images_list && images_list.length > 0 && images.length === 0 && (
-                    <div className="mb-2">
-                        <h4>تصاویر قبلی:</h4>
-                        <ul>
-                            {images_list.map((img, index) => (
-                                <li key={index}>{img}</li>
+                                <li key={index}>{index + 1}: {img.name}</li>
                             ))}
                         </ul>
                     </div>
@@ -236,12 +209,6 @@ function CreateProductForm({ onClose, productToEdit = {} }) {
                     <div>
                         <h4>تصویر انتخاب شده</h4>
                         <span> { thumbnail.name } </span>
-                    </div>
-                )}
-                {isEditSession && thumbnailEdit && !thumbnail && (
-                    <div className="mb-2">
-                        <h4>تامنیل قبلی:</h4>
-                        <img src={thumbnailEdit} alt="Previous Thumbnail" />
                     </div>
                 )}
             </div>
@@ -291,7 +258,6 @@ function CreateProductForm({ onClose, productToEdit = {} }) {
                 register={register}
             />
 
-            
             <div className='flex justify-between'>
                 <label className="font-bold"> 
                     پیش فروش دارد؟
