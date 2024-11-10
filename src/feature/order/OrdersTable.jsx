@@ -11,8 +11,6 @@ function OrdersTable() {
 
     if(isLoading) return <Loading/>
     if (!orders || orders.length === 0) return <Empty resourceName="سفارش"/>
-
-    console.log(orders);
     
 
     return (
