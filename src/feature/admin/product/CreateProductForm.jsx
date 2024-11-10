@@ -14,8 +14,6 @@ function CreateProductForm({ onClose, productToEdit = {} }) {
             name, 
             slugname,
             description,
-            images_list,
-            thumbnail: thumbnailEdit,
             price, 
             discount_percentage,  
             brand, 

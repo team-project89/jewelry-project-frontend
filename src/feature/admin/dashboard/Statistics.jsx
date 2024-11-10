@@ -7,19 +7,20 @@ import { GrCart } from "react-icons/gr"
 import { LuUsers } from "react-icons/lu"
 import { HiOutlineCircleStack } from "react-icons/hi2"
 import { AiTwotoneAppstore } from "react-icons/ai"
+import useOrders from '@/hooks/useOrders'
 
 
 function Statistics() {
     const {products} = useProducts()
     const {categories} = useCategories()
     const {users} = useUsers()
-    
+    const {orders} = useOrders()
     
   return (
     <div className='bg-secondary-100 flex flex-wrap gap-5 justify-center rounded-3xl p-4'>
-        <Stat title="سفارش " icon={<GrCart className='w-6 h-6'/>} bg="bg-green-300"/>
-        <Stat title=" محصول" number={products.length} icon={<HiOutlineCircleStack className='w-6 h-6'/>} bg="bg-purple-300"/>
-        <Stat title=" دسته‌بندی" number={categories.length} icon={<AiTwotoneAppstore className='w-6 h-6'/>} bg="bg-pink-300" />
+        <Stat title="سفارش " number={orders?.length} icon={<GrCart className='w-6 h-6'/>} bg="bg-green-300"/>
+        <Stat title=" محصول" number={products?.length} icon={<HiOutlineCircleStack className='w-6 h-6'/>} bg="bg-purple-300"/>
+        <Stat title=" دسته‌بندی" number={categories?.length} icon={<AiTwotoneAppstore className='w-6 h-6'/>} bg="bg-pink-300" />
         <Stat title=" کاربر" number={users?.length} icon={<LuUsers className='w-6 h-6'/>} bg="bg-teal-300"/>
         
     </div>

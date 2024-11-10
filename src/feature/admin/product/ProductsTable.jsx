@@ -13,8 +13,6 @@ function ProductsTable() {
     if (!products || products.length === 0) {
       return <Empty resourceName="محصول"/>
   }
-  
-  console.log(products)
 
   return (
     <Table>

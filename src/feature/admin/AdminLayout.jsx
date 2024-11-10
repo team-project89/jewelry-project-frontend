@@ -8,7 +8,6 @@ function AdminLayout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   return (
     <div className='container mx-auto'>
-        {/* <AdminDashboardMenu/> */}
         <Layout onOpen={()=> setMobileMenuOpen(true)}>
           <div className='hidden lg:block '>
             <AdminSideBar/>
