@@ -1,7 +1,7 @@
 import useProducts from "@/hooks/useProducts";
 import Loading from "@/style/Loading";
 import React from "react";
-import ProducListRow from "./ProducList";
+import ProducListRow from "./ProducListRow";
 
 function ListOfProducts() {
   const { products, isLoading } = useProducts();
