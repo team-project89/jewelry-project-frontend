@@ -1,13 +1,12 @@
 import UserTable from "@/style/UserTable";
 import { toPersianNumbersWithComma } from "@/utils/toPersianNumbers";
 
-function SignleUserTableRow({ singleProduct }) {
+function SignleUserTableRow({ singleProduct}) {
   const {
     description = "بدون توضیحات",
     stock,
     discount_percentage,
     price,
-
     price_after_discount,
   } = singleProduct || {};
 
@@ -27,7 +26,7 @@ function SignleUserTableRow({ singleProduct }) {
           label='درصد تخفیف'
           value={
             Number.isFinite(discount_percentage)
-              ? `${toPersianNumbersWithComma(discount_percentage)}%`
+              ? `%${toPersianNumbersWithComma(discount_percentage)}`
               : "بدون تخفیف"
           }
         />
@@ -55,7 +54,7 @@ function SignleUserTableRow({ singleProduct }) {
             }
           />
         )}
-       
+ 
       </tbody>
     </table>
   );

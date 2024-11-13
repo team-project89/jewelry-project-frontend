@@ -1,46 +1,32 @@
-import { toPersianNumbers } from "@/utils/toPersianNumbers";
+import AddToCartButton from "@/style/AddToCartButton";
 import { HiMinusCircle, HiPlusCircle } from "react-icons/hi";
 
 function ProductQuantity({
-  productQuantity = 0,
-  stock,
-  pre_order_available,
+  handleIncreament,
   handleDecrement,
-  handleIncrement,
+  productItem,
+  userCart,
 }) {
-  const quantity = productQuantity || 0;
 
-  return (
+
+  const quantity = productItem?.quantity;
+
+  return quantity ? (
     <div className='flex gap-3 items-center'>
-      {/* Decrement Button */}
-      <button
-        onClick={handleDecrement}
-        disabled={quantity === 0}
-        className={`${
-          quantity === 0 ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-200"
-        } bg-black text-white rounded-full p-1 transition duration-150`}
-      >
+      <button onClick={handleDecrement} aria-label='Decrease quantity'>
         <HiMinusCircle className='w-6 h-6' />
       </button>
 
-      {/* Quantity Display */}
       <p className='w-10 h-10 bg-gray-900 text-white font-semibold border-2 border-gray-200 rounded-md flex items-center justify-center'>
-        {toPersianNumbers(quantity)}
+        {quantity}
       </p>
 
-      {/* Increment Button */}
-      <button
-        onClick={handleIncrement}
-        disabled={quantity >= stock && !pre_order_available}
-        className={`${
-          quantity >= stock && !pre_order_available
-            ? "opacity-50 cursor-not-allowed"
-            : "hover:bg-gray-200"
-        } bg-black text-white rounded-full p-1 transition duration-150`}
-      >
+      <button onClick={handleIncreament} aria-label='Increase quantity'>
         <HiPlusCircle className='w-6 h-6' />
       </button>
     </div>
+  ) : (
+    <AddToCartButton handleIncreament={handleIncreament} />
   );
 }
 

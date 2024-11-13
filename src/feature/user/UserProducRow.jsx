@@ -8,14 +8,13 @@ import { Link } from "react-router-dom";
 function UserProducRow({ products }) {
   const token = getTokenFromCookies();
   const { images_list, id, price, stock, name, description } = products;
- 
 
   return (
     <div className='mx-auto '>
       <div>
-        <CarouselDemo images={images_list} sizeProduct='xs' />
+        <CarouselDemo images={images_list} sizeProduct='xs' token={token} id={id} />
       </div>
-      <Link
+      {/* <Link
         to={token ? `singleproduct/${id}` : `/${id}`}
         className='flex justify-between mx-4'
       >
@@ -29,7 +28,7 @@ function UserProducRow({ products }) {
           <h1 className='text-lg text-right'>{truncateText(name, 16)}</h1>
           <p className='text-sm text-right'>{truncateText(description, 30)}</p>
         </div>
-      </Link>
+      </Link> */}
     </div>
   );
 }
