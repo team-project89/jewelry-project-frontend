@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
-function Empty({resourceName}) {
+function Empty({ resourceName }) {
   return (
-    <h3 className='text-secondary-800 font-bold'> {resourceName} وجود ندارد ... </h3>
-  )
+    <h3 className=' p-24 text-secondary-800 font-bold' dir='rtl'>
+      {resourceName} وجود ندارد ...{" "}
+    </h3>
+  );
 }
 
-export default Empty
+export default Empty;

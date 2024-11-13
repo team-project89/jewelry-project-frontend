@@ -30,5 +30,5 @@ export function editProductApi({ id, newProduct }) {
     .patch(`/products/${id}/`, newProduct, {
       headers: { "Content-Type": "multipart/form-data" },
     })
-    .then((response) => response.data.results)
+    .then((response) => response.data.results);
 }

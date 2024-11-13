@@ -14,9 +14,10 @@ import AdminDashboard from "./page/AdminDashboard";
 import Products from "./feature/admin/product/Products";
 import Categories from "./page/Categories";
 import { Toaster } from "react-hot-toast";
-import SingleProduct from "./feature/home/products/singleproduct/SingleProduct";
 import Orders from "./page/Orders";
 import SingleProdctLayout from "./page/SingleProdctLayout";
+import ShopStatus from "./feature/admin/shopstatus/ShopStatus";
+
 
 const queryClient = new QueryClient();
 function App() {
@@ -45,6 +46,7 @@ function App() {
               <Route path='products' element={<Products />} />
               <Route path='categories' element={<Categories />} />
               <Route path='orders' element={<Orders />} />
+              <Route path='shopstatus' element={<ShopStatus />} />
             </Route>
 
             <Route path='*' element={<NotAccess />} />
