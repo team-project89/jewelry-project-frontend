@@ -1,11 +1,8 @@
 import { getTokenFromCookies } from "@/services/httpService";
 import { CarouselDemo } from "@/style/Crousel";
-import { toPersianNumbersWithComma } from "@/utils/toPersianNumbers";
-import truncateText from "@/utils/truncateText";
 import React from "react";
-import { Link } from "react-router-dom";
 
-function UserProducList({ products }) {
+function ProducListRow({ products }) {
   const token = getTokenFromCookies();
   const { images_list, id } = products;
 
@@ -23,4 +20,4 @@ function UserProducList({ products }) {
   );
 }
 
-export default UserProducList;
+export default ProducListRow;

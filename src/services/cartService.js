@@ -11,3 +11,10 @@ export function getUserCartApi() {
     return response?.data;
   });
 }
+
+export function decreaseItemCartQuantityApi(id) {
+  return http.post("/cart/decrease-item/", id).then((response) => {
+    return response?.data;
+  });
+}
+

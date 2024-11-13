@@ -1,9 +1,10 @@
-import React from 'react'
+import React from "react";
+import { useUserCart } from "../cart/useUserCart";
 
 function ShoppingBasket() {
-  return (
-    <div>ShoppingBasket</div>
-  )
+  const { userCart } = useUserCart();
+  console.log(userCart);
+  return <div>ShoppingBasket</div>;
 }
 
-export default ShoppingBasket
+export default ShoppingBasket;

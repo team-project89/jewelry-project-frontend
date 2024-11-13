@@ -2,6 +2,8 @@ import { getFilterProductsApi } from "@/services/productService";
 import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "react-router-dom";
 
+
+// with querystring in url
 export default function useProducts() {
   const { search } = useLocation();
   const objectQuery = Object.fromEntries(new URLSearchParams(search));

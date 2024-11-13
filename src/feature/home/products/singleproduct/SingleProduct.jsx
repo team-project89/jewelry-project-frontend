@@ -5,7 +5,7 @@ import Loading from "@/style/Loading";
 import { CarouselDemo } from "@/style/Crousel";
 import { useSingleProduct } from "@/feature/user/useSingleProduct";
 import SignleUserTableRow from "@/feature/admin/product/SignleUserTableRow";
-import SetQuantity from "@/feature/user/UserSetQuantity";
+import SetQuantity from "@/feature/home/products/singleproduct/UserSetQuantity";
 import { useUserCart } from "@/feature/cart/useUserCart";
 import { useCreateWishlist } from "@/feature/wishlist/useCerateWishList";
 import SingleProductDiscount from "./SingleProductDiscount";
@@ -15,7 +15,6 @@ function SingleProduct() {
   const productId = Number(id);
   const { getProduct, isLoading, singleProduct } = useSingleProduct();
   const { userCart } = useUserCart();
-
   const { addWishList, isloading: isWishlistLoading } = useCreateWishlist();
 
   const {
