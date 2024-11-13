@@ -5,18 +5,17 @@ import Loading from "@/style/Loading";
 import { CarouselDemo } from "@/style/Crousel";
 import { useSingleProduct } from "@/feature/user/useSingleProduct";
 import SignleUserTableRow from "@/feature/admin/product/SignleUserTableRow";
-import SetQuantity from "@/feature/user/SetQuantity";
-import UserTable from "@/style/UserTable";
-import { toPersianNumbersWithComma } from "@/utils/toPersianNumbers";
-import PreOrderStyle from "@/style/PreOrderStyle";
+import SetQuantity from "@/feature/user/UserSetQuantity";
 import { useUserCart } from "@/feature/cart/useUserCart";
 import { useCreateWishlist } from "@/feature/wishlist/useCerateWishList";
+import SingleProductDiscount from "./SingleProductDiscount";
 
 function SingleProduct() {
   const { id } = useParams();
   const productId = Number(id);
   const { getProduct, isLoading, singleProduct } = useSingleProduct();
   const { userCart } = useUserCart();
+
   const { addWishList, isloading: isWishlistLoading } = useCreateWishlist();
 
   const {
@@ -55,30 +54,15 @@ function SingleProduct() {
           <h1 className='text-2xl w-full text-right'>{name}</h1>
         </div>
         <SignleUserTableRow singleProduct={singleProduct} />
-        <div className='flex flex-col w-full'>
-          <div className='flex justify-center items-center mt-8'>
-            <SetQuantity
-              productItem={productItem}
-              userCart={userCart}
-              pre_order_available={pre_order_available}
-              stock={stock}
-              productId={id}
-            />
-          </div>
-          <div className='w-full'>
-            <table className='w-full'>
-              <tbody className='flex justify-center items-center mt-2'>
-                <UserTable
-                  label='مبلغ پرداختی برای پیش‌خرید'
-                  value={
-                    Number.isFinite(pre_order_price) &&
-                    `${toPersianNumbersWithComma(pre_order_price)} تومان`
-                  }
-                />
-              </tbody>
-            </table>
-            <PreOrderStyle pre_order_available={pre_order_available} />
-          </div>
+        <div className='flex flex-col items-center w-full mt-8'>
+          <SetQuantity
+            productItem={productItem}
+            userCart={userCart}
+            pre_order_available={pre_order_available}
+            stock={stock}
+            productId={id}
+          />
+          <SingleProductDiscount pre_order_price={pre_order_price} />
         </div>
       </div>
       <CarouselDemo images={images_list} sizeProduct='lg' />

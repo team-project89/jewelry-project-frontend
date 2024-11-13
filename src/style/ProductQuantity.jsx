@@ -5,28 +5,37 @@ function ProductQuantity({
   handleIncreament,
   handleDecrement,
   productItem,
-  userCart,
+  pre_order_available,
 }) {
-
-
   const quantity = productItem?.quantity;
 
   return quantity ? (
-    <div className='flex gap-3 items-center'>
-      <button onClick={handleDecrement} aria-label='Decrease quantity'>
-        <HiMinusCircle className='w-6 h-6' />
+    <div className='flex items-center gap-3'>
+      <button
+        onClick={handleDecrement}
+        aria-label='Decrease quantity'
+        className='flex items-center justify-center w-6 h-6 text-gray-900 hover:text-gray-700'
+      >
+        <HiMinusCircle className='w-full h-full' />
       </button>
 
-      <p className='w-10 h-10 bg-gray-900 text-white font-semibold border-2 border-gray-200 rounded-md flex items-center justify-center'>
+      <span className='w-10 h-10 flex items-center justify-center bg-gray-900 text-white font-semibold border-2 border-gray-200 rounded-md'>
         {quantity}
-      </p>
+      </span>
 
-      <button onClick={handleIncreament} aria-label='Increase quantity'>
-        <HiPlusCircle className='w-6 h-6' />
+      <button
+        onClick={handleIncreament}
+        aria-label='Increase quantity'
+        className='flex items-center justify-center w-6 h-6 text-gray-900 hover:text-gray-700'
+      >
+        <HiPlusCircle className='w-full h-full' />
       </button>
     </div>
   ) : (
-    <AddToCartButton handleIncreament={handleIncreament} />
+    <AddToCartButton
+      handleIncreament={handleIncreament}
+      pre_order_available={pre_order_available}
+    />
   );
 }
 

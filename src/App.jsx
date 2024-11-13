@@ -6,7 +6,7 @@ import MainHome from "./feature/home/listofhomeitems/MainHome";
 import Auth from "./page/Auth";
 import NotAccess from "./style/NotAccess";
 import UserWithList from "./feature/wishlist/UserWishList";
-import ShoppingBasket from "./feature/user/ShoppingBasket";
+import ShoppingBasket from "./feature/user/UserShoppingBasket";
 import UserLayout from "./feature/user/UserLayout";
 import ComlepeProfile from "./feature/authentication/ComlepeProfile";
 import AdminLayout from "./feature/admin/AdminLayout";
@@ -14,7 +14,7 @@ import AdminDashboard from "./page/AdminDashboard";
 import Products from "./feature/admin/product/Products";
 import Categories from "./page/Categories";
 import { Toaster } from "react-hot-toast";
-import SingleProduct from "./feature/home/products/SingleProduct";
+import SingleProduct from "./feature/home/products/singleproduct/SingleProduct";
 import Orders from "./page/Orders";
 import SingleProdctLayout from "./page/SingleProdctLayout";
 

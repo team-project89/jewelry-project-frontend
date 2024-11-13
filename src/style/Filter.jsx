@@ -2,7 +2,7 @@ import React from "react";
 import { useSearchParams } from "react-router-dom";
 
 import PriceFilter from "./PriceFilter";
-import { useDebounce } from "@/hooks/debounced";
+import { useDebounce } from "@/hooks/usedebounced";
 
 function FilterDropDown({ filterField }) {
   const [searchParams, setSearchParams] = useSearchParams();

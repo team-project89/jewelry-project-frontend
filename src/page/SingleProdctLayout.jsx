@@ -1,4 +1,4 @@
-import SingleProduct from "@/feature/home/products/SingleProduct";
+import SingleProduct from "@/feature/home/products/singleproduct/SingleProduct";
 import React from "react";
 
 function SingleProdctLayout() {

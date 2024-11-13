@@ -1,7 +1,7 @@
 import HoverMenu from "@/style/HoverMenu";
 import LabelShop from "@/style/LabelShop";
 import SearchIcon from "@/style/SearchIcon";
-import { DropdownMenuDemo } from "../comment/DropDownMenu";
+import { DropdownMenuDemo } from "../home/menu/DropDownMenu";
 import MenuList from "../home/menu/MenuList";
 import useUser from "@/hooks/useUser";
 

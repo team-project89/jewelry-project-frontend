@@ -1,11 +1,7 @@
-import TextField from "@/components/ui/TextField";
+import TextField from "@/style/TextField";
 import Loading from "@/style/Loading";
 
-function SendOTPForm({
-  register,
-  handleSubmit,
-  isSending,
-}) {
+function SendOTPForm({ register, handleSubmit, isSending }) {
   return (
     <div dir='rtl' className='flex flex-col items-center px-4 md:px-0 gap-4 '>
       <h1 className='font-bold pb-4 text-lg md:text-xl lg:text-2xl border-b-2 w-full md:w-3/5 text-center'>

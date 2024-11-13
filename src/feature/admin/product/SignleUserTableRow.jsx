@@ -1,7 +1,7 @@
 import UserTable from "@/style/UserTable";
 import { toPersianNumbersWithComma } from "@/utils/toPersianNumbers";
 
-function SignleUserTableRow({ singleProduct}) {
+function SignleUserTableRow({ singleProduct }) {
   const {
     description = "بدون توضیحات",
     stock,
@@ -54,7 +54,6 @@ function SignleUserTableRow({ singleProduct}) {
             }
           />
         )}
- 
       </tbody>
     </table>
   );

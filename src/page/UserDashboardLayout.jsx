@@ -4,7 +4,7 @@ import SearchIcon from "@/style/SearchIcon";
 import useUser from "@/hooks/useUser";
 import { DropdownMenuDemo } from "../comment/DropDownMenu";
 import MenuList from "../home/menu/MenuList";
-import useProducts from "@/hooks/useProducts";
+
 
 function UserDashboardLayout() {
   const { user } = useUser();
