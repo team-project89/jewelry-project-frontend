@@ -17,4 +17,3 @@ export function decreaseItemCartQuantityApi(id) {
     return response?.data;
   });
 }
-

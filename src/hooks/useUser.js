@@ -2,12 +2,16 @@ import { getTokenFromCookies } from "@/services/httpService";
 import { getUserApi } from "@/services/userService";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import React from 'react';
+import React from "react";
 
 export default function useUser() {
   const token = getTokenFromCookies("access-token");
 
-  const { data = {}, isLoading, refetch } = useQuery({
+  const {
+    data = {},
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["get-user"],
     queryFn: getUserApi,
     enabled: !!token,
@@ -17,7 +21,7 @@ export default function useUser() {
         toast.error("ابتدا وارد حساب خود شوید");
       }
       return null;
-    }
+    },
   });
 
   React.useEffect(() => {
@@ -25,8 +29,9 @@ export default function useUser() {
       refetch();
     };
 
-    window.addEventListener('tokenRefreshed', handleTokenRefresh);
-    return () => window.removeEventListener('tokenRefreshed', handleTokenRefresh);
+    window.addEventListener("tokenRefreshed", handleTokenRefresh);
+    return () =>
+      window.removeEventListener("tokenRefreshed", handleTokenRefresh);
   }, [refetch]);
 
   const user = data.data;

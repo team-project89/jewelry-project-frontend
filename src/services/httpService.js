@@ -13,7 +13,6 @@ export const getRefreshTokenFromCookies = () => {
 
 const BASE_URL = "http://127.0.0.1:8000/";
 
-
 const app = axios.create({
   baseURL: BASE_URL,
   headers: {
@@ -39,7 +38,7 @@ app.interceptors.response.use(
     const originalConfig = error.config;
 
     if (
-      originalConfig._retry || 
+      originalConfig._retry ||
       !getRefreshTokenFromCookies() ||
       error.response?.status !== 401
     ) {
@@ -55,15 +54,14 @@ app.interceptors.response.use(
       const { access, refresh } = response.data;
       Cookies.set("access_token", access);
       Cookies.set("refresh_token", refresh);
-      
+
       originalConfig.headers["Authorization"] = `Bearer ${access}`;
 
-      window.dispatchEvent(new Event('tokenRefreshed'));
+      window.dispatchEvent(new Event("tokenRefreshed"));
 
       return app(originalConfig);
     } catch (refreshError) {
-
-      window.dispatchEvent(new Event('authError'));
+      window.dispatchEvent(new Event("authError"));
       return Promise.reject(refreshError);
     }
   }

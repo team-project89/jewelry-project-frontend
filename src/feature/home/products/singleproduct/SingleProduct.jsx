@@ -25,9 +25,9 @@ function SingleProduct() {
     pre_order_price,
   } = singleProduct || {};
 
-  const productItem = userCart?.regular_items?.find(
-    (item) => item?.product === productId
-  ) || null;
+  const productItem =
+    userCart?.regular_items?.find((item) => item?.product === productId) ||
+    null;
 
   useEffect(() => {
     getProduct(id);
