@@ -1,7 +1,8 @@
 import { useCartContext } from "@/context/CartProvider";
 import { useCreateCart } from "@/feature/cart/useCreateCart";
 import { useDecreaseItemCardQuantity } from "@/feature/cart/useDecreaseItemCardQuantity";
-import React, { useState } from "react";
+import React from "react";
+import { getTokenFromCookies } from "@/services/httpService";
 import { Link } from "react-router-dom";
 
 function ProducListRow({ products }) {
@@ -11,24 +12,27 @@ function ProducListRow({ products }) {
   const { decreaseItem } = useDecreaseItemCardQuantity();
 
   const handleCreateCart = async () => {
-    await createCart({ product_id: id })
-      .then(() => {
-        decreaseItem({ product_id: id });
-        setEnableFetching(true);
-      })
-      .catch((error) => {
-        console.error("Failed to add item to cart:", error);
-      });
+    if (getTokenFromCookies()) {
+      await createCart({ product_id: id })
+        .then(() => {
+          decreaseItem({ product_id: id });
+          setEnableFetching(true);
+        })
+        .catch((error) => {
+          console.error("Failed to create cart:", error);
+        });
+    }
   };
 
   return (
     <Link
       to={`singleproduct/${id}`}
-      className=' w-[200px] h-[200px] flex'
+      className='w-[200px] h-[200px] flex'
       onClick={handleCreateCart}
     >
       <img
         src={thumbnail}
+        alt={`Thumbnail of product ${id}`}
         className='w-full h-auto object-cover rounded-md shadow-xl'
       />
     </Link>
