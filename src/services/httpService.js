@@ -1,5 +1,7 @@
+import useUser from "@/hooks/useUser";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const getTokenFromCookies = () => {
   return Cookies.get("access_token");
@@ -10,6 +12,7 @@ export const getRefreshTokenFromCookies = () => {
 };
 
 const BASE_URL = "http://127.0.0.1:8000/";
+
 
 const app = axios.create({
   baseURL: BASE_URL,
@@ -54,6 +57,9 @@ app.interceptors.response.use(
       Cookies.set("refresh_token", refresh);
       
       originalConfig.headers["Authorization"] = `Bearer ${access}`;
+
+      window.dispatchEvent(new Event('tokenRefreshed'));
+
       return app(originalConfig);
     } catch (refreshError) {
 
