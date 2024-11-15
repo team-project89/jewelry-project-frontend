@@ -13,16 +13,16 @@ import SingleProductDiscount from "./SingleProductDiscount";
 function SingleProduct() {
   const { id } = useParams();
   const productId = Number(id);
-  const { getProduct, isLoading, singleProduct } = useSingleProduct();
+  const { getProduct, isLoading, singleProduct, error } = useSingleProduct();
   const { userCart, loadingCart } = useUserCart();
   const { addWishList, isloading: isWishlistLoading } = useCreateWishlist();
 
   const {
     name = "بدون عنوان",
     images_list = [],
-    pre_order_available,
-    stock,
-    pre_order_price,
+    pre_order_available = false,
+    stock = 0,
+    pre_order_price = 0,
   } = singleProduct || {};
 
   const productItem =
@@ -30,7 +30,14 @@ function SingleProduct() {
     null;
 
   useEffect(() => {
-    getProduct(id);
+    const fetchProduct = async () => {
+      try {
+        await getProduct(id);
+      } catch (error) {
+        console.error("Failed to fetch product:", error);
+      }
+    };
+    fetchProduct();
   }, [id, getProduct]);
 
   const handleWishlist = async () => {
@@ -43,7 +50,7 @@ function SingleProduct() {
 
   if (isLoading || isWishlistLoading || loadingCart) return <Loading />;
   return (
-    <div className='container flex flex-col lg:flex-row mt-8 gap-4 px-8 mx-auto w-full'>
+    <div className='container flex flex-col lg:flex-row mt-8 gap-4 px-8 mx-auto w-full '>
       <div className='flex flex-col items-center lg:w-3/6 gap-8 w-full'>
         <div className='flex w-full justify-between border-b-2 p-4'>
           <MdFavoriteBorder

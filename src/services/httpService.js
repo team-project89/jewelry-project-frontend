@@ -1,29 +1,50 @@
-import useUser from "@/hooks/useUser";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { useQueryClient } from "@tanstack/react-query";
 
-export const getTokenFromCookies = () => {
-  return Cookies.get("access_token");
-};
-
-export const getRefreshTokenFromCookies = () => {
-  return Cookies.get("refresh_token");
-};
-
+// Constants
 const BASE_URL = "http://127.0.0.1:8000/";
+const REQUEST_THROTTLE = 1000; // 1 second
+const COOKIE_KEYS = {
+  ACCESS: "access_token",
+  REFRESH: "refresh_token",
+};
 
-const app = axios.create({
+// Cookie utilities
+const getCookie = {
+  token: () => Cookies.get(COOKIE_KEYS.ACCESS),
+  refreshToken: () => Cookies.get(COOKIE_KEYS.REFRESH),
+};
+
+// Export the token getter for external use
+export const getTokenFromCookies = getCookie.token;
+
+// Create axios instance
+const axiosInstance = axios.create({
   baseURL: BASE_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
+  headers: { "Content-Type": "application/json" },
   withCredentials: true,
 });
 
-app.interceptors.request.use(
-  (config) => {
-    const token = getTokenFromCookies();
+// Request throttling
+let lastRequestTime = 0;
+const throttleRequest = async () => {
+  const now = Date.now();
+  const timeSinceLastRequest = now - lastRequestTime;
+  
+  if (timeSinceLastRequest < REQUEST_THROTTLE) {
+    await new Promise(resolve => 
+      setTimeout(resolve, REQUEST_THROTTLE - timeSinceLastRequest)
+    );
+  }
+  lastRequestTime = Date.now();
+};
+
+// Request interceptor
+axiosInstance.interceptors.request.use(
+  async (config) => {
+    await throttleRequest();
+    
+    const token = getCookie.token();
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;
     }
@@ -32,14 +53,15 @@ app.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-app.interceptors.response.use(
+// Response interceptor
+axiosInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalConfig = error.config;
 
     if (
       originalConfig._retry ||
-      !getRefreshTokenFromCookies() ||
+      !getCookie.refreshToken() ||
       error.response?.status !== 401
     ) {
       return Promise.reject(error);
@@ -47,19 +69,16 @@ app.interceptors.response.use(
 
     try {
       originalConfig._retry = true;
-      const response = await app.post("/auth/token/refresh/", {
-        refresh: getRefreshTokenFromCookies(),
+      const { data } = await axiosInstance.post("/auth/token/refresh/", {
+        refresh: getCookie.refreshToken(),
       });
 
-      const { access, refresh } = response.data;
-      Cookies.set("access_token", access);
-      Cookies.set("refresh_token", refresh);
-
-      originalConfig.headers["Authorization"] = `Bearer ${access}`;
+      Cookies.set(COOKIE_KEYS.ACCESS, data.access);
+      Cookies.set(COOKIE_KEYS.REFRESH, data.refresh);
+      originalConfig.headers["Authorization"] = `Bearer ${data.access}`;
 
       window.dispatchEvent(new Event("tokenRefreshed"));
-
-      return app(originalConfig);
+      return axiosInstance(originalConfig);
     } catch (refreshError) {
       window.dispatchEvent(new Event("authError"));
       return Promise.reject(refreshError);
@@ -67,12 +86,11 @@ app.interceptors.response.use(
   }
 );
 
-const http = {
-  get: app.get,
-  post: app.post,
-  delete: app.delete,
-  put: app.put,
-  patch: app.patch,
+// Export HTTP methods
+export default {
+  get: axiosInstance.get,
+  post: axiosInstance.post,
+  put: axiosInstance.put,
+  patch: axiosInstance.patch,
+  delete: axiosInstance.delete,
 };
-
-export default http;

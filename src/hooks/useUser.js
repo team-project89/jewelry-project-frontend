@@ -16,6 +16,8 @@ export default function useUser() {
     queryFn: getUserApi,
     enabled: !!token,
     retry: false,
+    staleTime: 1000 * 60 * 5,
+    cacheTime: 1000 * 60 * 30,
     onError: (error) => {
       if (token) {
         toast.error("ابتدا وارد حساب خود شوید");
