@@ -1,11 +1,15 @@
 import { useAddShopStatus } from "@/feature/home/listofhomeitems/shopstatus/useAddShopStatus";
+import { useChangeShopShopStatus } from "@/feature/home/listofhomeitems/shopstatus/useChangeShopStatus";
+import Loading from "@/style/Loading";
 import RHFSelect from "@/style/RHFSelect";
 import TextField from "@/style/TextField";
 import React from "react";
 import { useForm } from "react-hook-form";
 
-function CreateShopStatus({ setOpen }) {
-  const { settingStatus, isLoading } = useAddShopStatus();
+function CreateShopStatus({ setOpen, boolean, statusShop }) {
+  const { settingStatus, isLoading: isLoading1 } = useAddShopStatus();
+  const { updatingStatus, isLoading: isLoading2 } = useChangeShopShopStatus();
+
   const status = [
     { id: "active", label: "فروشگاه باز است" },
     { id: "inactive", label: "فروشگاه بسته است" },
@@ -15,16 +19,24 @@ function CreateShopStatus({ setOpen }) {
     formState: { errors },
     handleSubmit,
     reset,
-  } = useForm();
+  } = useForm({ defaultValues: statusShop });
 
   const onSubmit = async (data) => {
-    console.log(data);
-    await settingStatus(data, {
-      onSuccess: () => {
-        reset();
-        setOpen();
-      },
-    });
+    if (boolean) {
+      updatingStatus(data, {
+        onSuccess: () => {
+          reset();
+          setOpen();
+        },
+      });
+    } else {
+      await settingStatus(data, {
+        onSuccess: () => {
+          reset();
+          setOpen();
+        },
+      });
+    }
   };
 
   return (
@@ -70,9 +82,13 @@ function CreateShopStatus({ setOpen }) {
         }}
       />
 
-      <button type='submit' className='btn btn--primary'>
-        ثبت
-      </button>
+      {isLoading1 || isLoading2 ? (
+        <Loading />
+      ) : (
+        <button type='submit' className='btn btn--primary'>
+          ثبت
+        </button>
+      )}
     </form>
   );
 }

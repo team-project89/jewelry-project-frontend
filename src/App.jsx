@@ -17,7 +17,7 @@ import { Toaster } from "react-hot-toast";
 import Orders from "./page/Orders";
 import SingleProdctLayout from "./page/SingleProdctLayout";
 import ShopStatus from "./feature/admin/shopstatus/ShopStatus";
-
+import AllProductView from "./feature/home/products/AllProductView";
 
 const queryClient = new QueryClient();
 function App() {
@@ -33,6 +33,7 @@ function App() {
             <Route path='/' element={<MainHome />} />
             <Route path='/auth' element={<Auth />} />
             <Route path='complete-profile' element={<ComlepeProfile />} />
+            <Route path='allproducts' element={<AllProductView />} />
             <Route path='singleproduct/:id' element={<SingleProdctLayout />} />
 
             <Route path='user' element={<UserLayout />}>

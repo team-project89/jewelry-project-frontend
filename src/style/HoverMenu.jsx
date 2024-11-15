@@ -7,10 +7,12 @@ import {
 } from "@/components/ui/navigation-menu";
 import usePathname from "@/hooks/usepathname";
 import { Link } from "react-router-dom";
+import UserNavlink from "./UserNavlink";
 
 function HoverMenu({ user }) {
   const { desirePath } = usePathname();
   const { is_completed, first_name, last_name } = user;
+
   const path = [
     { path: "pathone", label: "پنل مالی" },
     { path: "pathtwo", label: "سفارشات" },
@@ -37,13 +39,13 @@ function HoverMenu({ user }) {
             <NavigationMenuContent>
               <div className='w-[200px] py-10 flex flex-col gap-6 justify-center items-center '>
                 {path.filter(Boolean).map((link, index) => (
-                  <Link
+                  <UserNavlink
                     key={index}
-                    to={link.path}
-                    className='border-2 w-4/5  mx-auto text-center rounded-md shadow-md py-4 border-black hover:bg-secondary-200 transition-all duration-300 '
+                    path={link.path}
+                    className='border-spacing-1 px-12 rounded-md py-4 border-2 shadow-lg'
                   >
                     {link.label}
-                  </Link>
+                  </UserNavlink>
                 ))}
               </div>
             </NavigationMenuContent>

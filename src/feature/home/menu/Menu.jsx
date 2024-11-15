@@ -6,17 +6,22 @@ import SearchIcon from "@/style/SearchIcon";
 import useUser from "@/hooks/useUser";
 import HoverMenu from "@/style/HoverMenu";
 import usePathname from "@/hooks/usepathname";
+import Loading from "@/style/Loading";
 
 function Menu() {
   const { desirePath } = usePathname();
-  const { user } = useUser();
-  const isUserLoggedIn = user && Object.keys(user).length > 0;
+  const { user, isLoading } = useUser();
+  const isUserLoggedIn = !isLoading && user && Object.keys(user).length > 0;
 
   return (
     <header className='container mx-auto flex items-center justify-between px-2 py-6 lg:gap-0 gap-4'>
       <nav className='flex items-center justify-center xl:gap-56 gap-3'>
         <div className='flex items-center gap-4 md:gap-6 relative xl:order-1'>
-          {isUserLoggedIn ? <HoverMenu user={user} /> : <SignUp />}
+          {isLoading ? (
+            <Loading />
+          ) : (
+            isUserLoggedIn ? <HoverMenu user={user} /> : <SignUp />
+          )}
           <SearchIcon />
         </div>
       </nav>

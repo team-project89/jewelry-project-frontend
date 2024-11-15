@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "react-router-dom";
 
 
-// with querystring in url
 export default function useProducts() {
   const { search } = useLocation();
   const objectQuery = Object.fromEntries(new URLSearchParams(search));
@@ -11,6 +10,7 @@ export default function useProducts() {
   const { isLoading, data, error } = useQuery({
     queryKey: ["products", objectQuery],
     queryFn: () => getFilterProductsApi(search),
+    retry: false,
   });
 
   const products = data || [];

@@ -1,22 +1,16 @@
-import { getTokenFromCookies } from "@/services/httpService";
-import { CarouselDemo } from "@/style/Crousel";
 import React from "react";
+import { Link } from "react-router-dom";
 
 function ProducListRow({ products }) {
-  const token = getTokenFromCookies();
-  const { images_list, id } = products;
+  const { id, thumbnail } = products;
 
   return (
-    <div className='mx-auto '>
-      <div>
-        <CarouselDemo
-          images={images_list}
-          sizeProduct='xs'
-          token={token}
-          id={id}
-        />
-      </div>
-    </div>
+    <Link to={`singleproduct/${id}`} className=' w-[200px] h-[200px] flex'>
+      <img
+        src={thumbnail}
+        className='w-full h-auto object-cover rounded-md shadow-xl'
+      />
+    </Link>
   );
 }
 

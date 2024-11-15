@@ -4,31 +4,38 @@ import logo from "../../../../public/LogoShop.webp";
 function Profile() {
   const sticky = useSticky();
 
+
+  // const statusMessages = {
+  //   active: { text: "آماده پذیرش سفارش", className: "text-success" },
+  //   inactive: {
+  //     text: "در حال حاضر سفارش پذیرفته نمی‌شود",
+  //     className: "text-error",
+  //   },
+  // };
+
+  // const shopStatus = statusMessages[status] || {};
+
   return (
     <header
-      aria-labelledby='shop-profile'
-      className={`px-2 xl:px-52 lg:mx-0 mt-[54px] lg:mt-[68px] sticky top-0 bg-secondary-0 ${
+      className={`px-2 xl:px-52 mt-[54px] lg:mt-[68px] sticky top-0 bg-secondary-0 ${
         sticky ? "border-b-2 p-2 shadow-lg" : ""
       }`}
     >
-      <div className='flex items-center justify-end gap-x-2 sticky top-0'>
-        <div>
-          <h1 id='shop-profile' className='font-bold text-right'>
-            جواهرسازی لیمون
+      <div className='flex items-center justify-end gap-x-2'>
+        <div className='text-right'>
+          <h1 id='shop-profile' className='font-bold'>
+         lemon
           </h1>
-          <p className='text-success text-sm'>آماده پذیرش سفارش</p>
+          <p className={`text-sm`}>lemon jewelry</p>
         </div>
-        <picture>
-          <source srcSet={logo} type='image/webp' />
-          <img
-            src={logo}
-            alt='Shop Logo - Limon Jewelry Store Identity'
-            className='logo-style'
-            width={100}
-            height={100}
-            loading='lazy'
-          />
-        </picture>
+        <img
+          src={logo}
+          alt='Shop Logo - Limon Jewelry Store'
+          className='logo-style'
+          width={100}
+          height={100}
+          loading='lazy'
+        />
       </div>
     </header>
   );

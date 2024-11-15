@@ -18,12 +18,7 @@ function Statistics() {
 
   return (
     <div className='bg-secondary-100 flex flex-wrap gap-5 justify-center rounded-3xl p-4'>
-      <Stat
-        title=' وضعیت فروشگاه'
-        number={users?.length}
-        icon={<FaRecycle className='h-6 w-6' />}
-        bg='bg-teal-300'
-      />
+ 
       <Stat
         title='سفارش '
         number={orders?.length}

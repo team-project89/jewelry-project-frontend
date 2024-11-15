@@ -14,7 +14,7 @@ function SingleProduct() {
   const { id } = useParams();
   const productId = Number(id);
   const { getProduct, isLoading, singleProduct } = useSingleProduct();
-  const { userCart } = useUserCart();
+  const { userCart, loadingCart } = useUserCart();
   const { addWishList, isloading: isWishlistLoading } = useCreateWishlist();
 
   const {
@@ -26,8 +26,8 @@ function SingleProduct() {
   } = singleProduct || {};
 
   const productItem = userCart?.regular_items?.find(
-    (item) => item.product === productId
-  );
+    (item) => item?.product === productId
+  ) || null;
 
   useEffect(() => {
     getProduct(id);
@@ -41,7 +41,7 @@ function SingleProduct() {
     }
   };
 
-  if (isLoading || isWishlistLoading) return <Loading />;
+  if (isLoading || isWishlistLoading || loadingCart) return <Loading />;
   return (
     <div className='container flex flex-col lg:flex-row mt-8 gap-4 px-8 mx-auto w-full'>
       <div className='flex flex-col items-center lg:w-3/6 gap-8 w-full'>
@@ -56,7 +56,7 @@ function SingleProduct() {
         <div className='flex flex-col items-center w-full mt-8'>
           <SetQuantity
             productItem={productItem}
-            userCart={userCart}
+            userCart={userCart || { regular_items: [] }}
             pre_order_available={pre_order_available}
             stock={stock}
             productId={id}

@@ -2,12 +2,16 @@ import { getUserCartApi } from "@/services/cartService";
 import { useQuery } from "@tanstack/react-query";
 
 export function useUserCart() {
-  const { data, isLoading: loadingCart } = useQuery({
+  const {
+    data: userCart = { regular_items: [] },
+    isLoading: loadingCart,
+    isError: errorCart,
+    refetch,
+  } = useQuery({
     queryFn: getUserCartApi,
     queryKey: ["usercart"],
     retry: false,
   });
 
-  const userCart = data || {};
-  return { userCart, loadingCart };
+  return { userCart, loadingCart, errorCart, refetch };
 }
