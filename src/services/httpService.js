@@ -10,7 +10,7 @@ const COOKIE_KEYS = {
 };
 
 // Cookie utilities
-const getCookie = {
+ export const getCookie = {
   token: () => Cookies.get(COOKIE_KEYS.ACCESS),
   refreshToken: () => Cookies.get(COOKIE_KEYS.REFRESH),
 };

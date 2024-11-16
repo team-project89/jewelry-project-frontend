@@ -2,6 +2,7 @@ import { useCartContext } from "@/context/CartProvider";
 import { useCreateCart } from "@/feature/cart/useCreateCart";
 import { useDecreaseItemCardQuantity } from "@/feature/cart/useDecreaseItemCardQuantity";
 import React from "react";
+import { getCookie } from "@/services/httpService";
 import { getTokenFromCookies } from "@/services/httpService";
 import { Link } from "react-router-dom";
 
@@ -11,8 +12,14 @@ function ProducListRow({ products }) {
   const { createCart } = useCreateCart();
   const { decreaseItem } = useDecreaseItemCardQuantity();
 
+  // the only way to handle 404 error  because of ( backend structure and  wrong responses  )
   const handleCreateCart = async () => {
-    if (getTokenFromCookies()) {
+    if (!getCookie.token() && !getCookie.refreshToken()) {
+      return;
+    } else if (
+      (getCookie.refreshToken() && !getCookie.token()) ||
+      getTokenFromCookies()
+    ) {
       await createCart({ product_id: id })
         .then(() => {
           decreaseItem({ product_id: id });
