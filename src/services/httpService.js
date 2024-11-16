@@ -25,6 +25,25 @@ const axiosInstance = axios.create({
   withCredentials: true,
 });
 
+// Add this after the axiosInstance creation and before the interceptors
+window.addEventListener('load', async () => {
+  const refreshToken = getCookie.refreshToken();
+  if (refreshToken) {
+    try {
+      const { data } = await axiosInstance.post("/auth/token/refresh/", {
+        refresh: refreshToken,
+      });
+      
+      Cookies.set(COOKIE_KEYS.ACCESS, data.access);
+      Cookies.set(COOKIE_KEYS.REFRESH, data.refresh);
+      
+      window.dispatchEvent(new Event("tokenRefreshed"));
+    } catch (error) {
+      window.dispatchEvent(new Event("authError"));
+    }
+  }
+});
+
 // Request throttling
 let lastRequestTime = 0;
 const throttleRequest = async () => {

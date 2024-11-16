@@ -1,9 +1,12 @@
-import TextField from "@/style/TextField";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import useCompleteProfile from "./useCompleteProfile";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { fields } from "@/constants/completeProfileConstant";
+import TextField from "@/style/TextField";
+import useCompleteProfile from "./useCompleteProfile";
+import useUser from "@/hooks/useUser";
+import usePathname from "@/hooks/usepathname";
 
 function CompleteProfile() {
   const {
@@ -11,71 +14,48 @@ function CompleteProfile() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { isCompleting, isSending } = useCompleteProfile();
+  const { isCompleting } = useCompleteProfile();
+  const { refetch, user } = useUser();
+  const { desirePath } = usePathname();
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
-      const response = await isCompleting(data);
+      await isCompleting(data);
       toast.success("اطلاعات با موفقیت ارسال شد!");
-
-      navigate("/");
+      refetch();
+      navigate("/", { replace: true });
     } catch (error) {
       toast.error("مشکلی پیش آمده است. لطفا دوباره امتحان کنید.");
       console.error(error);
     }
   };
 
+  useEffect(() => {
+    if (user?.is_completed && desirePath === "complete-profile") {
+      navigate("/");
+    }
+  }, [user, desirePath, navigate]);
+
   return (
     <form
-      className='container mx-auto md:w-1/3 px-8 md:p-8 flex justify-center flex-col border-b border-r border-l rounded-lg shadow-xl md:mt-8'
+      className='container mx-auto md:w-1/3 px-8 md:p-8 flex flex-col justify-center border-b border-r border-l rounded-lg shadow-xl md:mt-8'
       onSubmit={handleSubmit(onSubmit)}
     >
-      <div className='w-full flex justify-center items-center'>
-        <h1 className='text-xl'>تکمیل اطلاعات</h1>
-      </div>
-      <TextField
-        name='first_name'
-        label='نام'
-        register={register}
-        validationSchema={{
-          required: "نام ضروری است",
-        }}
-        errors={errors}
-      />
-      <TextField
-        name='last_name'
-        label='نام خانوادگی'
-        register={register}
-        validationSchema={{
-          required: "نام خانوادگی ضروری است",
-        }}
-        errors={errors}
-      />
-      <TextField
-        name='email'
-        label='ایمیل'
-        register={register}
-        validationSchema={{
-          required: " ایمیل ضروری است",
-          pattern: {
-            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-            message: "ایمیل نامعتبر",
-          },
-        }}
-        errors={errors}
-      />
-      <TextField
-        name='address'
-        label='آدرس محل سکونت'
-        register={register}
-        validationSchema={{
-          required: "آدرس ضروری است",
-        }}
-        errors={errors}
-      />
+      <h1 className='text-xl text-center mb-4'>تکمیل اطلاعات</h1>
 
-      <div className='w-full flex justify-center items-center'>
+      {fields.map((field) => (
+        <TextField
+          key={field.name}
+          name={field.name}
+          label={field.label}
+          register={register}
+          validationSchema={field.validation}
+          errors={errors}
+        />
+      ))}
+
+      <div className='w-full flex justify-center items-center mt-4'>
         <button type='submit' className='btn btn--primary w-2/3'>
           ارسال اطلاعات
         </button>
