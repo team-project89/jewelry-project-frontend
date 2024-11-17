@@ -9,6 +9,12 @@ const COOKIE_KEYS = {
   REFRESH: "refresh_token",
 };
 
+// Add a constant for token expiration (e.g., 1 hour for access token, 7 days for refresh token)
+const TOKEN_EXPIRY = {
+  ACCESS: 1/24, // 1 hour (as fraction of days)
+  REFRESH: 7    // 7 days
+};
+
 // Cookie utilities
  export const getCookie = {
   token: () => Cookies.get(COOKIE_KEYS.ACCESS),
@@ -34,8 +40,8 @@ window.addEventListener('load', async () => {
         refresh: refreshToken,
       });
       
-      Cookies.set(COOKIE_KEYS.ACCESS, data.access);
-      Cookies.set(COOKIE_KEYS.REFRESH, data.refresh);
+      Cookies.set(COOKIE_KEYS.ACCESS, data.access, { expires: TOKEN_EXPIRY.ACCESS });
+      Cookies.set(COOKIE_KEYS.REFRESH, data.refresh, { expires: TOKEN_EXPIRY.REFRESH });
       
       window.dispatchEvent(new Event("tokenRefreshed"));
     } catch (error) {
@@ -92,8 +98,8 @@ axiosInstance.interceptors.response.use(
         refresh: getCookie.refreshToken(),
       });
 
-      Cookies.set(COOKIE_KEYS.ACCESS, data.access);
-      Cookies.set(COOKIE_KEYS.REFRESH, data.refresh);
+      Cookies.set(COOKIE_KEYS.ACCESS, data.access, { expires: TOKEN_EXPIRY.ACCESS });
+      Cookies.set(COOKIE_KEYS.REFRESH, data.refresh, { expires: TOKEN_EXPIRY.REFRESH });
       originalConfig.headers["Authorization"] = `Bearer ${data.access}`;
 
       window.dispatchEvent(new Event("tokenRefreshed"));

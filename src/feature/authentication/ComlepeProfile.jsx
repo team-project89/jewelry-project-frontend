@@ -9,16 +9,18 @@ import useUser from "@/hooks/useUser";
 import usePathname from "@/hooks/usepathname";
 
 function CompleteProfile() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
+  const { 
+    register, 
+    handleSubmit, 
+    formState: { errors } 
   } = useForm();
+  
   const { isCompleting } = useCompleteProfile();
   const { refetch, user } = useUser();
   const { desirePath } = usePathname();
   const navigate = useNavigate();
 
+  // Submit handler
   const onSubmit = async (data) => {
     try {
       await isCompleting(data);
@@ -31,6 +33,7 @@ function CompleteProfile() {
     }
   };
 
+  // Redirect if the user has already completed their profile
   useEffect(() => {
     if (user?.is_completed && desirePath === "complete-profile") {
       navigate("/");
@@ -39,11 +42,12 @@ function CompleteProfile() {
 
   return (
     <form
-      className='container mx-auto md:w-1/3 px-8 md:p-8 flex flex-col justify-center border-b border-r border-l rounded-lg shadow-xl md:mt-8'
       onSubmit={handleSubmit(onSubmit)}
+      className="container mx-auto md:w-1/3 px-8 md:p-8 flex flex-col justify-center border rounded-lg shadow-xl md:mt-8"
     >
-      <h1 className='text-xl text-center mb-4'>تکمیل اطلاعات</h1>
+      <h1 className="text-xl text-center mb-4">تکمیل اطلاعات</h1>
 
+      {/* Render form fields dynamically */}
       {fields.map((field) => (
         <TextField
           key={field.name}
@@ -55,8 +59,8 @@ function CompleteProfile() {
         />
       ))}
 
-      <div className='w-full flex justify-center items-center mt-4'>
-        <button type='submit' className='btn btn--primary w-2/3'>
+      <div className="w-full flex justify-center items-center mt-4">
+        <button type="submit" className="btn btn--primary w-2/3">
           ارسال اطلاعات
         </button>
       </div>
