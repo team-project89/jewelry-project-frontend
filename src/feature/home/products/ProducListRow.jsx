@@ -13,8 +13,9 @@ function ProducListRow({ products }) {
   const { decreaseItem } = useDecreaseItemCardQuantity();
   const { enableFetching } = useCartContext();
 
+  // the only way to handle 404 error  because of ( backend structure and  wrong backend  responses   )
+  // have to do this to create an empty  cart  for the user  when the user is  logged in(wrong backend responses )
   
-  // the only way to handle 404 error  because of ( backend structure and  wrong responses  )
   const handleCreateCart = async () => {
     if ((!getCookie.token() && !getCookie.refreshToken()) || enableFetching) {
       return;
