@@ -11,12 +11,25 @@ const COOKIE_KEYS = {
 
 // Add a constant for token expiration (e.g., 1 hour for access token, 7 days for refresh token)
 const TOKEN_EXPIRY = {
-  ACCESS: 1/24, // 1 hour (as fraction of days)
-  REFRESH: 7    // 7 days
+  ACCESS: 1 / 24, // 1 hour (as fraction of days)
+  REFRESH: 7, // 7 days
+};
+
+// Update cookie options
+const COOKIE_OPTIONS = {
+  expires: TOKEN_EXPIRY.ACCESS,
+  sameSite: "lax",
+  secure: true, // recommended for production
+};
+
+const REFRESH_COOKIE_OPTIONS = {
+  expires: TOKEN_EXPIRY.REFRESH,
+  sameSite: "lax",
+  secure: true, // recommended for production
 };
 
 // Cookie utilities
- export const getCookie = {
+export const getCookie = {
   token: () => Cookies.get(COOKIE_KEYS.ACCESS),
   refreshToken: () => Cookies.get(COOKIE_KEYS.REFRESH),
 };
@@ -32,17 +45,18 @@ const axiosInstance = axios.create({
 });
 
 // Add this after the axiosInstance creation and before the interceptors
-window.addEventListener('load', async () => {
+window.addEventListener("load", async () => {
   const refreshToken = getCookie.refreshToken();
-  if (refreshToken) {
+  const token = getCookie.token();
+  if (refreshToken && !token) {
     try {
       const { data } = await axiosInstance.post("/auth/token/refresh/", {
         refresh: refreshToken,
       });
-      
-      Cookies.set(COOKIE_KEYS.ACCESS, data.access, { expires: TOKEN_EXPIRY.ACCESS });
-      Cookies.set(COOKIE_KEYS.REFRESH, data.refresh, { expires: TOKEN_EXPIRY.REFRESH });
-      
+
+      Cookies.set(COOKIE_KEYS.ACCESS, data.access, COOKIE_OPTIONS);
+      Cookies.set(COOKIE_KEYS.REFRESH, data.refresh, REFRESH_COOKIE_OPTIONS);
+
       window.dispatchEvent(new Event("tokenRefreshed"));
     } catch (error) {
       window.dispatchEvent(new Event("authError"));
@@ -50,16 +64,24 @@ window.addEventListener('load', async () => {
   }
 });
 
+// Add new event names
+const EVENTS = {
+  THROTTLE_START: "requestThrottleStart",
+  THROTTLE_END: "requestThrottleEnd",
+};
+
 // Request throttling
 let lastRequestTime = 0;
 const throttleRequest = async () => {
   const now = Date.now();
   const timeSinceLastRequest = now - lastRequestTime;
-  
+
   if (timeSinceLastRequest < REQUEST_THROTTLE) {
-    await new Promise(resolve => 
+    window.dispatchEvent(new Event(EVENTS.THROTTLE_START));
+    await new Promise((resolve) =>
       setTimeout(resolve, REQUEST_THROTTLE - timeSinceLastRequest)
     );
+    window.dispatchEvent(new Event(EVENTS.THROTTLE_END));
   }
   lastRequestTime = Date.now();
 };
@@ -68,7 +90,7 @@ const throttleRequest = async () => {
 axiosInstance.interceptors.request.use(
   async (config) => {
     await throttleRequest();
-    
+
     const token = getCookie.token();
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;
@@ -98,8 +120,8 @@ axiosInstance.interceptors.response.use(
         refresh: getCookie.refreshToken(),
       });
 
-      Cookies.set(COOKIE_KEYS.ACCESS, data.access, { expires: TOKEN_EXPIRY.ACCESS });
-      Cookies.set(COOKIE_KEYS.REFRESH, data.refresh, { expires: TOKEN_EXPIRY.REFRESH });
+      Cookies.set(COOKIE_KEYS.ACCESS, data.access, COOKIE_OPTIONS);
+      Cookies.set(COOKIE_KEYS.REFRESH, data.refresh, REFRESH_COOKIE_OPTIONS);
       originalConfig.headers["Authorization"] = `Bearer ${data.access}`;
 
       window.dispatchEvent(new Event("tokenRefreshed"));
@@ -118,4 +140,5 @@ export default {
   put: axiosInstance.put,
   patch: axiosInstance.patch,
   delete: axiosInstance.delete,
+  events: EVENTS, // Export events for external use
 };

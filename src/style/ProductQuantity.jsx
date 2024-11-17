@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
 import AddToCartButton from "@/style/AddToCartButton";
 import { HiMinusCircle, HiPlusCircle, HiTrash } from "react-icons/hi";
 import Loading from "./Loading";
+import httpService from "@/services/httpService";
 
 function ProductQuantity({
   handleIncreament,
@@ -9,10 +11,35 @@ function ProductQuantity({
   isLoading1,
   isLoading2,
 }) {
+  const [isThrottling, setIsThrottling] = useState(false);
   const quantity = productItem?.quantity;
   const isLoading = isLoading1 || isLoading2;
 
-  if (isLoading) return <Loading />;
+  useEffect(() => {
+    const handleThrottleStart = () => setIsThrottling(true);
+    const handleThrottleEnd = () => setIsThrottling(false);
+
+    window.addEventListener(
+      httpService.events.THROTTLE_START,
+      handleThrottleStart
+    );
+    window.addEventListener(httpService.events.THROTTLE_END, handleThrottleEnd);
+
+    return () => {
+      window.removeEventListener(
+        httpService.events.THROTTLE_START,
+        handleThrottleStart
+      );
+      window.removeEventListener(
+        httpService.events.THROTTLE_END,
+        handleThrottleEnd
+      );
+    };
+  }, []);
+
+  if (isLoading || isThrottling) {
+    return <Loading />;
+  }
 
   const renderQuantityControls = () => (
     <div className='flex items-center gap-3'>

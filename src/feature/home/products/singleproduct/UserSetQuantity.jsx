@@ -7,43 +7,56 @@ import { getTokenFromCookies } from "@/services/httpService";
 import ProductQuantity from "@/style/ProductQuantity";
 import PreOrderStyle from "@/style/PreOrderStyle";
 
-function SetQuantity({ stock, pre_order_available, productId, userCart, productItem }) {
+function SetQuantity({
+  stock,
+  pre_order_available,
+  productId,
+  userCart,
+  productItem,
+}) {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { user } = useUser();
   const { createCart, isLoading: isCreating } = useCreateCart();
-  const { decreaseItem, isLoading: isDecreasing } = useDecreaseItemCardQuantity();
+  const { decreaseItem, isLoading: isDecreasing } =
+    useDecreaseItemCardQuantity();
 
   const validateUserAccess = () => {
     if (!getTokenFromCookies()) {
       navigate("/auth", { replace: true });
       return false;
     }
-    
+
     if (!user?.is_completed) {
       navigate("/complete-profile", { replace: true });
       return false;
     }
-    
+
     return true;
   };
 
   const handleQuantityChange = async (action) => {
     const product_id = Number(productId);
-    
-    if (action === 'increment') {
+
+    if (action === "increment") {
       if (!validateUserAccess()) return;
-      
+
       createCart(
         { product_id, quantity: 1 },
-        { onSuccess: () => queryClient.invalidateQueries(["usercart", product_id]) }
+        {
+          onSuccess: () =>
+            queryClient.invalidateQueries(["usercart", product_id]),
+        }
       );
     }
 
-    if (action === 'decrement') {
+    if (action === "decrement") {
       await decreaseItem(
         { product_id },
-        { onSuccess: () => queryClient.invalidateQueries(["usercart", product_id]) }
+        {
+          onSuccess: () =>
+            queryClient.invalidateQueries(["usercart", product_id]),
+        }
       );
     }
   };
@@ -57,8 +70,8 @@ function SetQuantity({ stock, pre_order_available, productId, userCart, productI
         productId={productId}
         userCart={userCart}
         stock={stock}
-        handleIncreament={() => handleQuantityChange('increment')}
-        handleDecrement={() => handleQuantityChange('decrement')}
+        handleIncreament={() => handleQuantityChange("increment")}
+        handleDecrement={() => handleQuantityChange("decrement")}
       />
       <PreOrderStyle pre_order_available={pre_order_available} />
     </div>

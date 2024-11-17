@@ -10,7 +10,6 @@ export function useUserCart() {
     data: userCart = { regular_items: [] },
     isLoading: loadingCart,
     isError: errorCart,
-    refetch,
   } = useQuery({
     queryFn: getUserCartApi,
     queryKey: ["usercart"],
@@ -23,5 +22,5 @@ export function useUserCart() {
     staleTime: 1000 * 60 * 5,
   });
 
-  return { userCart, loadingCart, errorCart, refetch };
+  return { userCart, loadingCart, errorCart };
 }

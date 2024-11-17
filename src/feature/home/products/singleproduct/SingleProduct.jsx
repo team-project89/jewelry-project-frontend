@@ -9,6 +9,8 @@ import SetQuantity from "@/feature/home/products/singleproduct/UserSetQuantity";
 import { useUserCart } from "@/feature/cart/useUserCart";
 import { useCreateWishlist } from "@/feature/wishlist/useCerateWishList";
 import SingleProductDiscount from "./SingleProductDiscount";
+import { productItem } from "@/utils/singleProductConstants";
+
 
 function SingleProduct() {
   const { id } = useParams();
@@ -25,9 +27,9 @@ function SingleProduct() {
     pre_order_price = 0,
   } = singleProduct || {};
 
-  const productItem =
-    userCart?.regular_items?.find((item) => item?.product === productId) ||
-    null;
+  // const productItem =
+  //   userCart?.regular_items?.find((item) => item?.product === productId) ||
+  //   null;
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -48,7 +50,12 @@ function SingleProduct() {
     }
   };
 
-  if (isLoading || isWishlistLoading || loadingCart) return <Loading />;
+  if (isLoading || isWishlistLoading || loadingCart)
+    return (
+      <div className='flex justify-center items-center h-screen'>
+        <Loading />
+      </div>
+    );
   return (
     <div className='container flex flex-col lg:flex-row mt-8 gap-4 px-8 mx-auto w-full '>
       <div className='flex flex-col items-center lg:w-3/6 gap-8 w-full'>
@@ -62,7 +69,7 @@ function SingleProduct() {
         <SignleUserTableRow singleProduct={singleProduct} />
         <div className='flex flex-col items-center w-full mt-8'>
           <SetQuantity
-            productItem={productItem}
+            productItem={productItem(userCart, productId)}
             userCart={userCart || { regular_items: [] }}
             pre_order_available={pre_order_available}
             stock={stock}
