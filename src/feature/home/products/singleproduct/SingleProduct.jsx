@@ -11,11 +11,10 @@ import { useCreateWishlist } from "@/feature/wishlist/useCerateWishList";
 import SingleProductDiscount from "./SingleProductDiscount";
 import { productItem } from "@/utils/singleProductConstants";
 
-
 function SingleProduct() {
   const { id } = useParams();
   const productId = Number(id);
-  const { getProduct, isLoading, singleProduct, error } = useSingleProduct();
+  const { getProduct, isLoading, singleProduct } = useSingleProduct();
   const { userCart, loadingCart } = useUserCart();
   const { addWishList, isloading: isWishlistLoading } = useCreateWishlist();
 
@@ -26,10 +25,6 @@ function SingleProduct() {
     stock = 0,
     pre_order_price = 0,
   } = singleProduct || {};
-
-  // const productItem =
-  //   userCart?.regular_items?.find((item) => item?.product === productId) ||
-  //   null;
 
   useEffect(() => {
     const fetchProduct = async () => {

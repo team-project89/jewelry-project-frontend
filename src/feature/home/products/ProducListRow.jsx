@@ -11,10 +11,12 @@ function ProducListRow({ products }) {
   const { id, thumbnail } = products;
   const { createCart } = useCreateCart();
   const { decreaseItem } = useDecreaseItemCardQuantity();
+  const { enableFetching } = useCartContext();
 
+  
   // the only way to handle 404 error  because of ( backend structure and  wrong responses  )
   const handleCreateCart = async () => {
-    if (!getCookie.token() && !getCookie.refreshToken()) {
+    if ((!getCookie.token() && !getCookie.refreshToken()) || enableFetching) {
       return;
     } else if (
       (getCookie.refreshToken() && !getCookie.token()) ||

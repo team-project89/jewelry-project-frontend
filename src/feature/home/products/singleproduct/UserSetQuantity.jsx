@@ -6,6 +6,8 @@ import { useDecreaseItemCardQuantity } from "../../../cart/useDecreaseItemCardQu
 import { getTokenFromCookies } from "@/services/httpService";
 import ProductQuantity from "@/style/ProductQuantity";
 import PreOrderStyle from "@/style/PreOrderStyle";
+import toast from "react-hot-toast";
+
 
 function SetQuantity({
   stock,
@@ -38,26 +40,30 @@ function SetQuantity({
   const handleQuantityChange = async (action) => {
     const product_id = Number(productId);
 
-    if (action === "increment") {
-      if (!validateUserAccess()) return;
 
-      createCart(
-        { product_id, quantity: 1 },
-        {
-          onSuccess: () =>
-            queryClient.invalidateQueries(["usercart", product_id]),
-        }
-      );
-    }
+    try {
+      if (action === "increment") {
+        if (!validateUserAccess()) return;
+        await createCart(
+          { product_id, quantity: 1 },
+          {
+            onSuccess: () =>
+              queryClient.invalidateQueries(["usercart", product_id]),
+          }
+        );
+      }
 
-    if (action === "decrement") {
-      await decreaseItem(
-        { product_id },
-        {
-          onSuccess: () =>
-            queryClient.invalidateQueries(["usercart", product_id]),
-        }
-      );
+      if (action === "decrement") {
+        await decreaseItem(
+          { product_id },
+          {
+            onSuccess: () =>
+              queryClient.invalidateQueries(["usercart", product_id]),
+          }
+        );
+      }
+    } catch (error) {
+      toast.error(error.message);
     }
   };
 

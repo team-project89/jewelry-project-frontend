@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useUserCart } from "../cart/useUserCart";
 import Empty from "@/style/Empty";
 import { useCartContext } from "@/context/CartProvider";
@@ -6,9 +6,14 @@ import Loading from "@/style/Loading";
 
 function ShoppingBasket() {
   const { userCart = {}, loadingCart, errorCart } = useUserCart();
-  const { enableFetching, setEnableFetching } = useCartContext();
-
-  if (loadingCart) return <Loading />;
+  const { enableFetching } = useCartContext();
+  console.log(userCart);
+  if (loadingCart)
+    return (
+      <div className='h-screen flex justify-center items-center'>
+        <Loading />
+      </div>
+    );
   if (errorCart)
     return (
       <p dir='rtl' className='p-24 text-right'>
@@ -16,18 +21,15 @@ function ShoppingBasket() {
       </p>
     );
 
-  if (!enableFetching || !userCart?.regular_items?.length) {
+  if (!enableFetching || (enableFetching && !userCart?.regular_items?.length)) {
     return <Empty resourceName='خرید' />;
   }
-  useEffect(() => {
-    if (userCart) {
-      setEnableFetching(true);
-    } else {
-      setEnableFetching(false);
-    }
-  }, [userCart]);
 
-  return <div></div>;
+  return (
+    <div>
+      <h1 className='p-8'>{userCart?.regular_items?.length}</h1>
+    </div>
+  );
 }
 
 export default ShoppingBasket;

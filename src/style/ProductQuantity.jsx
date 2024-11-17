@@ -12,68 +12,50 @@ function ProductQuantity({
   isLoading2,
 }) {
   const [isThrottling, setIsThrottling] = useState(false);
-  const quantity = productItem?.quantity;
+  const { quantity } = productItem || {};
   const isLoading = isLoading1 || isLoading2;
 
   useEffect(() => {
-    const handleThrottleStart = () => setIsThrottling(true);
-    const handleThrottleEnd = () => setIsThrottling(false);
+    const setThrottle = (status) => () => setIsThrottling(status);
 
-    window.addEventListener(
-      httpService.events.THROTTLE_START,
-      handleThrottleStart
-    );
-    window.addEventListener(httpService.events.THROTTLE_END, handleThrottleEnd);
+    window.addEventListener(httpService.events.THROTTLE_START, setThrottle(true));
+    window.addEventListener(httpService.events.THROTTLE_END, setThrottle(false));
 
     return () => {
-      window.removeEventListener(
-        httpService.events.THROTTLE_START,
-        handleThrottleStart
-      );
-      window.removeEventListener(
-        httpService.events.THROTTLE_END,
-        handleThrottleEnd
-      );
+      window.removeEventListener(httpService.events.THROTTLE_START, setThrottle(true));
+      window.removeEventListener(httpService.events.THROTTLE_END, setThrottle(false));
     };
   }, []);
 
-  if (isLoading || isThrottling) {
-    return <Loading />;
-  }
+  if (isLoading || isThrottling) return <Loading />;
 
-  const renderQuantityControls = () => (
-    <div className='flex items-center gap-3'>
+  return quantity ? (
+    <div className="flex items-center gap-3">
       {quantity > 1 ? (
         <button
           onClick={handleDecrement}
-          aria-label='Decrease quantity'
-          className='flex items-center justify-center w-6 h-6 text-gray-900 hover:text-gray-700'
+          aria-label="Decrease quantity"
+          className="flex items-center justify-center w-6 h-6 text-gray-900 hover:text-gray-700"
         >
-          <HiMinusCircle className='w-full h-full' />
+          <HiMinusCircle className="w-full h-full" />
         </button>
       ) : (
         <HiTrash
-          className='w-6 h-6 text-gray-900 hover:text-gray-700'
+          className="w-6 h-6 text-gray-900 hover:text-gray-700"
           onClick={handleDecrement}
         />
       )}
-
-      <span className='w-10 h-10 flex items-center justify-center bg-gray-900 text-white font-semibold border-2 border-gray-200 rounded-md'>
+      <span className="w-10 h-10 flex items-center justify-center bg-gray-900 text-white font-semibold border-2 border-gray-200 rounded-md">
         {quantity}
       </span>
-
       <button
         onClick={handleIncreament}
-        aria-label='Increase quantity'
-        className='flex items-center justify-center w-6 h-6 text-gray-900 hover:text-gray-700'
+        aria-label="Increase quantity"
+        className="flex items-center justify-center w-6 h-6 text-gray-900 hover:text-gray-700"
       >
-        <HiPlusCircle className='w-full h-full' />
+        <HiPlusCircle className="w-full h-full" />
       </button>
     </div>
-  );
-
-  return quantity ? (
-    renderQuantityControls()
   ) : (
     <AddToCartButton handleIncreament={handleIncreament} />
   );
