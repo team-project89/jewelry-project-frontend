@@ -1,9 +1,16 @@
 import brand from "../../public/BrandShop.webp";
-function LabelShop({ style }) {
+
+function LabelShop({ className }) {
   return (
-    <picture className={`${style}`}>
-      <img src={brand} className='w-full h-auto object-cover' alt='brand' />
-    </picture>
+    <div className={`transition-transform hover:scale-105 ${className}`}>
+      <img
+        src={brand}
+        className="h-8 w-auto object-contain"
+        alt="Brand Logo"
+        loading="lazy"
+      />
+    </div>
   );
 }
+
 export default LabelShop;

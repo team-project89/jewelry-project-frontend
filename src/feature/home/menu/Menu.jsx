@@ -14,9 +14,9 @@ function Menu() {
   const isUserLoggedIn = !isLoading && user && Object.keys(user).length > 0;
 
   return (
-    <header className='container mx-auto flex items-center justify-between px-2 py-6 lg:gap-0 gap-4'>
-      <nav className='flex items-center justify-center xl:gap-56 gap-3'>
-        <div className='flex items-center gap-4 md:gap-6 relative xl:order-1'>
+    <header className='container mx-auto flex items-center justify-between px-4 py-4 lg:gap-0 gap-4'>
+      <nav className='flex items-center justify-center gap-3'>
+        <div className='flex items-center gap-4 md:gap-6 relative'>
           {isLoading ? (
             <Loading />
           ) : (
@@ -26,12 +26,9 @@ function Menu() {
         </div>
       </nav>
 
-      <div className='hidden xl:flex w-48 items-center justify-center'>
-        <LabelShop />
-      </div>
+      <LabelShop className="w-28 md:w-32" />
 
-      <div className='flex items-center gap-8 justify-center '>
-        <LabelShop style='brand-style' />
+      <div className='flex items-center gap-6 justify-center'>
         {desirePath !== "admin" && <MenuList />}
         <DropdownMenuDemo />
       </div>

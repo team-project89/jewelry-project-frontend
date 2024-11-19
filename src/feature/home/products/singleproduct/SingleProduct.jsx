@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { MdFavoriteBorder } from "react-icons/md";
 import Loading from "@/style/Loading";
 import { CarouselDemo } from "@/style/Crousel";
@@ -7,17 +7,18 @@ import { useSingleProduct } from "@/feature/user/useSingleProduct";
 import SignleUserTableRow from "@/feature/admin/product/SignleUserTableRow";
 import SetQuantity from "@/feature/home/products/singleproduct/UserSetQuantity";
 import { useUserCart } from "@/feature/cart/useUserCart";
-import { useCreateWishlist } from "@/feature/wishlist/useCerateWishList";
 import SingleProductDiscount from "./SingleProductDiscount";
 import { productItem } from "@/utils/singleProductConstants";
-import toast from "react-hot-toast";
+import { SingleProductStyles as styles } from "../../../../style/SingleProduct.styles";
+import { useWishlistActions } from "@/hooks/useWishlistAction";
 
 function SingleProduct() {
   const { id } = useParams();
   const productId = Number(id);
+  const navigate = useNavigate();
   const { getProduct, isLoading, singleProduct } = useSingleProduct();
   const { userCart, loadingCart } = useUserCart();
-  const { addWishList, isloading: isWishlistLoading } = useCreateWishlist();
+  const { handleAddToWishlist, isWishlistLoading } = useWishlistActions();
 
   const {
     name = "بدون عنوان",
@@ -38,60 +39,53 @@ function SingleProduct() {
     fetchProduct();
   }, [id, getProduct]);
 
-  // {add wish list}
-  const handleWishlist = async () => {
-    try {
-      await addWishList(
-        { product_id: id },
-        {
-          onSuccess: () => {
-            toast.success("محصول با موفقیت به لیست علاقه مندی ها اضافه شد");
-            setIsWishList(true);
-          },
-        }
-      );
-    } catch (error) {
-      console.error("افزودن به لیست علاقه‌مندی‌ها ناموفق بود", error);
-    }
+  const handleWishlist = () => {
+    handleAddToWishlist(id);
   };
 
   if (isLoading || isWishlistLoading || loadingCart)
     return (
-      <div className='min-h-screen flex items-center justify-center'>
+      <div className={styles.loadingContainer}>
         <Loading />
       </div>
     );
 
   return (
-    <div className='min-h-screen bg-gradient-to-b from-gray-50 to-white py-12'>
-      <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
-        <div className='bg-white rounded-2xl shadow-lg overflow-hidden'>
-          <div className='flex flex-col lg:flex-row'>
+    <div className={styles.container}>
+      <div className={styles.innerContainer}>
+        <div className={styles.card}>
+          <div className={styles.flexContainer}>
             {/* Product Images Section */}
-            <div className='lg:w-1/2 p-6'>
-              <div className='rounded-xl overflow-hidden'>
+            <div className={styles.imageSection}>
+              <div className={styles.imageContainer}>
                 <CarouselDemo images={images_list} sizeProduct='lg' />
               </div>
+              <button
+                onClick={() => navigate("/user/basket")}
+                className={styles.checkoutButton}
+              >
+                تکمیل خرید
+              </button>
             </div>
 
             {/* Product Details Section */}
-            <div className='lg:w-1/2 p-8'>
-              <div className='flex items-center justify-between mb-6'>
+            <div className={styles.detailsSection}>
+              <div className={styles.headerContainer}>
                 <button
                   onClick={handleWishlist}
-                  className='group transition-all duration-300 hover:scale-110'
+                  className={styles.wishlistButton}
                 >
-                  <MdFavoriteBorder className='w-8 h-8 text-rose-500 group-hover:text-rose-600' />
+                  <MdFavoriteBorder className={styles.wishlistIcon} />
                 </button>
-                <h1 className='text-3xl font-bold text-gray-800'>{name}</h1>
+                <h1 className={styles.productTitle}>{name}</h1>
               </div>
 
-              <div className='bg-gray-50 rounded-xl p-6 mb-8'>
+              <div className={styles.infoSection}>
                 <SignleUserTableRow singleProduct={singleProduct} />
               </div>
 
               <div className='space-y-6'>
-                <div className='bg-white rounded-xl border border-gray-100 p-6 transition-all duration-300 hover:shadow-md'>
+                <div className={styles.quantitySection}>
                   <SetQuantity
                     productItem={productItem(userCart, productId)}
                     userCart={userCart || { regular_items: [] }}
@@ -101,7 +95,7 @@ function SingleProduct() {
                   />
                 </div>
 
-                <div className='bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6'>
+                <div className={styles.discountSection}>
                   <SingleProductDiscount pre_order_price={pre_order_price} />
                 </div>
               </div>

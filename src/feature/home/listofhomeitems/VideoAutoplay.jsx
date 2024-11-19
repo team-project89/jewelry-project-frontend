@@ -1,8 +1,6 @@
 import React from "react";
-import { RiH1 } from "react-icons/ri";
 
 function VideoAutoplay() {
- 
   return (
     <section
       className='flex gap-8 flex-col transition-all'
@@ -18,7 +16,7 @@ function VideoAutoplay() {
         <source src='/video.mp4' type='video/mp4' />
       </video>
       <div className='w-full flex items-center justify-center gap-x-2'>
-        <h1 className=' text-[10px] sm:text-md md:text-lg'>some sentence</h1>
+        <h1 className=' text-[10px] sm:text-md md:text-lg'></h1>
       </div>
     </section>
   );

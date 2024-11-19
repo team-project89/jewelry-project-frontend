@@ -5,16 +5,6 @@ function Profile() {
   const sticky = useSticky();
 
 
-  // const statusMessages = {
-  //   active: { text: "آماده پذیرش سفارش", className: "text-success" },
-  //   inactive: {
-  //     text: "در حال حاضر سفارش پذیرفته نمی‌شود",
-  //     className: "text-error",
-  //   },
-  // };
-
-  // const shopStatus = statusMessages[status] || {};
-
   return (
     <header
       className={`px-2 xl:px-52 mt-[54px] lg:mt-[68px] sticky top-0 bg-secondary-0 ${
