@@ -7,7 +7,7 @@ function SingleProductDiscount({ pre_order_price }) {
     <table className='w-full'>
       <tbody className='flex justify-center items-center mt-2'>
         <UserTable
-          label='مبلغ پرداختی برای پیش‌خرید'
+          label=' مبلغ پرداختی برای پیش‌خرید: '
           value={
             Number.isFinite(pre_order_price) &&
             `${toPersianNumbersWithComma(pre_order_price)} تومان`

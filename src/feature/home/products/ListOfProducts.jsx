@@ -12,11 +12,13 @@ function ListOfProducts() {
   }
 
   return (
-    <div className=' flex flex-col gap-2 py-16 items-end px-40 '>
-      <UserNavlink path='/allproducts'>
-        <h1>تمام محصولات</h1>
-      </UserNavlink>
-      <div className='  flex gap-8 w-full  mx-auto justify-center items-center  '>
+    <div className='container mx-auto px-4 py-16'>
+      <div className='flex justify-between items-center mb-8'>
+        <UserNavlink path='/allproducts'>
+          <h1 className='text-2xl font-bold'>تمام محصولات</h1>
+        </UserNavlink>
+      </div>
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
         {products.map((item) => (
           <ProducListRow key={item.id} products={item} />
         ))}

@@ -1,16 +1,21 @@
 import React from "react";
 
 function PreOrderStyle({ pre_order_available }) {
-  const message = pre_order_available
-    ? "میتوانید این کالا را در صورت اتمام موجودی پیش خرید کنید"
-    : "این کالا قابلیت پیش خرید ندارد";
-
-  const textColorClass = pre_order_available ? "text-success" : "text-error";
+  if (!pre_order_available) return null;
 
   return (
-    <p className={`text-[12px] whitespace-nowrap ${textColorClass}`}>
-      {message}
-    </p>
+    <div
+      className='mt-6 p-4 rounded-xl border border-zinc-700
+                    bg-gradient-to-r from-zinc-900 to-zinc-800'
+    >
+      <div
+        className='flex items-center space-x-2 rtl:space-x-reverse'
+        dir='rtl'
+      >
+        <span className='w-2 h-2 rounded-full bg-emerald-500 animate-pulse' />
+        <p className='text-sm text-zinc-300'>این محصول قابل پیش‌خرید است</p>
+      </div>
+    </div>
   );
 }
 

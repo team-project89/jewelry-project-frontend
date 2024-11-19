@@ -31,7 +31,7 @@ function AdminSideBar() {
         </AdminNavLink>
 
         <AdminNavLink to='shopstatus'>
-          <FaRecycle className='w-6 h-6' />
+          <FaRecycle className='w-4 h-4' />
           <span>وضعیت فروشگاه</span>
         </AdminNavLink> 
       </ul>

@@ -2,7 +2,7 @@ import { RiSortNumberAsc } from "react-icons/ri"
 
 export default function Table({ children }) {
     return(
-        <div className="bg-secondary-200 overflow-x-auto rounded-3xl shadow-xl">
+        <div className="bg-secondary-200  overflow-x-auto rounded-3xl shadow-xl">
             <table>{ children }</table>
         </div>
     )

@@ -6,6 +6,7 @@ import CreateShopStatus from "./CreateShopStatus";
 import { useGetShopStatus } from "@/feature/home/listofhomeitems/shopstatus/useGetShopStatus";
 import Empty from "@/style/Empty";
 
+
 function ShopStatusHeader() {
   const [open, setOpen] = useState(false);
   const { statusShop } = useGetShopStatus();
@@ -22,11 +23,11 @@ function ShopStatusHeader() {
         onClick={() => setOpen(true)}
         className='btn btn--primary flex items-center gap-x-2'
       >
-        <span> ایجاد محصول جدید</span>
+        <span> ثبت جدید وضعیت فروشگاه</span>
         <MdAddCircleOutline className='w-6 h-6' />
       </button>
       <Modal
-        title='اضافه کردن محصول جدید'
+        title='ثبت وضعیت فروشگاه'
         open={open}
         onClose={() => setOpen(false)}
       >

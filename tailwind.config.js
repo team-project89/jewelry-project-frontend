@@ -38,6 +38,26 @@ export default {
       fontFamily: {
         sans: ["Vazir", ...fontFamily.sans],
       },
+      keyframes: {
+        flipIn: {
+          '0%': { 
+            transform: 'rotateX(-90deg)',
+            opacity: '0'
+          },
+          '100%': { 
+            transform: 'rotateX(0)',
+            opacity: '1'
+          },
+        },
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(-10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        'flipIn': 'flipIn 0.3s ease-out forwards',
+        'fadeIn': 'fadeIn 0.2s ease-in-out',
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],

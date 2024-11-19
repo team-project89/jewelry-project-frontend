@@ -26,7 +26,7 @@ function SignleUserTableRow({ singleProduct }) {
           label='درصد تخفیف'
           value={
             Number.isFinite(discount_percentage)
-              ? `%${toPersianNumbersWithComma(discount_percentage)}`
+              ? `${toPersianNumbersWithComma(discount_percentage)} % `
               : "بدون تخفیف"
           }
         />

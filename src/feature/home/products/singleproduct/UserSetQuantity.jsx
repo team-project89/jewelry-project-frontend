@@ -7,7 +7,7 @@ import { getTokenFromCookies } from "@/services/httpService";
 import ProductQuantity from "@/style/ProductQuantity";
 import PreOrderStyle from "@/style/PreOrderStyle";
 import toast from "react-hot-toast";
-
+import { useQuantityChange } from "@/hooks/useQuantityChange";
 
 function SetQuantity({
   stock,
@@ -16,69 +16,31 @@ function SetQuantity({
   userCart,
   productItem,
 }) {
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
-  const { user } = useUser();
-  const { createCart, isLoading: isCreating } = useCreateCart();
-  const { decreaseItem, isLoading: isDecreasing } =
-    useDecreaseItemCardQuantity();
-
-  const validateUserAccess = () => {
-    if (!getTokenFromCookies()) {
-      navigate("/auth", { replace: true });
-      return false;
-    }
-
-    if (!user?.is_completed) {
-      navigate("/complete-profile", { replace: true });
-      return false;
-    }
-
-    return true;
-  };
-
-  const handleQuantityChange = async (action) => {
-    const product_id = Number(productId);
-
-
-    try {
-      if (action === "increment") {
-        if (!validateUserAccess()) return;
-        await createCart(
-          { product_id, quantity: 1 },
-          {
-            onSuccess: () =>
-              queryClient.invalidateQueries(["usercart", product_id]),
-          }
-        );
-      }
-
-      if (action === "decrement") {
-        await decreaseItem(
-          { product_id },
-          {
-            onSuccess: () =>
-              queryClient.invalidateQueries(["usercart", product_id]),
-          }
-        );
-      }
-    } catch (error) {
-      toast.error(error.message);
-    }
-  };
+  const { handleQuantityChange, isCreating, isDecreasing } =
+    useQuantityChange();
 
   return (
-    <div>
-      <ProductQuantity
-        isLoading1={isCreating}
-        isLoading2={isDecreasing}
-        productItem={productItem}
-        productId={productId}
-        userCart={userCart}
-        stock={stock}
-        handleIncreament={() => handleQuantityChange("increment")}
-        handleDecrement={() => handleQuantityChange("decrement")}
-      />
+    <div className='space-y-6'>
+      <div className='flex flex-col space-y-2'>
+        <h3 className='text-lg font-medium text-zinc-200'>
+          تعداد مورد نظر را انتخاب کنید
+        </h3>
+        <ProductQuantity
+          isLoading1={isCreating}
+          isLoading2={isDecreasing}
+          productItem={productItem}
+          productId={productId}
+          userCart={userCart}
+          stock={stock}
+          handleIncreament={() =>
+            handleQuantityChange("increment", Number(productId))
+          }
+          handleDecrement={() =>
+            handleQuantityChange("decrement", Number(productId))
+          }
+        />
+      </div>
+
       <PreOrderStyle pre_order_available={pre_order_available} />
     </div>
   );

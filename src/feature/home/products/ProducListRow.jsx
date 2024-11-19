@@ -15,7 +15,6 @@ function ProducListRow({ products }) {
 
   // the only way to handle 404 error  because of ( backend structure and  wrong backend  responses   )
   // have to do this to create an empty  cart  for the user  when the user is  logged in(wrong backend responses )
-  
   const handleCreateCart = async () => {
     if ((!getCookie.token() && !getCookie.refreshToken()) || enableFetching) {
       return;
@@ -37,14 +36,17 @@ function ProducListRow({ products }) {
   return (
     <Link
       to={`singleproduct/${id}`}
-      className='w-[200px] h-[200px] flex'
+      className='group relative overflow-hidden rounded-lg transition-all duration-300 hover:scale-105'
       onClick={handleCreateCart}
     >
-      <img
-        src={thumbnail}
-        alt={`Thumbnail of product ${id}`}
-        className='w-full h-auto object-cover rounded-md shadow-xl'
-      />
+      <div className='aspect-square w-full'>
+        <img
+          src={thumbnail}
+          alt={`Thumbnail of product ${id}`}
+          className='h-full w-full object-cover transition-transform duration-300 group-hover:scale-110'
+        />
+        <div className='absolute inset-0 bg-black bg-opacity-0 transition-all duration-300 group-hover:bg-opacity-20'></div>
+      </div>
     </Link>
   );
 }

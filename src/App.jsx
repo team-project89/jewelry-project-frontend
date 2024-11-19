@@ -5,7 +5,7 @@ import Menu from "./feature/home/menu/Menu";
 import { Toaster } from "react-hot-toast";
 import AppRoutes from "./routes/AppRoutes";
 import { CartProvider } from "./context/CartProvider";
-
+import Footer from "./style/Footer";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +21,7 @@ function App() {
           <NavbarProvider>
             {!hideNavbarRoutes.includes(location.pathname) && <Menu />}
             <AppRoutes />
+            <Footer />
           </NavbarProvider>
         </QueryClientProvider>
       </div>
