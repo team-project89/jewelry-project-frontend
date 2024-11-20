@@ -2,10 +2,10 @@ import brand from "../../public/BrandShop.webp";
 
 function LabelShop({ className }) {
   return (
-    <div className={`transition-transform hover:scale-105 ${className}`}>
+    <div className={`transition-transform ${className}`}>
       <img
         src={brand}
-        className="h-8 w-auto object-contain"
+        className="h-32 w-auto object-contain"
         alt="Brand Logo"
         loading="lazy"
       />

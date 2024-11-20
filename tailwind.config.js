@@ -57,7 +57,10 @@ export default {
       animation: {
         'flipIn': 'flipIn 0.3s ease-out forwards',
         'fadeIn': 'fadeIn 0.2s ease-in-out',
-      }
+      },
+      screens: {
+        'xs': '375px',
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

@@ -10,6 +10,7 @@ function ProductQuantity({
   handleDecrement,
 }) {
   const [isThrottling, setIsThrottling] = useState(false);
+
   useEffect(() => {
     const setThrottle = (status) => () => setIsThrottling(status);
 

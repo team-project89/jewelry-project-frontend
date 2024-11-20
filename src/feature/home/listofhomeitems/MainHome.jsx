@@ -1,9 +1,9 @@
 import React from "react";
-import Profile from "./Profile";
 import ShopProfileInfo from "@/style/ShopProfileInfo";
 import ShopInfo from "@/style/ShopInfo";
 import ListOfProducts from "../products/ListOfProducts";
 import OwnerProfileStatus from "./OwnerProfileStaus";
+import Profile from "./Profile";
 
 function MainHome() {
   return (

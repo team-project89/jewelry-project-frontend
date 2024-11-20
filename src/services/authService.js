@@ -10,3 +10,7 @@ export function checkOtpApi(data) {
 export function completeProfileApi(data) {
   return http.post("/update-profile/", data).then((response) => response.data);
 }
+
+export function logoutApi() {
+  return http.get("/auth/logout/").then((response) => response.data);
+}

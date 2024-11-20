@@ -30,7 +30,7 @@ function SignleUserTableRow({ singleProduct }) {
               : "بدون تخفیف"
           }
         />
-        {price_after_discount ? (
+        {discount_percentage > 0 ? (
           <UserTable
             label='قیمت'
             value={

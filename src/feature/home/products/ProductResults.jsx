@@ -4,9 +4,15 @@ import { toPersianNumbers, toPersianNumbersWithComma } from "@/utils/toPersianNu
 import useOutsideClick from "@/hooks/useOutSideClick";
 
 function ProductResults({ products, setIsSearchOpen }) {
-  const ref = useOutsideClick(() => {
-    setIsSearchOpen(false);
-  });
+  const handleOutsideClick = () => {
+    if (window.innerWidth >= 1024) {
+      setIsSearchOpen(false);
+    }
+  };
+
+  
+
+  const ref = useOutsideClick(handleOutsideClick);
 
   if (!products || products.length === 0) {
     return (

@@ -2,8 +2,9 @@ import React from "react";
 import { useUserWishlist } from "./useUserWishlist";
 import Empty from "@/style/Empty";
 import Loading from "@/style/Loading";
+import WishListItems from "@/style/WishListItems";
 
-function UserWithList() {
+function UserWishList() {
   const { wishList, isLoading } = useUserWishlist();
 
   if (isLoading)
@@ -12,9 +13,14 @@ function UserWithList() {
         <Loading />
       </div>
     );
+
   if (!wishList.length) return <Empty resourceName='لیست علاقه مندی ها' />;
 
-  return <div className='p-8'></div>;
+  return (
+    <div className='p-8'>
+      <WishListItems items={wishList[0].items} />
+    </div>
+  );
 }
 
-export default UserWithList;
+export default UserWishList;

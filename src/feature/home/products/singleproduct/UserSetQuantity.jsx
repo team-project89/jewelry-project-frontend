@@ -22,7 +22,7 @@ function SetQuantity({
   return (
     <div className='space-y-6'>
       <div className='flex flex-col space-y-2'>
-        <h3 className='text-lg font-medium text-zinc-200'>
+        <h3 className='text-lg font-medium text-zinc-200 text-right'>
           تعداد مورد نظر را انتخاب کنید
         </h3>
         <ProductQuantity

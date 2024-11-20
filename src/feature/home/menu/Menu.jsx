@@ -1,6 +1,5 @@
 import SignUp from "@/feature/authentication/SignUp";
 import { DropdownMenuDemo } from "@/feature/home/menu/DropDownMenu";
-import LabelShop from "@/style/LabelShop";
 import MenuList from "./MenuList";
 import SearchIcon from "@/style/SearchIcon";
 import useUser from "@/hooks/useUser";
@@ -19,14 +18,14 @@ function Menu() {
         <div className='flex items-center gap-4 md:gap-6 relative'>
           {isLoading ? (
             <Loading />
+          ) : isUserLoggedIn ? (
+            <HoverMenu user={user} />
           ) : (
-            isUserLoggedIn ? <HoverMenu user={user} /> : <SignUp />
+            <SignUp />
           )}
           <SearchIcon />
         </div>
       </nav>
-
-      <LabelShop className="w-28 md:w-32" />
 
       <div className='flex items-center gap-6 justify-center'>
         {desirePath !== "admin" && <MenuList />}

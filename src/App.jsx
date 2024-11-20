@@ -6,6 +6,7 @@ import { Toaster } from "react-hot-toast";
 import AppRoutes from "./routes/AppRoutes";
 import { CartProvider } from "./context/CartProvider";
 import Footer from "./style/Footer";
+import BrandStyle from "./style/BrandStyle";
 
 const queryClient = new QueryClient();
 
@@ -15,7 +16,8 @@ function App() {
 
   return (
     <CartProvider>
-      <div>
+      <div className='relative min-h-screen overflow-hidden'>
+        <BrandStyle/>
         <QueryClientProvider client={queryClient}>
           <Toaster />
           <NavbarProvider>
