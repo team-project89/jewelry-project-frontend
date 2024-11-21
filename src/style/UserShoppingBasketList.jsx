@@ -65,30 +65,30 @@ const BasketItem = ({ item, onQuantityChange, isCreating, isDecreasing }) => (
     animate={{ opacity: 1, y: 0 }}
     exit={{ opacity: 0, y: -20 }}
     key={item.product_detail.id}
-    className="group flex items-center gap-6 p-4 rounded-xl hover:bg-gray-50 transition-all duration-300 border border-gray-100"
+    className="group flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 p-4 rounded-xl hover:bg-gray-50 transition-all duration-300 border border-gray-100 w-full"
   >
-    <div className="flex-grow">
-      <h3 className="text-lg font-medium text-gray-800 mb-1">
+    <div className="flex-grow w-full sm:w-auto">
+      <h3 className="text-base sm:text-lg font-medium text-gray-800 mb-1">
         {item.product_detail.name}
       </h3>
-      <div className="flex items-center gap-3 text-sm text-gray-500">
+      <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-sm text-gray-500">
         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
           موجود در انبار
         </span>
-        <span>
+        <span className="flex flex-wrap items-center gap-1">
           قیمت واحد: <Price amount={item.product_detail.price_after_discount} />
         </span>
       </div>
     </div>
 
-    <div className="flex items-center gap-8">
+    <div className="flex flex-wrap items-center gap-4 sm:gap-8 w-full sm:w-auto mt-4 sm:mt-0">
       <QuantityControls 
         item={item} 
         onQuantityChange={onQuantityChange}
         isCreating={isCreating}
         isDecreasing={isDecreasing}
       />
-      <div className="min-w-[120px] text-left">
+      <div className="min-w-[120px] text-right sm:text-left">
         <Price amount={item.product_detail.price_after_discount * item.quantity} />
       </div>
       <DeleteButton />
@@ -104,10 +104,10 @@ const UserShoppingBasketList = ({ items }) => {
   );
 
   return (
-    <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-sm p-6 rtl" dir="rtl">
-      <h2 className="text-2xl font-semibold mb-6 text-gray-800">سبد خرید</h2>
+    <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-sm p-4 sm:p-6 rtl" dir="rtl">
+      <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-gray-800">سبد خرید</h2>
       
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         {items.map((item) => (
           <BasketItem
             key={item.product_detail.id}
@@ -119,8 +119,8 @@ const UserShoppingBasketList = ({ items }) => {
         ))}
       </div>
 
-      <div className="mt-8 border-t pt-6">
-        <div className="flex justify-between items-center">
+      <div className="mt-6 sm:mt-8 border-t pt-4 sm:pt-6">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
           <span className="text-gray-600">جمع کل</span>
           <Price amount={totalAmount} />
         </div>

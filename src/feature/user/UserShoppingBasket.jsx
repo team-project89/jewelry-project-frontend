@@ -2,8 +2,8 @@ import React from "react";
 import { useUserCart } from "../cart/useUserCart";
 import Empty from "@/style/Empty";
 import { useCartContext } from "@/context/CartProvider";
-import Loading from "@/style/Loading";
 import UserShoppingBasketList from "@/style/UserShoppingBasketList";
+import LoadingSpinner from "@/components/Loading/LoadingSpinner";
 
 function ShoppingBasket() {
   const { userCart = {}, loadingCart } = useUserCart();
@@ -12,7 +12,7 @@ function ShoppingBasket() {
   if (loadingCart)
     return (
       <div className='h-screen flex justify-center items-center'>
-        <Loading />
+        <LoadingSpinner />
       </div>
     );
 
@@ -21,7 +21,7 @@ function ShoppingBasket() {
   }
 
   return (
-    <div className='p-8'>
+    <div className='p-4 sm:p-8'>
       <UserShoppingBasketList items={userCart.regular_items} />
     </div>
   );

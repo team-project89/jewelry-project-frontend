@@ -34,7 +34,7 @@ function HoverMenu({ user }) {
   const handleLogout = async () => {
     try {
       await logout();
-      navigate("/login");
+      navigate("/auth");
     } catch (error) {
       toast.error("خروج از حساب با مشکل مواجه شد");
       console.error("Logout failed:", error);

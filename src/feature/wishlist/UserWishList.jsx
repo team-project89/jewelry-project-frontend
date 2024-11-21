@@ -1,9 +1,9 @@
 import React from "react";
 import { useUserWishlist } from "./useUserWishlist";
 import Empty from "@/style/Empty";
-import Loading from "@/style/Loading";
 import WishListItems from "@/style/WishListItems";
 import useUser from "@/hooks/useUser";
+import LoadingSpinner from "@/components/Loading/LoadingSpinner";
 
 function UserWishList() {
   const { user } = useUser();
@@ -17,7 +17,7 @@ function UserWishList() {
     if (isLoading)
       return (
         <div className='h-screen flex justify-center items-center'>
-          <Loading />
+          <LoadingSpinner />
         </div>
       );
 

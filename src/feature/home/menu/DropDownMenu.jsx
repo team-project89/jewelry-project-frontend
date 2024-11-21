@@ -10,8 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useOpen } from "@/context/NavbarOpen";
-
-
+import { Link } from "react-router-dom";
 
 export function DropdownMenuDemo() {
   const { open, handleClick } = useOpen();
@@ -26,19 +25,28 @@ export function DropdownMenuDemo() {
         </DropdownMenuTrigger>
 
         {open && (
-          <DropdownMenuContent className='w-screen mt-4 '>
-            <DropdownMenuSeparator />
-            <div>Find Designer</div>
-            <DropdownMenuGroup className='border-l-2 p-4 m-3'>
-              <DropdownMenuItem>Designer Search</DropdownMenuItem>
-              <DropdownMenuItem>Post a Job</DropdownMenuItem>
+          <DropdownMenuContent className='w-screen mt-4 py-4'>
+            <DropdownMenuGroup className='space-y-2'>
+              <DropdownMenuItem asChild>
+                <Link
+                  dir='rtl'
+                  to='/user/basket'
+                  className='w-full text-center py-3 hover:bg-gray-50 transition-colors text-right'
+                >
+                  سبد خرید
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator className='my-2' />
+              <DropdownMenuItem asChild>
+                <Link
+                  dir='rtl'
+                  to='/user/wishlist'
+                  className='w-full text-center py-3 hover:bg-gray-50 transition-colors text-right'
+                >
+                  مورد علاقه‌ها
+                </Link>
+              </DropdownMenuItem>
             </DropdownMenuGroup>
-            <DropdownMenuGroup>
-              <DropdownMenuItem>Inspiration</DropdownMenuItem>
-              <DropdownMenuItem>Jobs</DropdownMenuItem>
-              <DropdownMenuItem>Go Pro</DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuItem>Log out</DropdownMenuItem>
           </DropdownMenuContent>
         )}
       </DropdownMenu>
