@@ -3,7 +3,7 @@ import {
   companyLinks,
   customerLinks,
   supportLinks,
-} from "@/contants/footerConstants";
+} from "@/constants/footerConstants";
 import React from "react";
 import { Link } from "react-router-dom";
 

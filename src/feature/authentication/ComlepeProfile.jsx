@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { fields } from "@/contants/completeProfileConstant";
+import { fields } from "@/constants/completeProfileConstant";
 import TextField from "@/style/TextField";
 import useCompleteProfile from "./useCompleteProfile";
 import useUser from "@/hooks/useUser";

@@ -18,11 +18,11 @@ function ListOfProducts() {
           <h1 className='text-2xl font-bold'>تمام محصولات</h1>
         </UserNavlink>
       </div>
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
+      <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
         {products.slice(0, 4).map((item) => (
           <ProducListRow key={item.id} products={item} />
         ))}
-      </div>
+      </ul>
     </div>
   );
 }

@@ -42,7 +42,7 @@ function ProductQuantity({
         <div className='flex items-center space-x-4 rtl:space-x-reverse'>
           <button
             onClick={handleIncreament}
-            disabled={isLoading1 || stock === 0}
+            disabled={isLoading1 || productItem?.quantity >= stock}
             className='w-12 h-12 rounded-xl bg-white text-black font-bold
                      transition-all duration-300 disabled:opacity-50
                      hover:bg-zinc-200 active:scale-95 disabled:hover:bg-white'

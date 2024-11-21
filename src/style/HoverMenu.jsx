@@ -18,8 +18,7 @@ function HoverMenu({ user }) {
   const { is_completed, first_name, last_name } = user;
 
   const path = [
-    { path: "pathone", label: "پنل مالی", icon: "💰" },
-    { path: "pathtwo", label: "سفارشات", icon: "📦" },
+    { path: "/user/order-list", label: "سفارشات", icon: "�" },
     !is_completed && {
       path: "/complete-profile",
       label: "تکمیل اطلاعات",

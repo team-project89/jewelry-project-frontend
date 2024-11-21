@@ -5,6 +5,7 @@ import CompleteProfile from "@/feature/authentication/ComlepeProfile";
 import MainHome from "@/feature/home/listofhomeitems/MainHome";
 import AllProductView from "@/feature/home/products/AllProductView";
 import UserLayout from "@/feature/user/UserLayout";
+import UserOrderList from "@/feature/user/UserOrderList";
 import ShoppingBasket from "@/feature/user/UserShoppingBasket";
 import UserWithList from "@/feature/wishlist/UserWishList";
 import AdminDashboard from "@/page/AdminDashboard";
@@ -27,6 +28,7 @@ function AppRoutes() {
       <Route path='user' element={<UserLayout />}>
         <Route path='wishlist' element={<UserWithList />} />
         <Route path='basket' element={<ShoppingBasket />} />
+        <Route path='order-list' element={<UserOrderList />} />
       </Route>
 
       <Route path='/admin' element={<AdminLayout />}>

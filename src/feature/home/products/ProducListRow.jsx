@@ -34,20 +34,18 @@ function ProducListRow({ products }) {
   };
 
   return (
-    <Link
-      to={`singleproduct/${id}`}
-      className='group relative overflow-hidden rounded-lg transition-all duration-300 hover:scale-105'
-      onClick={handleCreateCart}
-    >
-      <div className='aspect-square w-full'>
-        <img
-          src={thumbnail}
-          alt={`Thumbnail of product ${id}`}
-          className='h-full w-full object-cover transition-transform duration-300 group-hover:scale-110'
-        />
-        <div className='absolute inset-0 bg-black bg-opacity-0 transition-all duration-300 group-hover:bg-opacity-20'></div>
-      </div>
-    </Link>
+    <li className='group relative overflow-hidden rounded-lg transition-all duration-300 hover:scale-105'>
+      <Link to={`singleproduct/${id}`} onClick={handleCreateCart}>
+        <div className='aspect-square w-full'>
+          <img
+            src={thumbnail}
+            alt={`Thumbnail of product ${id}`}
+            className='h-full w-full object-cover transition-transform duration-300 group-hover:scale-110'
+          />
+          <div className='absolute inset-0 bg-black bg-opacity-0 transition-all duration-300 group-hover:bg-opacity-20'></div>
+        </div>
+      </Link>
+    </li>
   );
 }
 

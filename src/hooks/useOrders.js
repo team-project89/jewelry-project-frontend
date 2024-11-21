@@ -1,13 +1,15 @@
+import { getAllOrdersApi } from "@/services/orderService";
+import { useQuery } from "@tanstack/react-query";
 
-import { getAllOrdersApi } from "@/services/orderService"
-import { useQuery } from "@tanstack/react-query"
+export default function useOrders() {
+  const {
+    isLoading,
+    data: orders,
+    error,
+  } = useQuery({
+    queryKey: ["orders"],
+    queryFn: getAllOrdersApi,
+  });
 
-export default function useOrders(){
-    const {isLoading, data: orders} = useQuery({
-        queryKey: ["orders"],
-        queryFn: getAllOrdersApi,
-    })
-
-    return {isLoading, orders}
-
+  return { isLoading, orders, error };
 }

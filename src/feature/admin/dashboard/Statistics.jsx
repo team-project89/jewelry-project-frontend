@@ -7,7 +7,6 @@ import { GrCart } from "react-icons/gr";
 import { LuUsers } from "react-icons/lu";
 import { HiOutlineCircleStack } from "react-icons/hi2";
 import { AiTwotoneAppstore } from "react-icons/ai";
-import { FaRecycle } from "react-icons/fa";
 import useOrders from "@/hooks/useOrders";
 
 function Statistics() {
