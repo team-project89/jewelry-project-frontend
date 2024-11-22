@@ -17,3 +17,8 @@ export function decreaseItemCartQuantityApi(id) {
     return response?.data;
   });
 }
+export function deleteItemCartApi(id) {
+  return http.delete(`/cart/remove-item/${id}/`).then((response) => {
+    return response?.data;
+  });
+}

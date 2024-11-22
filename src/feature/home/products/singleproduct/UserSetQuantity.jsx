@@ -1,12 +1,5 @@
-import { useQueryClient } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
-import useUser from "@/hooks/useUser";
-import { useCreateCart } from "../../../cart/useCreateCart";
-import { useDecreaseItemCardQuantity } from "../../../cart/useDecreaseItemCardQuantity";
-import { getTokenFromCookies } from "@/services/httpService";
 import ProductQuantity from "@/style/ProductQuantity";
 import PreOrderStyle from "@/style/PreOrderStyle";
-import toast from "react-hot-toast";
 import { useQuantityChange } from "@/hooks/useQuantityChange";
 
 function SetQuantity({

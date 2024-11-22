@@ -15,7 +15,7 @@ export function useUserCart() {
     queryKey: ["usercart"],
     retry: false,
     enabled: enableFetching,
-    onError: (error) => {
+    onError: () => {
       toast.error("خطا در دریافت اطلاعات سبد خرید");
     },
     cacheTime: 1000 * 60 * 5,

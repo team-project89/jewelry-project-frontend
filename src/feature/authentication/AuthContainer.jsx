@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { IoArrowBack } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 import SendOTPForm from "./SendOTPForm";
 import CheckOtp from "./CheckOtp";
 import { useForm } from "react-hook-form";
@@ -6,6 +8,7 @@ import useSendOtp from "./useSendOtp";
 import toast from "react-hot-toast";
 
 function AuthContainer() {
+  const navigate = useNavigate();
   const [phoneNumber, setPhoneNumber] = useState("");
   const { isSending, sendOtp } = useSendOtp();
   const { register, handleSubmit, getValues } = useForm();
@@ -21,6 +24,16 @@ function AuthContainer() {
   };
   return (
     <section aria-labelledby='auth-heading'>
+      <button 
+        onClick={() => navigate('/')} 
+        className="flex items-center gap-2 mb-8 px-4 py-2 text-gray-600 hover:text-primary-900 transition-all duration-300 rounded-lg hover:bg-gray-100/80 group"
+      >
+        <IoArrowBack 
+          size={20} 
+          className="group-hover:-translate-x-1 transition-transform duration-300" 
+        />
+        <span className="text-sm font-medium">بازگشت</span>
+      </button>
       {step === 1 ? (
         <SendOTPForm
           handleSubmit={handleSubmit(sendOtpHandler)}
